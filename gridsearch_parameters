@@ -1,0 +1,8 @@
+{
+    "models": ["llama3.3"],
+    "datasets": ["StrategyQA"],
+    "response_generators": ["simple", "critical", "reasoning"],
+    "persona_generators": ["nopersona", "expert", "ipip"],
+    "discussion_paradigms": ["memory", "relay", "report", "debate"],
+    "decision_protocols": ["approval_voting"]
+}
