@@ -1,0 +1,1179 @@
+{
+    "repeats": 1,
+    "common": {
+        "endpoint_url": "http://XXX:8081/v1",
+        "model_name": "meta-llama/Llama-3.1-70B-Instruct",
+        "api_key": "-",
+        "max_turns": 7,
+        "skip_decision_making": true,
+        "visible_turns_in_memory": 1,
+        "debate_rounds": 2,
+        "concurrent_api_requests": 250,
+        "use_baseline": false,
+        "use_chain_of_thought": true,
+        "num_agents": 3,
+        "num_neutral_agents": 0,
+        "agent_generator": "expert",
+        "trust_remote_code": false,
+        "use_ablation": false,
+        "shuffle_input_samples": true,
+        "all_agents_generate_first_draft": false,
+        "all_agents_generate_draft": false,
+        "calculate_persona_diversity": true,
+        "num_samples": 100
+    },
+    "runs": [
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "simple",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "critical",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "nopersona",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "expert",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "memory",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "relay",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "report",
+            "decision_protocol": "approval_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "majority_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "unanimity_consensus"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "simple_voting"
+        },
+        {
+            "model": "meta-llama/Llama-3.1-70B-Instruct",
+            "dataset": "StrategyQA",
+            "response_generator": "reasoning",
+            "persona_generator": "ipip",
+            "discussion_paradigm": "debate",
+            "decision_protocol": "approval_voting"
+        }
+    ]
+}
