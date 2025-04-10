@@ -55,10 +55,9 @@ runs_json = []
 for combo in combinations:
     model, dataset, response_gen, persona_gen, discussion_paradigm, decision_protocol = combo
     run_config = {
-        "model": model,
-        "dataset": dataset,
+        "model_name": model,
         "response_generator": response_gen,
-        "persona_generator": persona_gen,
+        "agent_generator": persona_gen,
         "discussion_paradigm": discussion_paradigm,
         "decision_protocol": decision_protocol,
         "output_json_file_path": f"exp1/out/output_{dataset}_{response_gen}_{persona_gen}_{discussion_paradigm}_{decision_protocol}.json"
