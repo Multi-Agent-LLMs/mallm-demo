@@ -17,6 +17,8 @@ common_settings = {
     "common": {
         "endpoint_url": "http://XXX:8081/v1",
         "model_name": "meta-llama/Llama-3.1-70B-Instruct",
+        "input_json_file_path": "exp1/strategyqa.json",
+        "task_instruction_prompt_template": "strategyqa",
         "api_key": "-",
         "max_turns": 7,
         "skip_decision_making": True,
@@ -58,7 +60,8 @@ for combo in combinations:
         "response_generator": response_gen,
         "persona_generator": persona_gen,
         "discussion_paradigm": discussion_paradigm,
-        "decision_protocol": decision_protocol
+        "decision_protocol": decision_protocol,
+        "output_json_file_path": f"exp1/out/output_{dataset}_{response_gen}_{persona_gen}_{discussion_paradigm}_{decision_protocol}.json"
     }
     runs_json.append(run_config)
 

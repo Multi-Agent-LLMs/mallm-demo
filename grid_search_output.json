@@ -3,6 +3,8 @@
     "common": {
         "endpoint_url": "http://XXX:8081/v1",
         "model_name": "meta-llama/Llama-3.1-70B-Instruct",
+        "input_json_file_path": "exp1/strategyqa.json",
+        "task_instruction_prompt_template": "strategyqa",
         "api_key": "-",
         "max_turns": 7,
         "skip_decision_making": true,
@@ -29,7 +31,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -37,7 +40,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -45,7 +49,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -53,7 +58,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -61,7 +67,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -69,7 +76,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -77,7 +85,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -85,7 +94,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -93,7 +103,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -101,7 +112,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -109,7 +121,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -117,7 +130,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -125,7 +139,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -133,7 +148,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -141,7 +157,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -149,7 +166,8 @@
             "response_generator": "simple",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_nopersona_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -157,7 +175,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -165,7 +184,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -173,7 +193,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -181,7 +202,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -189,7 +211,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -197,7 +220,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -205,7 +229,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -213,7 +238,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -221,7 +247,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -229,7 +256,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -237,7 +265,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -245,7 +274,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -253,7 +283,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -261,7 +292,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -269,7 +301,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -277,7 +310,8 @@
             "response_generator": "simple",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_expert_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -285,7 +319,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -293,7 +328,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -301,7 +337,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -309,7 +346,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -317,7 +355,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -325,7 +364,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -333,7 +373,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -341,7 +382,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -349,7 +391,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -357,7 +400,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -365,7 +409,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -373,7 +418,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -381,7 +427,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -389,7 +436,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -397,7 +445,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -405,7 +454,8 @@
             "response_generator": "simple",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_simple_ipip_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -413,7 +463,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -421,7 +472,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -429,7 +481,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -437,7 +490,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -445,7 +499,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -453,7 +508,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -461,7 +517,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -469,7 +526,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -477,7 +535,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -485,7 +544,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -493,7 +553,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -501,7 +562,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -509,7 +571,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -517,7 +580,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -525,7 +589,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -533,7 +598,8 @@
             "response_generator": "critical",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_nopersona_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -541,7 +607,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -549,7 +616,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -557,7 +625,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -565,7 +634,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -573,7 +643,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -581,7 +652,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -589,7 +661,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -597,7 +670,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -605,7 +679,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -613,7 +688,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -621,7 +697,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -629,7 +706,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -637,7 +715,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -645,7 +724,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -653,7 +733,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -661,7 +742,8 @@
             "response_generator": "critical",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_expert_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -669,7 +751,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -677,7 +760,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -685,7 +769,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -693,7 +778,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -701,7 +787,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -709,7 +796,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -717,7 +805,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -725,7 +814,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -733,7 +823,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -741,7 +832,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -749,7 +841,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -757,7 +850,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -765,7 +859,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -773,7 +868,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -781,7 +877,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -789,7 +886,8 @@
             "response_generator": "critical",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_critical_ipip_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -797,7 +895,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -805,7 +904,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -813,7 +913,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -821,7 +922,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -829,7 +931,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -837,7 +940,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -845,7 +949,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -853,7 +958,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -861,7 +967,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -869,7 +976,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -877,7 +985,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -885,7 +994,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -893,7 +1003,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -901,7 +1012,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -909,7 +1021,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -917,7 +1030,8 @@
             "response_generator": "reasoning",
             "persona_generator": "nopersona",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_nopersona_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -925,7 +1039,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -933,7 +1048,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -941,7 +1057,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -949,7 +1066,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -957,7 +1075,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -965,7 +1084,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -973,7 +1093,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -981,7 +1102,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -989,7 +1111,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -997,7 +1120,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1005,7 +1129,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1013,7 +1138,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1021,7 +1147,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1029,7 +1156,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1037,7 +1165,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1045,7 +1174,8 @@
             "response_generator": "reasoning",
             "persona_generator": "expert",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_expert_debate_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1053,7 +1183,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_memory_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1061,7 +1192,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_memory_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1069,7 +1201,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_memory_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1077,7 +1210,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "memory",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_memory_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1085,7 +1219,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_relay_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1093,7 +1228,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_relay_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1101,7 +1237,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_relay_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1109,7 +1246,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "relay",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_relay_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1117,7 +1255,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_report_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1125,7 +1264,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_report_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1133,7 +1273,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_report_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1141,7 +1282,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "report",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_report_approval_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1149,7 +1291,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "majority_consensus"
+            "decision_protocol": "majority_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_debate_majority_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1157,7 +1300,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "unanimity_consensus"
+            "decision_protocol": "unanimity_consensus",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_debate_unanimity_consensus.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1165,7 +1309,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "simple_voting"
+            "decision_protocol": "simple_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_debate_simple_voting.json"
         },
         {
             "model": "meta-llama/Llama-3.1-70B-Instruct",
@@ -1173,7 +1318,8 @@
             "response_generator": "reasoning",
             "persona_generator": "ipip",
             "discussion_paradigm": "debate",
-            "decision_protocol": "approval_voting"
+            "decision_protocol": "approval_voting",
+            "output_json_file_path": "exp1/out/output_StrategyQA_reasoning_ipip_debate_approval_voting.json"
         }
     ]
 }
