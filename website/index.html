@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MALLM - Multi-Agent LLM Framework</title>
+    <link rel="stylesheet" href="replay-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <img src="images/mallm.webp" alt="MALLM Logo" class="logo">
+                <div class="logo-text">
+                    <h1>MALLM</h1>
+                    <p class="tagline">Multi-Agent LLM Framework</p>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="conversation-selector">
+                    <i class="fas fa-comments control-icon"></i>
+                    <select id="conversation-select">
+                        <option value="object_1.json" selected>Conversation 1</option>
+                        <option value="object_2.json">Conversation 2</option>
+                        <option value="object_3.json">Conversation 3</option>
+                        <option value="object_4.json">Conversation 4</option>
+                        <option value="object_5.json">Conversation 5</option>
+                    </select>
+                    <button id="load-conversation" class="btn"><i class="fas fa-sync-alt"></i> Load</button>
+                </div>
+                
+                <div class="replay-controls">
+                    <button id="start-replay" class="btn primary"><i class="fas fa-play"></i> Start Replay</button>
+                    <button id="stop-replay" class="btn" disabled><i class="fas fa-stop"></i> Stop</button>
+                    <div class="speed-control">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <label>Speed:</label>
+                        <input type="range" id="replay-speed" min="0.5" max="2" step="0.1" value="1">
+                        <span id="speed-value">1x</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="question-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-tasks"></i> Task</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="personas-container">
+                        <h3><i class="fas fa-users"></i> Participants</h3>
+                        <div id="personas-list" class="personas"></div>
+                    </div>
+                    <div id="instruction-text" class="instruction"></div>
+                    <div id="question-text" class="question"></div>
+                </div>
+            </div>
+
+            <div class="conversation-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-comments"></i> Discussion</h2>
+                    <div class="turn-navigation">
+                        <span id="turn-counter">Turn <span id="current-turn">1</span> of <span id="max-turns">7</span></span>
+                        <div class="progress-container">
+                            <div id="turn-progress" class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <div id="messages-container" class="messages-container">
+                        <!-- Messages will be inserted here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Replay completion modal -->
+        <div id="replay-complete-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-check-circle"></i> Replay Complete</h3>
+                </div>
+                <div class="modal-body">
+                    <p>The agents have reached a consensus:</p>
+                    <div id="modal-final-answer" class="modal-final-answer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="replay-again" class="btn primary"><i class="fas fa-redo"></i> Replay Again</button>
+                    <button id="close-modal" class="btn"><i class="fas fa-times"></i> Close</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading indicator -->
+        <div id="loading-indicator" class="loading-indicator">
+            <div class="spinner"></div>
+            <div><i class="fas fa-database"></i> Loading conversation data...</div>
+        </div>
+    </div>
+
+    <script src="replay.js"></script>
+</body>
+</html> 
