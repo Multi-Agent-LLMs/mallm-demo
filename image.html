@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MALLM Framework – Compact Wide Figure</title>
+    <!-- Compact, visually‑refined version – optimised for landscape‑style placement in an A4 paper -->
+    <style>
+        /* ----------  GLOBALS & TYPOGRAPHY  ---------- */
+        :root{font-size:17.5px;} /* ≈ 12 pt */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;background:#fff;color:#2c3e50;line-height:1.4;padding:1rem .8rem;}
+
+        /* ----------  GRID LAYOUT  ---------- */
+        .container{--gap:.8rem;display:grid;grid-template-columns:1fr 14rem;grid-template-rows:auto auto;gap:var(--gap);max-width:66rem;margin:0 auto;}
+
+        /* ----------  UTILITY  ---------- */
+        .panel{background:#fafafa;border:2px dashed var(--accent,#ccc);border-radius:.8rem;padding:1rem;box-shadow:0 3px 9px rgba(0,0,0,.05);}        
+        h1,h2,h3,h4{font-weight:700;}
+
+        /* ----------  MAIN FRAMEWORK  ---------- */
+        .main-framework{--accent:#4CAF50;}
+        .framework-title{text-align:center;font-size:2.1rem;margin-bottom:.2rem;}
+        .framework-subtitle{text-align:center;font-size:.95rem;color:#5d6d7e;margin-bottom:.8rem;}
+        .components-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14.5rem,1fr));gap:var(--gap);}        
+        .component-section{position:relative;padding:.75rem .65rem .9rem;border:2px dashed var(--accentSection,#3498db);border-radius:.6rem;background:#ffffffee;display:flex;flex-direction:column;justify-content:space-between;}
+        .component-title{text-align:center;font-size:1.1rem;margin-bottom:.2rem;}
+        .component-subtitle{text-align:center;font-size:.82rem;color:#5d6d7e;margin-bottom:.55rem;}
+        .component-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;}
+        .component-item{background:#fff;border-radius:.9rem;font-size:.88rem;padding:.3rem .75rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}        
+        /* colour accents */
+        .persona-generator{--accentSection:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);} 
+        .discussion-paradigm{--accentSection:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);} 
+        .response-generator{--accentSection:#9C27B0;background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);} 
+        .decision-protocol{--accentSection:#2196F3;background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);} 
+
+        /* ----------  BACKENDS  ---------- */
+        .inference-backends{--accent:#2196F3;position:relative;}
+        .backends-title{text-align:center;font-size:1.35rem;margin-bottom:.2rem;}
+        .backends-subtitle{text-align:center;font-size:.82rem;color:#5d6d7e;margin-bottom:.8rem;}
+        .backends-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:var(--gap);}        
+        .backend-section{padding:.75rem .65rem .9rem;border:2px dashed var(--accentSub,#3498db);border-radius:.6rem;background:#ffffffee;}
+        .open-source{--accentSub:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);}        
+        .proprietary{--accentSub:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}        
+        .backend-title{text-align:center;font-size:1.02rem;margin-bottom:.4rem;}
+        .backend-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;}
+        .backend-item{background:#fff;border-radius:.85rem;font-size:.82rem;padding:.28rem .72rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}        
+
+        /* ----------  EVALUATION PANEL  ---------- */
+        .evaluation-panel{--accent:#FF9800;grid-column:2/3;grid-row:1/3;overflow-y:auto;}
+        .evaluation-title{text-align:center;font-size:1.25rem;margin-bottom:.2rem;}
+        .evaluation-subtitle{text-align:center;font-size:.82rem;color:#5d6d7e;margin-bottom:.8rem;}
+        .evaluation-methods{display:flex;flex-direction:column;gap:.55rem;}
+        .eval-method{padding:.75rem;border:2px dashed var(--accent);border-radius:.6rem;text-align:center;background:#ffffffee;}
+        .human-eval{background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}        
+        .automated-eval{background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);}        
+        .performance-eval{background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);}        
+        .eval-title{font-weight:600;margin-bottom:.18rem;font-size:.9rem;}
+        .eval-icon{display:block;font-size:1.15rem;margin-bottom:.22rem;}
+
+        /* ----------  ARROWS  ---------- */
+        .arrow{position:absolute;font-size:1.6rem;color:#9aa3a6;}
+        .arrow-right{right:-1.3rem;top:50%;transform:translateY(-50%);} /* main ▸ backends */
+
+        /* ----------  RESPONSIVE  ---------- */
+        @media(max-width:768px){
+            .container{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+            .evaluation-panel{grid-column:1/2;grid-row:auto;max-height:20rem;}
+            .arrow-right{display:none;} /* hide arrow when stacked */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Framework -->
+        <section class="main-framework panel">
+            <h1 class="framework-title">MALLM Framework</h1>
+            <h2 class="framework-subtitle">Multi‑Agent Large Language Model Collaborative Framework</h2>
+
+            <div class="components-grid">
+                <!-- Persona Generator -->
+                <div class="component-section persona-generator">
+                    <h3 class="component-title">Persona Generator</h3>
+                    <p class="component-subtitle">Agent personality definition</p>
+                    <div class="component-items">
+                        <span class="component-item">No Persona</span>
+                        <span class="component-item">ExpertPersona</span>
+                        <span class="component-item">IPIPPersona</span>
+                    </div>
+                </div>
+
+                <!-- Discussion Paradigm -->
+                <div class="component-section discussion-paradigm">
+                    <h3 class="component-title">Discussion Paradigm</h3>
+                    <p class="component-subtitle">Agent interaction patterns</p>
+                    <div class="component-items">
+                        <span class="component-item">Memory</span>
+                        <span class="component-item">Relay</span>
+                        <span class="component-item">Report</span>
+                        <span class="component-item">Debate</span>
+                    </div>
+                </div>
+
+                <!-- Response Generator -->
+                <div class="component-section response-generator">
+                    <h3 class="component-title">Response Generator</h3>
+                    <p class="component-subtitle">Response generation strategies</p>
+                    <div class="component-items">
+                        <span class="component-item">Simple</span>
+                        <span class="component-item">Critical</span>
+                        <span class="component-item">Reasoning</span>
+                    </div>
+                </div>
+
+                <!-- Decision Protocol -->
+                <div class="component-section decision-protocol">
+                    <h3 class="component-title">Decision Protocol</h3>
+                    <p class="component-subtitle">Final decision mechanisms</p>
+                    <div class="component-items">
+                        <span class="component-item">Voting</span>
+                        <span class="component-item">Consensus</span>
+                    </div>
+                </div>
+            </div>
+            <!-- connecting arrow to backends -->
+            <span class="arrow arrow-right">→</span>
+        </section>
+
+        <!-- Inference Backends -->
+        <aside class="inference-backends panel">
+            <h3 class="backends-title">LLM Inference Backends</h3>
+            <p class="backends-subtitle">Distributed &amp; concurrent inference with load‑balancing and caching</p>
+            <div class="backends-grid">
+                <div class="backend-section open-source">
+                    <h4 class="backend-title">Open‑Source Models with Weights</h4>
+                    <div class="backend-items">
+                        <span class="backend-item">🤗 TGI</span>
+                        <span class="backend-item">🤗 Transformers</span>
+                        <span class="backend-item">🦙 LLM</span>
+                    </div>
+                </div>
+                <div class="backend-section proprietary">
+                    <h4 class="backend-title">Proprietary Models with APIs</h4>
+                    <div class="backend-items">
+                        <span class="backend-item">🌀 ChatGPT</span>
+                        <span class="backend-item">🟠 Claude</span>
+                        <span class="backend-item">🔹 Gemini</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Evaluation Panel -->
+        <aside class="evaluation-panel panel">
+            <h3 class="evaluation-title">Multi‑Agent Evaluation</h3>
+            <p class="evaluation-subtitle">Comprehensive assessment of collaborative performance</p>
+            <div class="evaluation-methods">
+                <div class="eval-method human-eval"><span class="eval-icon">👥</span><span class="eval-title">Human Evaluation</span><p>Expert assessment of agent collaboration quality</p></div>
+                <div class="eval-method automated-eval"><span class="eval-icon">🤖</span><span class="eval-title">Automated Metrics</span><p>Performance and coherence measurement</p></div>
+                <div class="eval-method performance-eval"><span class="eval-icon">📊</span><span class="eval-title">Task Performance</span><p>Accuracy and efficiency analysis</p></div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>
+
