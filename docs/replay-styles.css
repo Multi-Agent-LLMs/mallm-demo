@@ -106,6 +106,55 @@ header {
     align-items: center;
 }
 
+/* External links styling */
+.external-links {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-left: auto;
+    margin-right: var(--spacing-lg);
+}
+
+.external-link {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.external-link:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.external-link i {
+    font-size: 1rem;
+}
+
+/* Responsive adjustments for external links */
+@media (max-width: 992px) {
+    header {
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+    
+    .external-links {
+        margin-left: 0;
+        margin-right: 0;
+        order: 2;
+        flex-basis: 100%;
+        justify-content: center;
+    }
+}
+
 .logo {
     height: 50px;
     margin-right: var(--spacing-md);
