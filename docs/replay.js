@@ -25,6 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
     floatingStopBtn.innerHTML = '<i class="fas fa-stop"></i>';
     document.body.appendChild(floatingStopBtn);
     
+    // Create discussion play overlay
+    const discussionPlayOverlay = document.createElement('div');
+    discussionPlayOverlay.className = 'discussion-play-overlay';
+    discussionPlayOverlay.innerHTML = `
+        <div class="discussion-play-button">
+            <i class="fas fa-play"></i>
+        </div>
+        <div class="play-text">Click to start replay</div>
+    `;
+    
     // State
     let discussionData = null;
     let currentTurn = 1;
@@ -122,12 +132,38 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 discussionData = data;
                 setupConversation();
+                // Add the play overlay to the conversation panel after setup
+                showDiscussionPlayOverlay();
             })
             .catch(error => {
                 console.error('Error loading discussion data:', error);
                 alert('Failed to load discussion data. Please try refreshing the page.');
                 hideLoadingIndicator();
             });
+    }
+
+    // Function to show play button overlay in the discussion panel
+    function showDiscussionPlayOverlay() {
+        if (isReplaying) return; // Don't show if already replaying
+        
+        const conversationPanel = document.querySelector('.conversation-panel .panel-content');
+        if (!conversationPanel) return;
+        
+        // Add the overlay to the panel
+        conversationPanel.style.position = 'relative'; // Ensure proper positioning
+        conversationPanel.appendChild(discussionPlayOverlay);
+        
+        // Add click event listener to start replay
+        discussionPlayOverlay.querySelector('.discussion-play-button').addEventListener('click', () => {
+            startReplay();
+        });
+    }
+
+    // Function to hide play button overlay
+    function hideDiscussionPlayOverlay() {
+        if (discussionPlayOverlay.parentElement) {
+            discussionPlayOverlay.parentElement.removeChild(discussionPlayOverlay);
+        }
     }
 
     // Load a new conversation
@@ -148,6 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 discussionData = data;
                 setupConversation();
                 hideLoadingIndicator();
+                // Show play overlay after loading new conversation
+                showDiscussionPlayOverlay();
             })
             .catch(error => {
                 console.error('Error loading discussion data:', error);
@@ -289,6 +327,9 @@ document.addEventListener('DOMContentLoaded', () => {
         stopReplayBtn.disabled = false;
         loadConversationBtn.disabled = true;
         
+        // Hide the discussion play overlay when replay starts
+        hideDiscussionPlayOverlay();
+        
         // Show floating stop button
         floatingStopBtn.classList.add('visible');
         
@@ -350,6 +391,9 @@ document.addEventListener('DOMContentLoaded', () => {
         messagesContainer.innerHTML = '';
         currentTurn = 1;
         updateTurnInfo();
+        
+        // Remove play button overlay if it exists
+        hideDiscussionPlayOverlay();
     }
     
     function updateTurnInfo() {

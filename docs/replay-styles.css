@@ -1347,4 +1347,65 @@ main {
     .next-agent-wrapper {
         font-size: 0.85rem;
     }
+}
+
+/* Play button overlay for discussion panel */
+.discussion-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    backdrop-filter: blur(2px);
+    transition: all 0.3s ease;
+}
+
+.discussion-play-button {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border: 4px solid white;
+    color: white;
+}
+
+.discussion-play-button i {
+    font-size: 32px;
+    margin-left: 5px; /* Slight offset for play icon */
+}
+
+.discussion-play-button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-dark);
+}
+
+.discussion-play-overlay .play-text {
+    margin-top: var(--spacing-md);
+    font-weight: 600;
+    color: var(--primary-color);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments for the play button */
+@media (max-width: 576px) {
+    .discussion-play-button {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .discussion-play-button i {
+        font-size: 24px;
+    }
 } 
