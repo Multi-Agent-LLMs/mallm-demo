@@ -17,25 +17,35 @@
     --error-color: #f44336;
     
     /* Agent color sets - for dynamic assignment to any agents */
+    /* Blue */
     --agent-color-1-bg: #e3f2fd;
-    --agent-color-1-accent: #2196f3;
+    --agent-color-1-accent: #1976d2;
     --agent-color-1-light: #bbdefb;
     
-    --agent-color-2-bg: #e8f5e9;
-    --agent-color-2-accent: #4caf50;
-    --agent-color-2-light: #c8e6c9;
+    /* Purple */
+    --agent-color-2-bg: #ede7f6;
+    --agent-color-2-accent: #673ab7;
+    --agent-color-2-light: #d1c4e9;
     
-    --agent-color-3-bg: #fff3e0;
-    --agent-color-3-accent: #ff9800;
-    --agent-color-3-light: #ffe0b2;
+    /* Amber */
+    --agent-color-3-bg: #fff8e1;
+    --agent-color-3-accent: #ffc107;
+    --agent-color-3-light: #ffecb3;
     
-    --agent-color-4-bg: #f3e5f5;
-    --agent-color-4-accent: #9c27b0;
-    --agent-color-4-light: #e1bee7;
+    /* Teal */
+    --agent-color-4-bg: #e0f2f1;
+    --agent-color-4-accent: #009688;
+    --agent-color-4-light: #b2dfdb;
     
-    --agent-color-5-bg: #ffebee;
-    --agent-color-5-accent: #f44336;
-    --agent-color-5-light: #ffcdd2;
+    /* Pink */
+    --agent-color-5-bg: #fce4ec;
+    --agent-color-5-accent: #e91e63;
+    --agent-color-5-light: #f8bbd0;
+    
+    /* Dark Gold - replacing light yellow */
+    --agent-color-6-bg: #fff3e0;
+    --agent-color-6-accent: #ff8f00;
+    --agent-color-6-light: #ffe0b2;
     
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -957,6 +967,11 @@ main {
     border-left: 4px solid var(--agent-color-5-accent);
 }
 
+.agent-color-6 {
+    background-color: var(--agent-color-6-bg);
+    border-left: 4px solid var(--agent-color-6-accent);
+}
+
 /* Badge colors */
 .badge-color-1 {
     background-color: var(--agent-color-1-light);
@@ -981,6 +996,11 @@ main {
 .badge-color-5 {
     background-color: var(--agent-color-5-light);
     color: var(--agent-color-5-accent);
+}
+
+.badge-color-6 {
+    background-color: var(--agent-color-6-light);
+    color: var(--agent-color-6-accent);
 }
 
 /* Mention colors */
@@ -1009,6 +1029,11 @@ main {
     color: var(--agent-color-5-accent);
 }
 
+.mention-color-6 {
+    background-color: var(--agent-color-6-light);
+    color: var(--agent-color-6-accent);
+}
+
 /* Agent icon colors */
 .agent-color-1 .agent-icon {
     background-color: var(--agent-color-1-accent);
@@ -1032,6 +1057,11 @@ main {
 
 .agent-color-5 .agent-icon {
     background-color: var(--agent-color-5-accent);
+    color: white;
+}
+
+.agent-color-6 .agent-icon {
+    background-color: var(--agent-color-6-accent);
     color: white;
 }
 
@@ -1093,4 +1123,226 @@ main {
     padding: 2px 6px;
     border-radius: var(--border-radius-sm);
     margin-right: var(--spacing-md);
+}
+
+/* Floating action button for mobile */
+.floating-stop-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--error-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+    border: none;
+}
+
+.floating-stop-btn.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.floating-stop-btn:hover {
+    transform: scale(1.1);
+}
+
+.floating-stop-btn:active {
+    transform: scale(0.95);
+}
+
+.floating-stop-btn i {
+    font-size: 24px;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 992px) {
+    body {
+        padding: var(--spacing-xs);
+        overflow-y: auto;
+    }
+    
+    .app-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .question-panel, .conversation-panel {
+        width: 100%;
+        height: auto;
+    }
+    
+    .question-panel {
+        max-height: none;
+    }
+    
+    .conversation-panel {
+        min-height: 60vh;
+    }
+    
+    .panel-content {
+        max-height: 70vh;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .conversation-selector, .replay-controls {
+        width: 100%;
+    }
+    
+    .replay-controls {
+        flex-wrap: wrap;
+    }
+    
+    .speed-control {
+        margin-top: var(--spacing-sm);
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .panel-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .panel-content {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .message {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    #turn-counter {
+        font-size: 0.8rem;
+    }
+    
+    .progress-container {
+        width: 120px;
+    }
+}
+
+.replay-stopped-notice {
+    text-align: center;
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) auto;
+    background-color: var(--error-color);
+    color: white;
+    border-radius: var(--border-radius-md);
+    width: fit-content;
+    animation: fadeInOut 2s ease-in-out;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.replay-stopped-notice i {
+    font-size: 1.1rem;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(10px); }
+}
+
+.next-agent-indicator {
+    background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.01) 100%);
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: fadeIn 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.next-agent-indicator.fading {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.paradigm-info {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.paradigm-info i {
+    color: var(--secondary-color);
+}
+
+.paradigm-info strong {
+    color: var(--text-color);
+    font-style: italic;
+}
+
+.next-agent-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+    .next-agent-indicator {
+        padding: 8px;
+    }
+    
+    .paradigm-info {
+        font-size: 0.8rem;
+    }
+    
+    .next-agent-wrapper {
+        font-size: 0.85rem;
+    }
 } 

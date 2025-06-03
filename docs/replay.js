@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const replayAgainBtn = document.getElementById('replay-again');
     const closeModalBtn = document.getElementById('close-modal');
 
+    // Create floating stop button for mobile
+    const floatingStopBtn = document.createElement('button');
+    floatingStopBtn.className = 'floating-stop-btn';
+    floatingStopBtn.innerHTML = '<i class="fas fa-stop"></i>';
+    document.body.appendChild(floatingStopBtn);
+    
     // State
     let discussionData = null;
     let currentTurn = 1;
@@ -32,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let replayTimeouts = []; // Store all timeouts for cancellation if needed
     let previousAgent = null;
     let previousAgentsByTurn = {}; // Track the previous agent for each turn
+    let discussionParadigm = "Unknown";
 
     // Available SVG icons from the images folder
     const availableIcons = [
@@ -49,6 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
         'images/1F471-200D-2640-FE0F.svg'  // Woman with blond hair
     ];
 
+    // Agent color scheme - using colors distinct from agree/disagree (green/red)
+    const agentColors = [
+        { bg: '#e3f2fd', accent: '#1976d2', light: '#bbdefb' }, // Blue
+        { bg: '#ede7f6', accent: '#673ab7', light: '#d1c4e9' }, // Purple
+        { bg: '#fff8e1', accent: '#ffc107', light: '#ffecb3' }, // Amber
+        { bg: '#e0f2f1', accent: '#009688', light: '#b2dfdb' }, // Teal
+        { bg: '#fce4ec', accent: '#e91e63', light: '#f8bbd0' }, // Pink
+        { bg: '#fffde7', accent: '#ffeb3b', light: '#fff9c4' }  // Yellow
+    ];
+    
     // Initialize the app
     init();
 
@@ -67,6 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
     stopReplayBtn.addEventListener('click', () => {
         stopReplay();
     });
+    
+    // Floating stop button event listener
+    floatingStopBtn.addEventListener('click', () => {
+        stopReplay();
+    });
 
     replaySpeedSlider.addEventListener('input', () => {
         replaySpeed = parseFloat(replaySpeedSlider.value);
@@ -82,6 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeModalBtn.addEventListener('click', () => {
         closeModal();
+    });
+    
+    // Add event listener for window resize to handle scrolling
+    window.addEventListener('resize', () => {
+        if (isReplaying) {
+            scrollChatToBottom();
+        }
     });
 
     // Initialize the application
@@ -133,17 +162,24 @@ document.addEventListener('DOMContentLoaded', () => {
         maxTurns = discussionData.turns;
         agentPersonas = discussionData.personas.map(p => p.persona);
         
-        // Create a mapping from agent names to color classes (1-5)
+        // Store the discussion paradigm if available
+        discussionParadigm = discussionData.paradigm || "Unknown";
+        
+        // Create a mapping from agent names to color classes (1-6)
         agentColorMap = {};
         agentIconMap = {};
+        
+        // Shuffle the agent colors to have random assignment each time
+        const shuffledColors = [...Array(agentColors.length).keys()].sort(() => Math.random() - 0.5);
+        
         agentPersonas.forEach((persona, index) => {
-            // Use modulo to cycle through available colors (1-5)
-            const colorIndex = (index % 5) + 1;
+            // Use shuffled colors for random color assignment
+            const colorIndex = (shuffledColors[index % shuffledColors.length] % 6) + 1;
             agentColorMap[persona] = colorIndex;
             
-            // Assign a unique icon to each agent
-            const iconIndex = index % availableIcons.length;
-            agentIconMap[persona] = availableIcons[iconIndex];
+            // Randomly assign an icon to each agent
+            const randomIconIndex = Math.floor(Math.random() * availableIcons.length);
+            agentIconMap[persona] = availableIcons[randomIconIndex];
         });
         
         // Initialize the UI
@@ -253,8 +289,17 @@ document.addEventListener('DOMContentLoaded', () => {
         stopReplayBtn.disabled = false;
         loadConversationBtn.disabled = true;
         
+        // Show floating stop button
+        floatingStopBtn.classList.add('visible');
+        
         // Reset UI before starting replay
         resetUI();
+        
+        // Reassign random icons for each agent on replay start
+        agentPersonas.forEach(persona => {
+            const randomIconIndex = Math.floor(Math.random() * availableIcons.length);
+            agentIconMap[persona] = availableIcons[randomIconIndex];
+        });
         
         // Start from turn 1
         currentTurn = 1;
@@ -270,9 +315,35 @@ document.addEventListener('DOMContentLoaded', () => {
         stopReplayBtn.disabled = true;
         loadConversationBtn.disabled = false;
         
+        // Hide floating stop button
+        floatingStopBtn.classList.remove('visible');
+        
         // Clear all timeouts to stop any pending animations
         replayTimeouts.forEach(timeout => clearTimeout(timeout));
         replayTimeouts = [];
+        
+        // Stop all animations by removing any in-progress animations
+        const animatingElements = document.querySelectorAll('[style*="animation"], [style*="transition"]');
+        animatingElements.forEach(el => {
+            el.style.animation = 'none';
+            el.style.transition = 'none';
+        });
+        
+        // Add a small notification that replay was stopped
+        const stoppedNotice = document.createElement('div');
+        stoppedNotice.className = 'replay-stopped-notice';
+        stoppedNotice.innerHTML = '<i class="fas fa-hand-paper"></i> Replay stopped';
+        messagesContainer.appendChild(stoppedNotice);
+        
+        // Scroll to show the notice
+        scrollChatToBottom();
+        
+        // Remove the notice after 2 seconds
+        setTimeout(() => {
+            if (messagesContainer.contains(stoppedNotice)) {
+                messagesContainer.removeChild(stoppedNotice);
+            }
+        }, 2000);
     }
     
     function resetUI() {
@@ -287,6 +358,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function replaySequence() {
+        if (!isReplaying) return; // Early check
+        
         // Clear previous timeouts
         replayTimeouts.forEach(timeout => clearTimeout(timeout));
         replayTimeouts = [];
@@ -295,10 +368,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const turnMessages = discussionData.globalMemory.filter(msg => msg.turn === currentTurn);
         turnMessages.sort((a, b) => a.message_id - b.message_id);
         
-        
         let currentMessageIndex = 0;
         
         function displayNextMessage() {
+            if (!isReplaying) return; // Check if we're still replaying
+            
             if (currentMessageIndex < turnMessages.length) {
                 const message = turnMessages[currentMessageIndex];
                 const colorClass = agentColorMap[message.persona];
@@ -349,21 +423,45 @@ document.addEventListener('DOMContentLoaded', () => {
                             solutionEl.style.transition = 'opacity 0.5s ease';
                             scrollChatToBottom(); // Scroll after solution appears
                             
-                            // Move to next message after solution is shown
-                            setTimeout(() => {
+                            // Check if there's a next message to show paradigm info
+                            const nextMessage = turnMessages[currentMessageIndex + 1];
+                            if (nextMessage) {
+                                // Move to next message after solution is shown and paradigm info
+                                setTimeout(() => {
+                                    displayNextAgentIndicator(message, nextMessage);
+                                    setTimeout(() => {
+                                        currentMessageIndex++;
+                                        displayNextMessage();
+                                    }, 1500 / replaySpeed);
+                                }, 500 / replaySpeed);
+                            } else {
+                                // No more messages in this turn
                                 currentMessageIndex++;
                                 displayNextMessage();
-                            }, 500 / replaySpeed);
+                            }
                         }, 500 / replaySpeed);
                     } else {
-                        // Move to next message if no solution
-                        currentMessageIndex++;
-                        displayNextMessage();
+                        // Check if there's a next message to show paradigm info
+                        const nextMessage = turnMessages[currentMessageIndex + 1];
+                        if (nextMessage) {
+                            setTimeout(() => {
+                                displayNextAgentIndicator(message, nextMessage);
+                                setTimeout(() => {
+                                    currentMessageIndex++;
+                                    displayNextMessage();
+                                }, 1500 / replaySpeed);
+                            }, 500 / replaySpeed);
+                        } else {
+                            // No more messages, move on
+                            currentMessageIndex++;
+                            displayNextMessage();
+                        }
                     }
                 });
             } else {
                 // All messages displayed, show voting after a delay
                 const timeoutId = setTimeout(() => {
+                    if (!isReplaying) return; // Additional check
                     // Display voting in conversation window instead of side panel
                     displayVotingInChat();
                 }, 1000 / replaySpeed);
@@ -545,6 +643,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 2. Show voting results in the chat window
         function displayVotingInChat() {
+            if (!isReplaying) return; // Check if still replaying
+            
             const voteData = discussionData.votesEachTurn[currentTurn];
             if (voteData) {
                 // Create voting message element
@@ -599,25 +699,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 voteResultEl.style.opacity = '0';
                 
                 // First show the visual voting, then the details
+                if (!isReplaying) return; // Check again before setting timeout
                 setTimeout(() => {
+                    if (!isReplaying) return; // Check if we're still replaying
                     voteResultEl.style.opacity = '1';
                     voteResultEl.style.transition = 'opacity 1s ease';
                     scrollChatToBottom(); // Scroll after making details visible
                     
                     // After voting display, move to next turn or finish
                     const nextTurnDelay = 3000 / replaySpeed;
-                    const timeoutId = setTimeout(proceedToNextTurnOrFinish, nextTurnDelay);
+                    const timeoutId = setTimeout(() => {
+                        if (!isReplaying) return; // Check again before proceeding
+                        proceedToNextTurnOrFinish();
+                    }, nextTurnDelay);
                     replayTimeouts.push(timeoutId);
                 }, 2000 / replaySpeed);
             } else {
                 // No voting data, move to next turn
-                const timeoutId = setTimeout(proceedToNextTurnOrFinish, 1000 / replaySpeed);
+                const timeoutId = setTimeout(() => {
+                    if (!isReplaying) return; // Check if we're still replaying
+                    proceedToNextTurnOrFinish();
+                }, 1000 / replaySpeed);
                 replayTimeouts.push(timeoutId);
             }
         }
         
         // 3. Move to next turn or finish the replay
         function proceedToNextTurnOrFinish() {
+            if (!isReplaying) return; // Check if still replaying
+            
             if (currentTurn < maxTurns) {
                 // Add a turn separator
                 const separatorEl = document.createElement('div');
@@ -630,6 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Go to next turn after a brief pause
                 const timeoutId = setTimeout(() => {
+                    if (!isReplaying) return; // Check again before proceeding
                     currentTurn++;
                     updateTurnInfo();
                     replaySequence();
@@ -756,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingIndicator.style.display = 'none';
     }
 
-    // Replace the smoothScrollToBottom and forceScrollToBottom functions with this simpler, more direct approach
+    // Replace the scrollChatToBottom function with an improved version
     function scrollChatToBottom() {
         // Get the chat container (panel-content that contains messages-container)
         const chatContainer = document.querySelector('.conversation-panel .panel-content');
@@ -765,9 +876,52 @@ document.addEventListener('DOMContentLoaded', () => {
         // Force immediate scroll to bottom
         chatContainer.scrollTop = chatContainer.scrollHeight;
         
+        // Check if on mobile
+        const isMobile = window.innerWidth <= 992;
+        
         // Apply again after a short delay to ensure all content is rendered
+        // Use different timing for mobile vs desktop for better experience
         setTimeout(() => {
             chatContainer.scrollTop = chatContainer.scrollHeight;
-        }, 50);
+            
+            // On mobile, also scroll the whole page if needed
+            if (isMobile) {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }, isMobile ? 300 : 50);
+    }
+
+    // Function to display next agent indicator
+    function displayNextAgentIndicator(currentMessage, nextMessage) {
+        if (!isReplaying || !nextMessage) return;
+        
+        const paradigm = discussionData.paradigm || "Unknown paradigm";
+        let nextAgentName = nextMessage.persona;
+        
+        const nextAgentColorClass = agentColorMap[nextAgentName];
+        const nextAgentIconSrc = agentIconMap[nextAgentName];
+        
+        const indicatorEl = document.createElement('div');
+        indicatorEl.className = 'next-agent-indicator';
+        
+        indicatorEl.innerHTML = `
+            <div class="paradigm-info">
+                <i class="fas fa-random"></i> Discussion paradigm: <strong>${paradigm}</strong>
+            </div>
+            <div class="next-agent-wrapper">
+                <span>Next agent: </span>
+                <span class="agent-badge badge-color-${nextAgentColorClass}">
+                    <img src="${nextAgentIconSrc}" class="agent-icon-small" alt="${nextAgentName} icon"> ${nextAgentName}
+                </span>
+            </div>
+        `;
+        
+        messagesContainer.appendChild(indicatorEl);
+        scrollChatToBottom();
+        
+        // No longer removing the indicator - it stays in chat history
     }
 }); 
