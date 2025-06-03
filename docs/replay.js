@@ -364,113 +364,32 @@ document.addEventListener('DOMContentLoaded', () => {
         replayTimeouts.forEach(timeout => clearTimeout(timeout));
         replayTimeouts = [];
         
-        // 1. First show messages for this turn with word-by-word animation
+        // Get messages for this turn
         const turnMessages = discussionData.globalMemory.filter(msg => msg.turn === currentTurn);
         turnMessages.sort((a, b) => a.message_id - b.message_id);
         
-        let currentMessageIndex = 0;
-        
-        function displayNextMessage() {
-            if (!isReplaying) return; // Check if we're still replaying
-            
-            if (currentMessageIndex < turnMessages.length) {
-                const message = turnMessages[currentMessageIndex];
-                const colorClass = agentColorMap[message.persona];
-                const iconSrc = agentIconMap[message.persona];
-                
-                // Create message element
-                const messageEl = document.createElement('div');
-                messageEl.className = `message agent-color-${colorClass}`;
-                
-                // Set header content
-                messageEl.innerHTML = `
-                    <div class="message-header">
-                        <span class="message-persona">
-                            <span class="agent-badge badge-color-${colorClass}"><img src="${iconSrc}" class="agent-icon-small" alt="${message.persona} icon"> ${message.persona}</span>
-                        </span>
-                        <span class="message-id"><i class="fas fa-hashtag"></i> ID: ${message.message_id}</span>
-                    </div>
-                    <div class="message-content"></div>
-                    ${message.solution ? `<div class="solution" style="opacity: 0;"><i class="fas fa-lightbulb"></i> ${message.solution}</div>` : ''}
-                `;
-                
-                messagesContainer.appendChild(messageEl);
-                
-                // Scroll to bottom immediately after adding new content
-                scrollChatToBottom();
-                
-                // Get the content element to animate text
-                const contentEl = messageEl.querySelector('.message-content');
-                const solutionEl = messageEl.querySelector('.solution');
-                
-                // Format and prepare the content for word-by-word display with previous agent reference
-                const formattedContent = formatMessageContent(message.message, message.persona, previousAgent);
-                
-                // After formatting, set current agent as previous for next message
-                previousAgent = message.persona;
-                
-                // Convert HTML content to array of elements and text nodes
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = formattedContent;
-                
-                // Animate words
-                animateContent(tempDiv, contentEl).then(() => {
-                    // Animate solution if exists
-                    if (solutionEl) {
-                        solutionEl.innerHTML = message.solution || '';
-                        setTimeout(() => {
-                            solutionEl.style.opacity = '1';
-                            solutionEl.style.transition = 'opacity 0.5s ease';
-                            scrollChatToBottom(); // Scroll after solution appears
-                            
-                            // Check if there's a next message to show paradigm info
-                            const nextMessage = turnMessages[currentMessageIndex + 1];
-                            if (nextMessage) {
-                                // Move to next message after solution is shown and paradigm info
-                                setTimeout(() => {
-                                    displayNextAgentIndicator(message, nextMessage);
-                                    setTimeout(() => {
-                                        currentMessageIndex++;
-                                        displayNextMessage();
-                                    }, 1500 / replaySpeed);
-                                }, 500 / replaySpeed);
-                            } else {
-                                // No more messages in this turn
-                                currentMessageIndex++;
-                                displayNextMessage();
-                            }
-                        }, 500 / replaySpeed);
-                    } else {
-                        // Check if there's a next message to show paradigm info
-                        const nextMessage = turnMessages[currentMessageIndex + 1];
-                        if (nextMessage) {
-                            setTimeout(() => {
-                                displayNextAgentIndicator(message, nextMessage);
-                                setTimeout(() => {
-                                    currentMessageIndex++;
-                                    displayNextMessage();
-                                }, 1500 / replaySpeed);
-                            }, 500 / replaySpeed);
-                        } else {
-                            // No more messages, move on
-                            currentMessageIndex++;
-                            displayNextMessage();
-                        }
-                    }
-                });
-            } else {
-                // All messages displayed, show voting after a delay
-                const timeoutId = setTimeout(() => {
-                    if (!isReplaying) return; // Additional check
-                    // Display voting in conversation window instead of side panel
-                    displayVotingInChat();
-                }, 1000 / replaySpeed);
-                replayTimeouts.push(timeoutId);
-            }
+        if (turnMessages.length === 0) {
+            // No messages for this turn, move to the next or finish
+            proceedToNextTurnOrFinish();
+            return;
         }
         
-        // Start showing messages
-        displayNextMessage();
+        // Show the paradigm indicator before the first message of the turn
+        const firstMessage = turnMessages[0];
+        
+        // First display the discussion paradigm for this turn
+        const timeoutId = setTimeout(() => {
+            if (!isReplaying) return;
+            displayTurnParadigmIndicator(firstMessage);
+            
+            // Start displaying messages after a brief delay
+            const messageTimeoutId = setTimeout(() => {
+                if (!isReplaying) return;
+                displayMessages();
+            }, 1000 / replaySpeed);
+            replayTimeouts.push(messageTimeoutId);
+        }, 500 / replaySpeed);
+        replayTimeouts.push(timeoutId);
         
         // Function to animate content word by word
         async function animateContent(sourceEl, targetEl) {
@@ -641,159 +560,111 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // 2. Show voting results in the chat window
-        function displayVotingInChat() {
-            if (!isReplaying) return; // Check if still replaying
+        // Function to display all messages in sequence
+        function displayMessages() {
+            let currentMessageIndex = 0;
             
-            const voteData = discussionData.votesEachTurn[currentTurn];
-            if (voteData) {
-                // Create voting message element
-                const voteEl = document.createElement('div');
-                voteEl.className = 'message voting-message';
+            function displayNextMessage() {
+                if (!isReplaying) return; // Check if we're still replaying
                 
-                // Format voting process string with highlighted agent names
-                let formattedVotingProcess = voteData.voting_process_string;
-                
-                // Use a simpler, more direct approach for replacing agent names
-                Object.keys(agentColorMap).forEach(persona => {
-                    const regex = new RegExp(`\\b${escapeRegExp(persona)}\\b`, 'g');
-                    const colorClass = agentColorMap[persona];
-                    const iconSrc = agentIconMap[persona];
+                if (currentMessageIndex < turnMessages.length) {
+                    const message = turnMessages[currentMessageIndex];
+                    const colorClass = agentColorMap[message.persona];
+                    const iconSrc = agentIconMap[message.persona];
                     
-                    // Replace all occurrences directly
-                    formattedVotingProcess = formattedVotingProcess.replace(regex, 
-                        `<span class="agent-mention mention-color-${colorClass}"><img src="${iconSrc}" class="agent-icon-small" alt="${persona} icon"> ${persona}</span>`);
-                });
-                
-                voteEl.innerHTML = `
-                    <div class="message-header">
-                        <span class="message-persona">
-                            <span class="vote-badge">Turn ${currentTurn} Voting</span>
-                        </span>
-                    </div>
-                    <div class="message-content voting-content">
-                        <div class="vote-process-details">
-                            <div class="vote-details">
-                                <div><i class="fas fa-info-circle"></i> Type: <strong>${voteData.type}</strong></div>
-                                <div><i class="fas fa-list-ul"></i> Answers: <strong>${voteData.answers.join(', ')}</strong></div>
-                                <div class="voting-process">
-                                    <small>${formattedVotingProcess.replace(/\n/g, '<br>')}</small>
-                                </div>
-                            </div>
-                            <div class="vote-result">
-                                <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations.public.final_answer}</strong></div>
-                                <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${voteData.alterations.public.agreed ? 'Yes' : 'No'}</span></div>
-                            </div>
+                    // Create message element
+                    const messageEl = document.createElement('div');
+                    messageEl.className = `message agent-color-${colorClass}`;
+                    
+                    // Set header content
+                    messageEl.innerHTML = `
+                        <div class="message-header">
+                            <span class="message-persona">
+                                <span class="agent-badge badge-color-${colorClass}"><img src="${iconSrc}" class="agent-icon-small" alt="${message.persona} icon"> ${message.persona}</span>
+                            </span>
+                            <span class="message-id"><i class="fas fa-hashtag"></i> ID: ${message.message_id}</span>
                         </div>
-                    </div>
-                `;
-                
-                // Add voting element to chat
-                messagesContainer.appendChild(voteEl);
-                
-                // Force scroll to bottom
-                scrollChatToBottom();
-                
-                // Animate the vote result appearance
-                const voteResultEl = voteEl.querySelector('.vote-process-details');
-                voteResultEl.style.opacity = '0';
-                
-                // First show the visual voting, then the details
-                if (!isReplaying) return; // Check again before setting timeout
-                setTimeout(() => {
-                    if (!isReplaying) return; // Check if we're still replaying
-                    voteResultEl.style.opacity = '1';
-                    voteResultEl.style.transition = 'opacity 1s ease';
-                    scrollChatToBottom(); // Scroll after making details visible
+                        <div class="message-content"></div>
+                        ${message.solution ? `<div class="solution" style="opacity: 0;"><i class="fas fa-lightbulb"></i> ${message.solution}</div>` : ''}
+                    `;
                     
-                    // After voting display, move to next turn or finish
-                    const nextTurnDelay = 3000 / replaySpeed;
+                    messagesContainer.appendChild(messageEl);
+                    
+                    // Scroll to bottom immediately after adding new content
+                    scrollChatToBottom();
+                    
+                    // Get the content element to animate text
+                    const contentEl = messageEl.querySelector('.message-content');
+                    const solutionEl = messageEl.querySelector('.solution');
+                    
+                    // Format and prepare the content for word-by-word display with previous agent reference
+                    const formattedContent = formatMessageContent(message.message, message.persona, previousAgent);
+                    
+                    // After formatting, set current agent as previous for next message
+                    previousAgent = message.persona;
+                    
+                    // Convert HTML content to array of elements and text nodes
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = formattedContent;
+                    
+                    // Animate words
+                    animateContent(tempDiv, contentEl).then(() => {
+                        // Animate solution if exists
+                        if (solutionEl) {
+                            solutionEl.innerHTML = message.solution || '';
+                            setTimeout(() => {
+                                solutionEl.style.opacity = '1';
+                                solutionEl.style.transition = 'opacity 0.5s ease';
+                                scrollChatToBottom(); // Scroll after solution appears
+                                
+                                // Check if there's a next message to show paradigm info
+                                const nextMessage = turnMessages[currentMessageIndex + 1];
+                                if (nextMessage) {
+                                    // Move to next message after solution is shown and paradigm info
+                                    setTimeout(() => {
+                                        displayNextAgentIndicator(message, nextMessage);
+                                        setTimeout(() => {
+                                            currentMessageIndex++;
+                                            displayNextMessage();
+                                        }, 1500 / replaySpeed);
+                                    }, 500 / replaySpeed);
+                                } else {
+                                    // No more messages in this turn
+                                    currentMessageIndex++;
+                                    displayNextMessage();
+                                }
+                            }, 500 / replaySpeed);
+                        } else {
+                            // Check if there's a next message to show paradigm info
+                            const nextMessage = turnMessages[currentMessageIndex + 1];
+                            if (nextMessage) {
+                                setTimeout(() => {
+                                    displayNextAgentIndicator(message, nextMessage);
+                                    setTimeout(() => {
+                                        currentMessageIndex++;
+                                        displayNextMessage();
+                                    }, 1500 / replaySpeed);
+                                }, 500 / replaySpeed);
+                            } else {
+                                // No more messages, move on
+                                currentMessageIndex++;
+                                displayNextMessage();
+                            }
+                        }
+                    });
+                } else {
+                    // All messages displayed, show voting after a delay
                     const timeoutId = setTimeout(() => {
-                        if (!isReplaying) return; // Check again before proceeding
-                        proceedToNextTurnOrFinish();
-                    }, nextTurnDelay);
+                        if (!isReplaying) return; // Additional check
+                        // Display voting in conversation window instead of side panel
+                        displayVotingInChat();
+                    }, 1000 / replaySpeed);
                     replayTimeouts.push(timeoutId);
-                }, 2000 / replaySpeed);
-            } else {
-                // No voting data, move to next turn
-                const timeoutId = setTimeout(() => {
-                    if (!isReplaying) return; // Check if we're still replaying
-                    proceedToNextTurnOrFinish();
-                }, 1000 / replaySpeed);
-                replayTimeouts.push(timeoutId);
+                }
             }
-        }
-        
-        // 3. Move to next turn or finish the replay
-        function proceedToNextTurnOrFinish() {
-            if (!isReplaying) return; // Check if still replaying
             
-            if (currentTurn < maxTurns) {
-                // Add a turn separator
-                const separatorEl = document.createElement('div');
-                separatorEl.className = 'turn-separator';
-                separatorEl.innerHTML = `<span>Moving to Turn ${currentTurn + 1}</span>`;
-                messagesContainer.appendChild(separatorEl);
-                
-                // Force scroll
-                scrollChatToBottom();
-                
-                // Go to next turn after a brief pause
-                const timeoutId = setTimeout(() => {
-                    if (!isReplaying) return; // Check again before proceeding
-                    currentTurn++;
-                    updateTurnInfo();
-                    replaySequence();
-                }, 1000 / replaySpeed);
-                replayTimeouts.push(timeoutId);
-            } else {
-                // Add a completion message
-                const completionEl = document.createElement('div');
-                completionEl.className = 'completion-message';
-                completionEl.innerHTML = `
-                    <div class="completion-header"><i class="fas"></i> Discussion Complete</div>
-                    <div class="completion-content">
-                        The agents have reached a final consensus.
-                    </div>
-                `;
-                messagesContainer.appendChild(completionEl);
-                
-                // Force scroll
-                scrollChatToBottom();
-                
-                // Display the final answer in the chat window
-                const finalAnswerEl = document.createElement('div');
-                finalAnswerEl.className = 'message final-consensus';
-                finalAnswerEl.innerHTML = `
-                    <div class="message-header">
-                        <span class="message-persona">
-                            <span class="vote-badge"><i class="fas fa-award"></i> Final Consensus</span>
-                        </span>
-                    </div>
-                    <div class="message-content">
-                        <div class="final-answer-text">${discussionData.finalAnswer}</div>
-                    </div>
-                `;
-                messagesContainer.appendChild(finalAnswerEl);
-                
-                // Add vertical space after final message
-                const spacerEl = document.createElement('div');
-                spacerEl.style.height = '20px'; // Add 80px of vertical space
-                messagesContainer.appendChild(spacerEl);
-                
-                scrollChatToBottom();
-                
-                // Wait a moment then show completion modal
-                const timeoutId = setTimeout(() => {
-                    showCompletionModal();
-                    isReplaying = false;
-                    startReplayBtn.disabled = false;
-                    stopReplayBtn.disabled = true;
-                    loadConversationBtn.disabled = false;
-                }, 2000 / replaySpeed);
-                
-                replayTimeouts.push(timeoutId);
-            }
+            // Start displaying messages
+            displayNextMessage();
         }
     }
 
@@ -894,7 +765,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }, isMobile ? 300 : 50);
     }
 
-    // Function to display next agent indicator
+    // Function to display the turn paradigm indicator before the first message
+    function displayTurnParadigmIndicator(firstMessage) {
+        const paradigm = discussionData.paradigm || "Unknown paradigm";
+        
+        const indicatorEl = document.createElement('div');
+        indicatorEl.className = 'turn-paradigm-indicator';
+        
+        indicatorEl.innerHTML = `
+            <div class="paradigm-info">
+                <i class="fas fa-random"></i> Discussion paradigm: <strong>${paradigm}</strong>
+            </div>
+            <div class="next-agent-wrapper">
+                <span>Next agent: </span>
+                <span class="agent-badge badge-color-${agentColorMap[firstMessage.persona]}">
+                    <img src="${agentIconMap[firstMessage.persona]}" class="agent-icon-small" alt="${firstMessage.persona} icon"> ${firstMessage.persona}
+                </span>
+            </div>
+        `;
+        
+        messagesContainer.appendChild(indicatorEl);
+        scrollChatToBottom();
+    }
+    
+    // Function to display next agent indicator between messages
     function displayNextAgentIndicator(currentMessage, nextMessage) {
         if (!isReplaying || !nextMessage) return;
         
@@ -923,5 +817,161 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollChatToBottom();
         
         // No longer removing the indicator - it stays in chat history
+    }
+
+    // 2. Show voting results in the chat window
+    function displayVotingInChat() {
+        if (!isReplaying) return; // Check if still replaying
+        
+        const voteData = discussionData.votesEachTurn[currentTurn];
+        if (voteData) {
+            // Create voting message element
+            const voteEl = document.createElement('div');
+            voteEl.className = 'message voting-message';
+            
+            // Format voting process string with highlighted agent names
+            let formattedVotingProcess = voteData.voting_process_string;
+            
+            // Use a simpler, more direct approach for replacing agent names
+            Object.keys(agentColorMap).forEach(persona => {
+                const regex = new RegExp(`\\b${escapeRegExp(persona)}\\b`, 'g');
+                const colorClass = agentColorMap[persona];
+                const iconSrc = agentIconMap[persona];
+                
+                // Replace all occurrences directly
+                formattedVotingProcess = formattedVotingProcess.replace(regex, 
+                    `<span class="agent-mention mention-color-${colorClass}"><img src="${iconSrc}" class="agent-icon-small" alt="${persona} icon"> ${persona}</span>`);
+            });
+            
+            voteEl.innerHTML = `
+                <div class="message-header">
+                    <span class="message-persona">
+                        <span class="vote-badge">Turn ${currentTurn} Voting</span>
+                    </span>
+                </div>
+                <div class="message-content voting-content">
+                    <div class="vote-process-details">
+                        <div class="vote-details">
+                            <div><i class="fas fa-info-circle"></i> Type: <strong>${voteData.type}</strong></div>
+                            <div><i class="fas fa-list-ul"></i> Answers: <strong>${voteData.answers.join(', ')}</strong></div>
+                            <div class="voting-process">
+                                <small>${formattedVotingProcess.replace(/\n/g, '<br>')}</small>
+                            </div>
+                        </div>
+                        <div class="vote-result">
+                            <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations.public.final_answer}</strong></div>
+                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${voteData.alterations.public.agreed ? 'Yes' : 'No'}</span></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add voting element to chat
+            messagesContainer.appendChild(voteEl);
+            
+            // Force scroll to bottom
+            scrollChatToBottom();
+            
+            // Animate the vote result appearance
+            const voteResultEl = voteEl.querySelector('.vote-process-details');
+            voteResultEl.style.opacity = '0';
+            
+            // First show the visual voting, then the details
+            if (!isReplaying) return; // Check again before setting timeout
+            setTimeout(() => {
+                if (!isReplaying) return; // Check if we're still replaying
+                voteResultEl.style.opacity = '1';
+                voteResultEl.style.transition = 'opacity 1s ease';
+                scrollChatToBottom(); // Scroll after making details visible
+                
+                // After voting display, move to next turn or finish
+                const nextTurnDelay = 3000 / replaySpeed;
+                const timeoutId = setTimeout(() => {
+                    if (!isReplaying) return; // Check again before proceeding
+                    proceedToNextTurnOrFinish();
+                }, nextTurnDelay);
+                replayTimeouts.push(timeoutId);
+            }, 2000 / replaySpeed);
+        } else {
+            // No voting data, move to next turn
+            const timeoutId = setTimeout(() => {
+                if (!isReplaying) return; // Check if we're still replaying
+                proceedToNextTurnOrFinish();
+            }, 1000 / replaySpeed);
+            replayTimeouts.push(timeoutId);
+        }
+    }
+    
+    // 3. Move to next turn or finish the replay
+    function proceedToNextTurnOrFinish() {
+        if (!isReplaying) return; // Check if still replaying
+        
+        if (currentTurn < maxTurns) {
+            // Add a turn separator
+            const separatorEl = document.createElement('div');
+            separatorEl.className = 'turn-separator';
+            separatorEl.innerHTML = `<span>Moving to Turn ${currentTurn + 1}</span>`;
+            messagesContainer.appendChild(separatorEl);
+            
+            // Force scroll
+            scrollChatToBottom();
+            
+            // Go to next turn after a brief pause
+            const timeoutId = setTimeout(() => {
+                if (!isReplaying) return; // Check again before proceeding
+                currentTurn++;
+                updateTurnInfo();
+                replaySequence();
+            }, 1000 / replaySpeed);
+            replayTimeouts.push(timeoutId);
+        } else {
+            // Add a completion message
+            const completionEl = document.createElement('div');
+            completionEl.className = 'completion-message';
+            completionEl.innerHTML = `
+                <div class="completion-header"><i class="fas"></i> Discussion Complete</div>
+                <div class="completion-content">
+                    The agents have reached a final consensus.
+                </div>
+            `;
+            messagesContainer.appendChild(completionEl);
+            
+            // Force scroll
+            scrollChatToBottom();
+            
+            // Display the final answer in the chat window
+            const finalAnswerEl = document.createElement('div');
+            finalAnswerEl.className = 'message final-consensus';
+            finalAnswerEl.innerHTML = `
+                <div class="message-header">
+                    <span class="message-persona">
+                        <span class="vote-badge"><i class="fas fa-award"></i> Final Consensus</span>
+                    </span>
+                </div>
+                <div class="message-content">
+                    <div class="final-answer-text">${discussionData.finalAnswer}</div>
+                </div>
+            `;
+            messagesContainer.appendChild(finalAnswerEl);
+            
+            // Add vertical space after final message
+            const spacerEl = document.createElement('div');
+            spacerEl.style.height = '20px'; // Add vertical space
+            messagesContainer.appendChild(spacerEl);
+            
+            scrollChatToBottom();
+            
+            // Wait a moment then show completion modal
+            const timeoutId = setTimeout(() => {
+                showCompletionModal();
+                isReplaying = false;
+                startReplayBtn.disabled = false;
+                stopReplayBtn.disabled = true;
+                loadConversationBtn.disabled = false;
+                floatingStopBtn.classList.remove('visible'); // Hide floating stop button
+            }, 2000 / replaySpeed);
+            
+            replayTimeouts.push(timeoutId);
+        }
     }
 }); 

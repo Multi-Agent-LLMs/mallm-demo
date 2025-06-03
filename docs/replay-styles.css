@@ -1290,7 +1290,8 @@ main {
     100% { opacity: 0; transform: translateY(10px); }
 }
 
-.next-agent-indicator {
+.next-agent-indicator,
+.turn-paradigm-indicator {
     background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.01) 100%);
     margin: 8px 0;
     padding: 12px;
@@ -1334,7 +1335,8 @@ main {
 }
 
 @media (max-width: 576px) {
-    .next-agent-indicator {
+    .next-agent-indicator,
+    .turn-paradigm-indicator {
         padding: 8px;
     }
     
