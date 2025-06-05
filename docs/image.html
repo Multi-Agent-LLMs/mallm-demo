@@ -7,9 +7,9 @@
     <!-- Compact, visually‑refined version – optimised for landscape‑style placement in an A4 paper -->
     <style>
         /* ----------  GLOBALS & TYPOGRAPHY  ---------- */
-        :root{font-size:17.5px;} /* ≈ 12 pt */
+        :root{font-size:17.5px;} /* ≈ 12  pt */
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-        body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;background:#fff;color:#2c3e50;line-height:1.4;padding:1rem .8rem;}
+        body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;background:#fff;color:#000;line-height:1.4;padding:1rem .8rem;}
 
         /* ----------  GRID LAYOUT  ---------- */
         .container{--gap:.8rem;display:grid;grid-template-columns:1fr 14rem;grid-template-rows:auto auto;gap:var(--gap);max-width:66rem;margin:0 auto;}
@@ -21,11 +21,11 @@
         /* ----------  MAIN FRAMEWORK  ---------- */
         .main-framework{--accent:#4CAF50;}
         .framework-title{text-align:center;font-size:2.1rem;margin-bottom:.2rem;}
-        .framework-subtitle{text-align:center;font-size:.95rem;color:#5d6d7e;margin-bottom:.8rem;}
+        .framework-subtitle{text-align:center;font-size:.95rem;color:#000;margin-bottom:.8rem;}
         .components-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14.5rem,1fr));gap:var(--gap);}        
         .component-section{position:relative;padding:.75rem .65rem .9rem;border:2px dashed var(--accentSection,#3498db);border-radius:.6rem;background:#ffffffee;display:flex;flex-direction:column;justify-content:space-between;}
         .component-title{text-align:center;font-size:1.1rem;margin-bottom:.2rem;}
-        .component-subtitle{text-align:center;font-size:.82rem;color:#5d6d7e;margin-bottom:.55rem;}
+        .component-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.55rem;}
         .component-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;}
         .component-item{background:#fff;border-radius:.9rem;font-size:.88rem;padding:.3rem .75rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}        
         /* colour accents */
@@ -37,7 +37,7 @@
         /* ----------  BACKENDS  ---------- */
         .inference-backends{--accent:#2196F3;position:relative;}
         .backends-title{text-align:center;font-size:1.35rem;margin-bottom:.2rem;}
-        .backends-subtitle{text-align:center;font-size:.82rem;color:#5d6d7e;margin-bottom:.8rem;}
+        .backends-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.8rem;}
         .backends-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:var(--gap);}        
         .backend-section{padding:.75rem .65rem .9rem;border:2px dashed var(--accentSub,#3498db);border-radius:.6rem;background:#ffffffee;}
         .open-source{--accentSub:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);}        
@@ -50,7 +50,7 @@
         /* ----------  EVALUATION PANEL  ---------- */
         .evaluation-panel{--accent:#FF9800;grid-column:2/3;grid-row:1/3;overflow-y:auto;}
         .evaluation-title{text-align:center;font-size:1.25rem;margin-bottom:.2rem;}
-        .evaluation-subtitle{text-align:center;font-size:.82rem;color:#5d6d7e;margin-bottom:.8rem;}
+        .evaluation-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.8rem;}
         .evaluation-methods{display:flex;flex-direction:column;gap:.55rem;}
         .eval-method{padding:.75rem;border:2px dashed var(--accent);border-radius:.6rem;text-align:center;background:#ffffffee;}
         .human-eval{background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}        
