@@ -34,18 +34,6 @@
             </div>
             
             <div class="controls">
-                <div class="conversation-selector">
-                    <i class="fas fa-comments control-icon"></i>
-                    <select id="conversation-select">
-                        <option value="object_1.json" selected>Conversation 1</option>
-                        <option value="object_2.json">Conversation 2</option>
-                        <option value="object_3.json">Conversation 3</option>
-                        <option value="object_4.json">Conversation 4</option>
-                        <option value="object_5.json">Conversation 5</option>
-                    </select>
-                    <button id="load-conversation" class="btn"><i class="fas fa-sync-alt"></i> Load</button>
-                </div>
-                
                 <div class="replay-controls">
                     <button id="start-replay" class="btn primary"><i class="fas fa-play"></i> Start Replay</button>
                     <button id="stop-replay" class="btn" disabled><i class="fas fa-stop"></i> Stop</button>
@@ -65,6 +53,72 @@
                     <h2><i class="fas fa-tasks"></i> Task</h2>
                 </div>
                 <div class="panel-content">
+                    <div class="framework-selectors">
+                        <div class="model-dataset-info">
+                            <div class="info-item">
+                                <i class="fas fa-brain"></i>
+                                <span class="label">Model:</span>
+                                <span class="value">Llama-3.3-70B-Instruct</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-database"></i>
+                                <span class="label">Dataset:</span>
+                                <span class="value">StrategyQA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-selectors">
+                            <div class="selector-group">
+                                <label for="response-generator"><i class="fas fa-cogs"></i> Response Generator:</label>
+                                <select id="response-generator">
+                                    <option value="simple" selected>Simple</option>
+                                    <option value="critical">Critical</option>
+                                    <option value="reasoning">Reasoning</option>
+                                </select>
+                            </div>
+                            
+                            <div class="selector-group">
+                                <label for="persona-generator"><i class="fas fa-user-friends"></i> Persona Generator:</label>
+                                <select id="persona-generator">
+                                    <option value="no-persona" selected>No Persona</option>
+                                    <option value="expert">Expert</option>
+                                    <option value="ipip">IPIP</option>
+                                </select>
+                            </div>
+                            
+                            <div class="selector-group">
+                                <label for="discussion-paradigm"><i class="fas fa-comments"></i> Discussion Paradigm:</label>
+                                <select id="discussion-paradigm">
+                                    <option value="memory" selected>Memory</option>
+                                    <option value="relay">Relay</option>
+                                    <option value="report">Report</option>
+                                    <option value="debate">Debate</option>
+                                </select>
+                            </div>
+                            
+                            <div class="selector-group">
+                                <label for="decision-protocol"><i class="fas fa-vote-yea"></i> Decision Protocol:</label>
+                                <select id="decision-protocol">
+                                    <option value="majority-consensus" selected>Majority Consensus</option>
+                                    <option value="unanimity-consensus">Unanimity Consensus</option>
+                                    <option value="simple-voting">Simple Voting</option>
+                                    <option value="approval-voting">Approval Voting</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="config-info">
+                            <div class="current-config">
+                                <div class="config-label">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Configuration:</span>
+                                </div>
+                                <code id="current-config-file">simple_no-persona_memory_majority-consensus.json</code>
+                            </div>
+                            <button id="load-conversation" class="btn load-btn"><i class="fas fa-sync-alt"></i> Load Configuration</button>
+                        </div>
+                    </div>
+
                     <div class="personas-container">
                         <h3><i class="fas fa-users"></i> Participants</h3>
                         <div id="personas-list" class="personas"></div>

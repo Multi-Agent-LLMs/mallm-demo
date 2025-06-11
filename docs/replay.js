@@ -7,8 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const turnProgress = document.getElementById('turn-progress');
     const currentTurnSpan = document.getElementById('current-turn');
     const maxTurnsSpan = document.getElementById('max-turns');
-    const conversationSelect = document.getElementById('conversation-select');
+    const responseGeneratorSelect = document.getElementById('response-generator');
+    const personaGeneratorSelect = document.getElementById('persona-generator');
+    const discussionParadigmSelect = document.getElementById('discussion-paradigm');
+    const decisionProtocolSelect = document.getElementById('decision-protocol');
     const loadConversationBtn = document.getElementById('load-conversation');
+    const currentConfigFileSpan = document.getElementById('current-config-file');
     const loadingIndicator = document.getElementById('loading-indicator');
     const startReplayBtn = document.getElementById('start-replay');
     const stopReplayBtn = document.getElementById('stop-replay');
@@ -42,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let agentPersonas = []; // Store the list of agent personas
     let agentColorMap = {}; // Map agent names to color classes
     let agentIconMap = {}; // Map agent names to SVG icon files
-    let currentConversationFile = 'object_1.json'; // Default conversation file
+    let currentConversationFile = ''; // Will be constructed from component selections
     let isReplaying = false;
     let replaySpeed = 1.0; // Default replay speed
     let replayTimeouts = []; // Store all timeouts for cancellation if needed
@@ -115,6 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModalBtn.addEventListener('click', () => {
         closeModal();
     });
+
+    // Add event listeners for component selector changes
+    responseGeneratorSelect.addEventListener('change', updateConversationFile);
+    personaGeneratorSelect.addEventListener('change', updateConversationFile);
+    discussionParadigmSelect.addEventListener('change', updateConversationFile);
+    decisionProtocolSelect.addEventListener('change', updateConversationFile);
     
     // Add event listener for window resize to handle scrolling
     window.addEventListener('resize', () => {
@@ -125,8 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize the application
     function init() {
-        // Set the initial conversation file based on the select value
-        currentConversationFile = conversationSelect.value;
+        // Construct the initial conversation file based on default selections
+        updateConversationFile();
         // Load the initial conversation
         fetchDiscussionData()
             .then(data => {
@@ -140,6 +150,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Failed to load discussion data. Please try refreshing the page.');
                 hideLoadingIndicator();
             });
+    }
+
+    // Function to construct conversation file name from component selections
+    function updateConversationFile() {
+        const responseGen = responseGeneratorSelect.value;
+        const personaGen = personaGeneratorSelect.value;
+        const paradigm = discussionParadigmSelect.value;
+        const protocol = decisionProtocolSelect.value;
+        
+        // Construct filename based on component selections
+        // Format: {responseGen}_{personaGen}_{paradigm}_{protocol}.json
+        currentConversationFile = `${responseGen}_${personaGen}_${paradigm}_${protocol}.json`;
+        
+        // Update the display
+        currentConfigFileSpan.textContent = currentConversationFile;
+        
+        console.log('Updated conversation file:', currentConversationFile);
     }
 
     // Function to show play button overlay in the discussion panel
@@ -171,8 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show loading indicator
         showLoadingIndicator();
         
-        // Get the selected conversation file
-        currentConversationFile = conversationSelect.value;
+        // Update the conversation file based on current component selections
+        updateConversationFile();
         
         // Reset state
         currentTurn = 1;
@@ -189,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error loading discussion data:', error);
-                alert('Failed to load conversation data. Please try another file or refresh the page.');
+                alert(`Failed to load conversation data for configuration: ${currentConversationFile}. Please try a different combination or refresh the page.`);
                 hideLoadingIndicator();
             });
     }
@@ -407,6 +434,256 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear previous timeouts
         replayTimeouts.forEach(timeout => clearTimeout(timeout));
         replayTimeouts = [];
+        
+        // If this is the first turn, show the task setup first
+        if (currentTurn === 1) {
+            displayTaskSetup();
+            return;
+        }
+        
+        // For subsequent turns, just start the turn replay directly
+        startTurnReplay();
+    }
+
+    function formatMessageContent(content, currentPersona, previousAgent) {
+        // Create a temporary div to work with the content as DOM
+        const tempDiv = document.createElement('div');
+        
+        // Replace [AGREE] with "agrees with [previous agent]" if previous agent exists
+        if (previousAgent && previousAgent !== currentPersona) {
+            const colorClass = agentColorMap[previousAgent];
+            const iconSrc = agentIconMap[previousAgent];            
+            content = content.replace(/\[AGREE\]/g, `<span class="agreed-tag"><i class="fas fa-check-circle"></i> agrees with ${previousAgent}</span>`);
+            
+            // Add support for [DISAGREE] tags
+            content = content.replace(/\[DISAGREE\]/g, `<span class="disagreed-tag"><i class="fas fa-circle-xmark"></i> disagrees with ${previousAgent}</span>`);
+        } else {
+            // If no previous agent or it's the same agent, just use a generic AGREE tag
+            content = content.replace(/\[AGREE\]/g, `<span class="agreed-tag"><i class="fas fa-check-circle"></i> AGREE</span>`);
+            
+            // Generic DISAGREE tag when no previous agent
+            content = content.replace(/\[DISAGREE\]/g, `<span class="disagreed-tag"><i class="fas fa-circle-xmark"></i> DISAGREE</span>`);
+        }
+        
+        // Replace [SAME] with similar styled tag
+        content = content.replace(/\[SAME\]/g, `<span class="agreed-tag"><i class="fas fa-check-circle"></i> SAME</span>`);
+        
+        // Convert markdown-style formatting
+        content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        content = content.replace(/\n\n/g, '<br><br>');
+        
+        // We'll handle the agent name replacements directly in the text before creating DOM elements
+        // This avoids any DOM manipulation issues that might cause duplication
+        Object.keys(agentColorMap).forEach(persona => {
+            if (persona !== currentPersona) {
+                // Use word boundary to ensure we match full names
+                const regex = new RegExp(`\\b${escapeRegExp(persona)}\\b`, 'g');
+                const colorClass = agentColorMap[persona];
+                const iconSrc = agentIconMap[persona];
+                
+                // Do a direct string replacement
+                content = content.replace(regex, 
+                    `<span class="agent-mention mention-color-${colorClass}"><img src="${iconSrc}" class="agent-icon-small" alt="${persona} icon"> ${persona}</span>`);
+            }
+        });
+        
+        // Set the processed content to the temp div
+        tempDiv.innerHTML = content;
+        
+        return tempDiv.innerHTML;
+    }
+    
+    // Helper function to escape special regex characters
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function showCompletionModal() {
+        modalFinalAnswer.textContent = discussionData.finalAnswer;
+        replayCompleteModal.style.display = 'flex';
+    }
+    
+    function closeModal() {
+        replayCompleteModal.style.display = 'none';
+    }
+    
+    function showLoadingIndicator() {
+        loadingIndicator.style.display = 'flex';
+    }
+    
+    function hideLoadingIndicator() {
+        loadingIndicator.style.display = 'none';
+    }
+
+    // Replace the scrollChatToBottom function with an improved version
+    function scrollChatToBottom() {
+        // Get the chat container (panel-content that contains messages-container)
+        const chatContainer = document.querySelector('.conversation-panel .panel-content');
+        if (!chatContainer) return;
+        
+        // Force immediate scroll to bottom
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        
+        // Check if on mobile
+        const isMobile = window.innerWidth <= 992;
+        
+        // Apply again after a short delay to ensure all content is rendered
+        // Use different timing for mobile vs desktop for better experience
+        setTimeout(() => {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // On mobile, also scroll the whole page if needed
+            if (isMobile) {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }, isMobile ? 300 : 50);
+    }
+
+    // Function to display the turn paradigm indicator before the first message
+    function displayTurnParadigmIndicator(firstMessage) {
+        const paradigm = discussionData.paradigm || "Unknown paradigm";
+        
+        const indicatorEl = document.createElement('div');
+        indicatorEl.className = 'turn-paradigm-indicator';
+        
+        indicatorEl.innerHTML = `
+            <div class="paradigm-info">
+                <i class="fas fa-random"></i> Discussion paradigm: <strong>${paradigm}</strong>
+            </div>
+            <div class="next-agent-wrapper">
+                <span>Next agent: </span>
+                <span class="agent-badge badge-color-${agentColorMap[firstMessage.persona]}">
+                    <img src="${agentIconMap[firstMessage.persona]}" class="agent-icon-small" alt="${firstMessage.persona} icon"> ${firstMessage.persona}
+                </span>
+            </div>
+        `;
+        
+        messagesContainer.appendChild(indicatorEl);
+        scrollChatToBottom();
+    }
+    
+    // Function to display task setup at the beginning of discussion
+    function displayTaskSetup() {
+        if (!isReplaying) return;
+        
+        // Display prompt/instruction
+        const promptEl = document.createElement('div');
+        promptEl.className = 'task-setup-message task-prompt';
+        promptEl.innerHTML = `
+            <div class="setup-header">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Task Instructions</span>
+            </div>
+            <div class="setup-content">${discussionData.instruction}</div>
+        `;
+        messagesContainer.appendChild(promptEl);
+        scrollChatToBottom();
+        
+        // Delay before showing question
+        const timeoutId1 = setTimeout(() => {
+            if (!isReplaying) return;
+            
+            // Display question
+            const questionEl = document.createElement('div');
+            questionEl.className = 'task-setup-message task-question';
+            
+            // Format the question content like in the task panel
+            const inputText = discussionData.input[0];
+            let formattedQuestionContent = '';
+            
+            if (inputText.match(/[A-Z]\)\s+/)) {
+                formattedQuestionContent = formatMultipleChoiceQuestion(inputText);
+            } else {
+                formattedQuestionContent = inputText;
+            }
+            
+            questionEl.innerHTML = `
+                <div class="setup-header">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Question</span>
+                </div>
+                <div class="setup-content">${formattedQuestionContent}</div>
+            `;
+            messagesContainer.appendChild(questionEl);
+            scrollChatToBottom();
+            
+            // Delay before showing participants
+            const timeoutId2 = setTimeout(() => {
+                if (!isReplaying) return;
+                
+                // Display participants
+                const participantsEl = document.createElement('div');
+                participantsEl.className = 'task-setup-message task-participants';
+                
+                let participantsHtml = `
+                    <div class="setup-header">
+                        <i class="fas fa-users"></i>
+                        <span>Discussion Participants</span>
+                    </div>
+                    <div class="setup-content">
+                        <div class="participants-grid">
+                `;
+                
+                discussionData.personas.forEach(persona => {
+                    const colorClass = agentColorMap[persona.persona];
+                    const iconSrc = agentIconMap[persona.persona];
+                    participantsHtml += `
+                        <div class="participant-card agent-color-${colorClass}">
+                            <div class="participant-name">
+                                <img src="${iconSrc}" class="participant-icon" alt="${persona.persona} icon">
+                                <span class="participant-persona">${persona.persona}</span>
+                            </div>
+                            <div class="participant-description">${persona.personaDescription}</div>
+                        </div>
+                    `;
+                });
+                
+                participantsHtml += `
+                        </div>
+                    </div>
+                `;
+                
+                participantsEl.innerHTML = participantsHtml;
+                messagesContainer.appendChild(participantsEl);
+                scrollChatToBottom();
+                
+                // Add discussion start separator
+                const timeoutId3 = setTimeout(() => {
+                    if (!isReplaying) return;
+                    
+                    const separatorEl = document.createElement('div');
+                    separatorEl.className = 'discussion-start-separator';
+                    separatorEl.innerHTML = `
+                        <div class="separator-line"></div>
+                        <div class="separator-text">
+                            <i class="fas fa-comments"></i>
+                            Discussion Begins - Turn ${currentTurn}
+                        </div>
+                        <div class="separator-line"></div>
+                    `;
+                    messagesContainer.appendChild(separatorEl);
+                    scrollChatToBottom();
+                    
+                    // Now start the actual turn replay
+                    const timeoutId4 = setTimeout(() => {
+                        if (!isReplaying) return;
+                        startTurnReplay();
+                    }, 1000 / replaySpeed);
+                    replayTimeouts.push(timeoutId4);
+                }, 1500 / replaySpeed);
+                replayTimeouts.push(timeoutId3);
+            }, 2000 / replaySpeed);
+            replayTimeouts.push(timeoutId2);
+        }, 1500 / replaySpeed);
+        replayTimeouts.push(timeoutId1);
+    }
+    
+    // Function to start the actual turn replay (extracted from replaySequence)
+    function startTurnReplay() {
+        if (!isReplaying) return;
         
         // Get messages for this turn
         const turnMessages = discussionData.globalMemory.filter(msg => msg.turn === currentTurn);
@@ -712,126 +989,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function formatMessageContent(content, currentPersona, previousAgent) {
-        // Create a temporary div to work with the content as DOM
-        const tempDiv = document.createElement('div');
-        
-        // Replace [AGREE] with "agrees with [previous agent]" if previous agent exists
-        if (previousAgent && previousAgent !== currentPersona) {
-            const colorClass = agentColorMap[previousAgent];
-            const iconSrc = agentIconMap[previousAgent];            
-            content = content.replace(/\[AGREE\]/g, `<span class="agreed-tag"><i class="fas fa-check-circle"></i> agrees with ${previousAgent}</span>`);
-            
-            // Add support for [DISAGREE] tags
-            content = content.replace(/\[DISAGREE\]/g, `<span class="disagreed-tag"><i class="fas fa-circle-xmark"></i> disagrees with ${previousAgent}</span>`);
-        } else {
-            // If no previous agent or it's the same agent, just use a generic AGREE tag
-            content = content.replace(/\[AGREE\]/g, `<span class="agreed-tag"><i class="fas fa-check-circle"></i> AGREE</span>`);
-            
-            // Generic DISAGREE tag when no previous agent
-            content = content.replace(/\[DISAGREE\]/g, `<span class="disagreed-tag"><i class="fas fa-circle-xmark"></i> DISAGREE</span>`);
-        }
-        
-        // Replace [SAME] with similar styled tag
-        content = content.replace(/\[SAME\]/g, `<span class="agreed-tag"><i class="fas fa-check-circle"></i> SAME</span>`);
-        
-        // Convert markdown-style formatting
-        content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        content = content.replace(/\n\n/g, '<br><br>');
-        
-        // We'll handle the agent name replacements directly in the text before creating DOM elements
-        // This avoids any DOM manipulation issues that might cause duplication
-        Object.keys(agentColorMap).forEach(persona => {
-            if (persona !== currentPersona) {
-                // Use word boundary to ensure we match full names
-                const regex = new RegExp(`\\b${escapeRegExp(persona)}\\b`, 'g');
-                const colorClass = agentColorMap[persona];
-                const iconSrc = agentIconMap[persona];
-                
-                // Do a direct string replacement
-                content = content.replace(regex, 
-                    `<span class="agent-mention mention-color-${colorClass}"><img src="${iconSrc}" class="agent-icon-small" alt="${persona} icon"> ${persona}</span>`);
-            }
-        });
-        
-        // Set the processed content to the temp div
-        tempDiv.innerHTML = content;
-        
-        return tempDiv.innerHTML;
-    }
-    
-    // Helper function to escape special regex characters
-    function escapeRegExp(string) {
-        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    }
-
-    function showCompletionModal() {
-        modalFinalAnswer.textContent = discussionData.finalAnswer;
-        replayCompleteModal.style.display = 'flex';
-    }
-    
-    function closeModal() {
-        replayCompleteModal.style.display = 'none';
-    }
-    
-    function showLoadingIndicator() {
-        loadingIndicator.style.display = 'flex';
-    }
-    
-    function hideLoadingIndicator() {
-        loadingIndicator.style.display = 'none';
-    }
-
-    // Replace the scrollChatToBottom function with an improved version
-    function scrollChatToBottom() {
-        // Get the chat container (panel-content that contains messages-container)
-        const chatContainer = document.querySelector('.conversation-panel .panel-content');
-        if (!chatContainer) return;
-        
-        // Force immediate scroll to bottom
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-        
-        // Check if on mobile
-        const isMobile = window.innerWidth <= 992;
-        
-        // Apply again after a short delay to ensure all content is rendered
-        // Use different timing for mobile vs desktop for better experience
-        setTimeout(() => {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-            
-            // On mobile, also scroll the whole page if needed
-            if (isMobile) {
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                });
-            }
-        }, isMobile ? 300 : 50);
-    }
-
-    // Function to display the turn paradigm indicator before the first message
-    function displayTurnParadigmIndicator(firstMessage) {
-        const paradigm = discussionData.paradigm || "Unknown paradigm";
-        
-        const indicatorEl = document.createElement('div');
-        indicatorEl.className = 'turn-paradigm-indicator';
-        
-        indicatorEl.innerHTML = `
-            <div class="paradigm-info">
-                <i class="fas fa-random"></i> Discussion paradigm: <strong>${paradigm}</strong>
-            </div>
-            <div class="next-agent-wrapper">
-                <span>Next agent: </span>
-                <span class="agent-badge badge-color-${agentColorMap[firstMessage.persona]}">
-                    <img src="${agentIconMap[firstMessage.persona]}" class="agent-icon-small" alt="${firstMessage.persona} icon"> ${firstMessage.persona}
-                </span>
-            </div>
-        `;
-        
-        messagesContainer.appendChild(indicatorEl);
-        scrollChatToBottom();
-    }
-    
     // Function to display next agent indicator between messages
     function displayNextAgentIndicator(currentMessage, nextMessage) {
         if (!isReplaying || !nextMessage) return;
