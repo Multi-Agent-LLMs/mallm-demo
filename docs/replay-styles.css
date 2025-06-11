@@ -1792,7 +1792,7 @@ main {
 
 /* Task setup messages in discussion panel */
 .task-setup-message {
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-sm) 0;
     border-radius: var(--border-radius-md);
     background-color: rgba(63, 81, 181, 0.05);
     border: 1px solid rgba(63, 81, 181, 0.2);
@@ -1839,8 +1839,8 @@ main {
 }
 
 .setup-content {
-    padding: var(--spacing-md);
-    line-height: 1.6;
+    padding: var(--spacing-sm) var(--spacing-md);
+    line-height: 1.5;
 }
 
 .participants-grid {
@@ -1883,7 +1883,7 @@ main {
 .discussion-start-separator {
     display: flex;
     align-items: center;
-    margin: var(--spacing-xl) 0;
+    margin: var(--spacing-lg) 0;
     gap: var(--spacing-md);
 }
 
@@ -1909,7 +1909,7 @@ main {
 /* Mobile adjustments for task setup */
 @media (max-width: 992px) {
     .task-setup-message {
-        margin: var(--spacing-md) 0;
+        margin: var(--spacing-sm) 0;
     }
     
     .setup-header {
@@ -1918,7 +1918,7 @@ main {
     }
     
     .setup-content {
-        padding: var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
         font-size: 0.9rem;
     }
     
@@ -1931,7 +1931,7 @@ main {
     }
     
     .discussion-start-separator {
-        margin: var(--spacing-lg) 0;
+        margin: var(--spacing-md) 0;
     }
     
     .separator-text {
