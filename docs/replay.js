@@ -515,24 +515,28 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingIndicator.style.display = 'none';
     }
 
-    // Replace the scrollChatToBottom function with an improved version
-    function scrollChatToBottom() {
-        // Get the chat container (panel-content that contains messages-container)
+    // Improved scroll behaviour: auto-scroll only if user is already near the bottom
+    function scrollChatToBottom(force = false) {
         const chatContainer = document.querySelector('.conversation-panel .panel-content');
         if (!chatContainer) return;
-        
-        // Force immediate scroll to bottom
+
+        // Determine if the user is currently near the bottom (200 px threshold)
+        const threshold = 200; // px
+        const distanceFromBottom = chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight;
+        const shouldScroll = force || distanceFromBottom <= threshold;
+
+        if (!shouldScroll) return; // Respect the user's scroll position
+
+        // Scroll to bottom immediately
         chatContainer.scrollTop = chatContainer.scrollHeight;
-        
-        // Check if on mobile
+
         const isMobile = window.innerWidth <= 992;
-        
-        // Apply again after a short delay to ensure all content is rendered
-        // Use different timing for mobile vs desktop for better experience
+
+        // After content has rendered, ensure we're still at bottom
         setTimeout(() => {
             chatContainer.scrollTop = chatContainer.scrollHeight;
-            
-            // On mobile, also scroll the whole page if needed
+
+            // On mobile, optionally scroll the window if chat panel is out of view
             if (isMobile) {
                 window.scrollTo({
                     top: document.body.scrollHeight,

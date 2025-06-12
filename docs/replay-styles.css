@@ -74,15 +74,16 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     padding: var(--spacing-md);
-    height: 100vh;
-    overflow: hidden;
+    height: 100vh; /* Lock the page to the viewport height */
+    overflow: hidden; /* Prevent page-level scrolling; inner containers handle overflow */
+    min-height: 0;
     background-image: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
 }
 
 .app-container {
     max-width: 1600px;
     margin: 0 auto;
-    height: calc(100vh - 2 * var(--spacing-md));
+    height: calc(100vh - 2 * var(--spacing-md)); /* Fits exactly, accounting for body padding */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -453,7 +454,8 @@ main {
     grid-template-columns: 400px 1fr;
     grid-gap: var(--spacing-lg);
     flex: 1;
-    height: calc(100% - 80px);
+    /* Use flexbox to occupy remaining space under the header */
+    min-height: 0; /* allow the grid to shrink when necessary */
 }
 
 .question-panel, .conversation-panel {
