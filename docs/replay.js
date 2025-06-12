@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let previousAgent = null;
     let previousAgentsByTurn = {}; // Track the previous agent for each turn
     let discussionParadigm = "Unknown";
+    let prevChatScrollHeight = 0;
 
     // Available SVG icons from the images folder
     const availableIcons = [
@@ -515,17 +516,27 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingIndicator.style.display = 'none';
     }
 
-    // Improved scroll behaviour: auto-scroll only if user is already near the bottom
+    // Improved scroll behaviour: auto-scroll only if user was near the bottom before new content was added
     function scrollChatToBottom(force = false) {
         const chatContainer = document.querySelector('.conversation-panel .panel-content');
         if (!chatContainer) return;
 
-        // Determine if the user is currently near the bottom (200 px threshold)
         const threshold = 200; // px
-        const distanceFromBottom = chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight;
-        const shouldScroll = force || distanceFromBottom <= threshold;
 
-        if (!shouldScroll) return; // Respect the user's scroll position
+        // Calculate how close the user was to the bottom *before* new content was added
+        const distanceFromBottomBefore = prevChatScrollHeight - chatContainer.scrollTop - chatContainer.clientHeight;
+        const wasNearBottomBefore = distanceFromBottomBefore <= threshold;
+
+        // Calculate distance after the new content exists in the DOM
+        const distanceFromBottomAfter = chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight;
+
+        // Decide whether we should scroll
+        const shouldScroll = force || wasNearBottomBefore || distanceFromBottomAfter <= threshold;
+
+        if (!shouldScroll) {
+            prevChatScrollHeight = chatContainer.scrollHeight; // Update for next call
+            return; // Respect the user's scroll position
+        }
 
         // Scroll to bottom immediately
         chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -544,6 +555,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }, isMobile ? 300 : 50);
+
+        // Update the previous scroll height for the next invocation
+        prevChatScrollHeight = chatContainer.scrollHeight;
     }
 
     // Function to display the turn paradigm indicator before the first message
@@ -1026,9 +1040,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Show voting results in the chat window
     function displayVotingInChat() {
+        console.log("displayVotingInChat called", currentTurn, discussionData.votesEachTurn);
         if (!isReplaying) return; // Check if still replaying
         
         const voteData = discussionData.votesEachTurn[currentTurn];
+        console.log("voteData", voteData);
         if (voteData) {
             // Create voting message element
             const voteEl = document.createElement('div');
@@ -1064,8 +1080,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                         <div class="vote-result">
-                            <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations.public.final_answer}</strong></div>
-                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${voteData.alterations.public.agreed ? 'Yes' : 'No'}</span></div>
+                            <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations.anonymous.final_answer}</strong></div>
+                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${voteData.alterations.anonymous.agreed ? 'Yes' : 'No'}</span></div>
                         </div>
                     </div>
                 </div>
