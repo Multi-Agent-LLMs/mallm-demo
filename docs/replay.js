@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const protocol = decisionProtocolSelect.value;
         
         // Construct filename based on component selections
-        // Format: {responseGen}_{personaGen}_{paradigm}_{protocol}.json
-        currentConversationFile = `${responseGen}_${personaGen}_${paradigm}_${protocol}.json`;
+        // Format: output_{responseGen}_{personaGen}_{paradigm}_{protocol}_repeat1.json
+        currentConversationFile = `output_StrategyQA_${responseGen}_${personaGen}_${paradigm}_${protocol}_repeat1.json`;
         
         // Update the display
         currentConfigFileSpan.textContent = currentConversationFile;
