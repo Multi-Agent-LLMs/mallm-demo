@@ -28,6 +28,7 @@
         .component-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.55rem;}
         .component-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;}
         .component-item{background:#fff;border-radius:.9rem;font-size:.88rem;padding:.3rem .75rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}        
+        .component-divider{border:0;border-top:1px solid #bbb;margin:.7rem 0;} /* retained for possible reuse */
         /* colour accents */
         .persona-generator{--accentSection:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);} 
         .discussion-paradigm{--accentSection:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);} 
@@ -69,6 +70,11 @@
             .evaluation-panel{grid-column:1/2;grid-row:auto;max-height:20rem;}
             .arrow-right{display:none;} /* hide arrow when stacked */
         }
+
+        /* wide dual card layout */
+        .wide-card{grid-column:span 2;flex-direction:row;gap:.9rem;}
+        .wide-card .sub-card{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+        .vertical-divider{width:1px;background:#bbb;}
     </style>
 </head>
 <body>
@@ -78,14 +84,28 @@
             <h1 class="framework-title">MALLM Framework</h1>
             <h2 class="framework-subtitle">Multi‑Agent Large Language Model Framework for Collaborative Task Solving</h2>
             <div class="components-grid">
-                <!-- Persona Generator -->
-                <div class="component-section persona-generator">
-                    <h3 class="component-title">Persona Generator</h3>
-                    <p class="component-subtitle">Agent personality definition</p>
-                    <div class="component-items">
-                        <span class="component-item">No Persona</span>
-                        <span class="component-item">ExpertPersona</span>
-                        <span class="component-item">IPIPPersona</span>
+                <!-- Persona & Response Generators (Wide Card) -->
+                <div class="component-section persona-generator wide-card">
+                    <div class="sub-card">
+                        <h3 class="component-title">Agent Persona</h3>
+                        <p class="component-subtitle">Agent personality definition</p>
+                        <div class="component-items">
+                            <span class="component-item">No Persona</span>
+                            <span class="component-item">ExpertPersona</span>
+                            <span class="component-item">IPIPPersona</span>
+                        </div>
+                    </div>
+
+                    <div class="vertical-divider"></div>
+
+                    <div class="sub-card">
+                        <h3 class="component-title">Agent Response</h3>
+                        <p class="component-subtitle">Response generation strategies</p>
+                        <div class="component-items">
+                            <span class="component-item">Simple</span>
+                            <span class="component-item">Critical</span>
+                            <span class="component-item">Reasoning</span>
+                        </div>
                     </div>
                 </div>
                 <!-- Discussion Paradigm -->
@@ -99,16 +119,7 @@
                         <span class="component-item">Debate</span>
                     </div>
                 </div>
-                <!-- Response Generator -->
-                <div class="component-section response-generator">
-                    <h3 class="component-title">Response Generator</h3>
-                    <p class="component-subtitle">Response generation strategies</p>
-                    <div class="component-items">
-                        <span class="component-item">Simple</span>
-                        <span class="component-item">Critical</span>
-                        <span class="component-item">Reasoning</span>
-                    </div>
-                </div>
+
                 <!-- Decision Protocol -->
                 <div class="component-section decision-protocol">
                     <h3 class="component-title">Decision Protocol</h3>
