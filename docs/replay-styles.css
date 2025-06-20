@@ -2020,4 +2020,69 @@ main {
     .discussion-play-button i {
         font-size: 24px;
     }
+}
+
+/* Help modal tweaks */
+#help-modal .modal-content {
+    max-width: 600px;
+}
+
+.help-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.help-body h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: var(--spacing-md) 0 var(--spacing-xs);
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.help-body h4 i {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+.help-body ul {
+    list-style: none;
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding-left: 0;
+}
+
+.help-body ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.5;
+}
+
+.help-body ul li::before {
+    content: "\f058"; /* check-circle */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.help-body p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Highlight for 144 setup count */
+.setup-count {
+    background-color: var(--secondary-color);
+    color: var(--text-on-secondary);
+    padding: 2px 8px;
+    border-radius: var(--border-radius-sm);
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
 } 

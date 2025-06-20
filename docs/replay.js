@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalFinalAnswer = document.getElementById('modal-final-answer');
     const replayAgainBtn = document.getElementById('replay-again');
     const closeModalBtn = document.getElementById('close-modal');
+    // HELP MODAL ELEMENTS
+    const openHelpBtn = document.getElementById('open-help');
+    const helpModal = document.getElementById('help-modal');
+    const closeHelpBtn = document.getElementById('close-help');
 
     // Create floating stop button for mobile
     const floatingStopBtn = document.createElement('button');
@@ -120,6 +124,24 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModalBtn.addEventListener('click', () => {
         closeModal();
     });
+
+    // Help modal event listeners
+    if (openHelpBtn && helpModal && closeHelpBtn) {
+        openHelpBtn.addEventListener('click', () => {
+            helpModal.style.display = 'flex';
+        });
+
+        closeHelpBtn.addEventListener('click', () => {
+            helpModal.style.display = 'none';
+        });
+
+        // Close when clicking outside modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === helpModal) {
+                helpModal.style.display = 'none';
+            }
+        });
+    }
 
     // Add event listeners for component selector changes
     responseGeneratorSelect.addEventListener('change', updateConversationFile);

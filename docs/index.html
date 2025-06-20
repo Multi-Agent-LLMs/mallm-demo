@@ -44,6 +44,7 @@
                         <span id="speed-value">1x</span>
                     </div>
                 </div>
+                <button id="open-help" class="btn"><i class="fas fa-question-circle"></i> Help</button>
             </div>
         </header>
 
@@ -167,6 +168,52 @@
         <div id="loading-indicator" class="loading-indicator">
             <div class="spinner"></div>
             <div><i class="fas fa-database"></i> Loading conversation data...</div>
+        </div>
+
+        <!-- HELP MODAL ADDED -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-info-circle"></i> Components Help</h3>
+                </div>
+                <div class="modal-body help-body">
+                    <p>MALLM orchestrates multiple LLM agents to solve tasks. Mix & match the following components to explore</p>
+
+                    <h4><i class="fas fa-cogs"></i> Response Generator</h4>
+                    <ul>
+                        <li><strong>Simple:</strong> Neutral free-text answers with minimal prompting.</li>
+                        <li><strong>Critical:</strong> Focuses on spotting weaknesses, questioning assumptions, and proposing alternatives, ideal for stress-testing ideas.</li>
+                        <li><strong>Reasoning:</strong> Publishes a structured chain-of-thought (analysis → alternatives → conclusion). Only reasoning is shared, forcing each agent to derive its own final answer.</li>
+                    </ul>
+
+                    <h4><i class="fas fa-user-friends"></i> Persona Generator</h4>
+                    <ul>
+                        <li><strong>No&nbsp;Persona:</strong> Minimal "Participant N" placeholder, ideal baseline without persona influence.</li>
+                        <li><strong>Expert:</strong> Creates domain experts such as <em>Historian</em>, <em>Software Engineer</em>, or <em>Chef</em> tailored to the task topic, boosts subject knowledge.</li>
+                        <li><strong>IPIP:</strong> Builds personalities along the Big-Five trait continua:<br>&nbsp;&nbsp;• Extraversion (Social&nbsp;↔ Quiet)<br>&nbsp;&nbsp;• Agreeableness (Cooperative&nbsp;↔ Assertive)<br>&nbsp;&nbsp;• Conscientiousness (Organized&nbsp;↔ Unreliable)<br>&nbsp;&nbsp;• Neuroticism (Passionate&nbsp;↔ Calm)<br>&nbsp;&nbsp;• Openness (Curious&nbsp;↔ Cautious)</li>
+                    </ul>
+
+                    <h4><i class="fas fa-comments"></i> Discussion Paradigm</h4>
+                    <ul>
+                        <li><strong>Memory:</strong> All agents share a global memory, everyone sees everything; leads to rapid convergence.</li>
+                        <li><strong>Relay:</strong> Telephone-style chain; each agent only sees the last message, encourages diverse reasoning paths.</li>
+                        <li><strong>Report:</strong> Each agent observes the environment independently and submits a report to a central coordinator.</li>
+                        <li><strong>Debate:</strong> Agents argue in alternating pairs while a judge agent decides after each exchange, great for pros/cons exploration.</li>
+                    </ul>
+
+                    <h4><i class="fas fa-vote-yea"></i> Decision Protocol</h4>
+                    <ul>
+                        <li><strong>Majority&nbsp;Consensus&nbsp;(≥ 50 %):</strong> Stops when over half of the agents agree on the same answer.</li>
+                        <li><strong>Unanimity&nbsp;Consensus&nbsp;(100 %):</strong> Continues until <em>every</em> agent agrees, maximises certainty.</li>
+                        <li><strong>Simple&nbsp;Voting:</strong> After a preset number of turns (default 3), each agent casts a single vote; most votes win. Ties trigger another round.</li>
+                        <li><strong>Approval&nbsp;Voting:</strong> Agents can approve any number of acceptable answers; answer with most approvals wins.</li>
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="close-help" class="btn"><i class="fas fa-times"></i> Close</button>
+                </div>
+            </div>
         </div>
     </div>
 
