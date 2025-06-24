@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const openHelpBtn = document.getElementById('open-help');
     const helpModal = document.getElementById('help-modal');
     const closeHelpBtn = document.getElementById('close-help');
+    const pauseResumeBtn = document.getElementById('pause-resume-replay');
 
     // Create floating stop button for mobile
     const floatingStopBtn = document.createElement('button');
@@ -58,6 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let previousAgentsByTurn = {}; // Track the previous agent for each turn
     let discussionParadigm = "Unknown";
     let prevChatScrollHeight = 0;
+    let isPaused = false;
+    let originalSetTimeout = window.setTimeout;
+    let originalClearTimeout = window.clearTimeout;
+    let timeoutRegistry = new Map(); // Active timeouts
+    let pausedTimeouts = []; // Timeouts captured during a pause
 
     // Available SVG icons from the images folder
     const availableIcons = [
@@ -153,6 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         if (isReplaying) {
             scrollChatToBottom();
+        }
+    });
+
+    pauseResumeBtn.addEventListener('click', () => {
+        if (!isReplaying) return;
+        if (isPaused) {
+            resumeReplay();
+        } else {
+            pauseReplay();
         }
     });
 
@@ -296,10 +311,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Format the input text to properly display multiple choice options if present
         const inputText = discussionData.input[0];
         
+        // Determine correct letter from references list (first character)
+        let correctLetter = null;
+        if (discussionData.references && discussionData.references.length > 0) {
+            correctLetter = discussionData.references[0].trim().charAt(0).toUpperCase();
+        }
+
         // Check if the input contains multiple choice options (A), B), etc.)
         if (inputText.match(/[A-Z]\)\s+/)) {
             // Format multiple choice options
-            const formattedText = formatMultipleChoiceQuestion(inputText);
+            const formattedText = formatMultipleChoiceQuestion(inputText, correctLetter);
             questionText.innerHTML = formattedText;
         } else {
             // Regular text without options
@@ -321,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to format multiple choice questions
-    function formatMultipleChoiceQuestion(text) {
+    function formatMultipleChoiceQuestion(text, correctLetter = null) {
         // First identify the question part (before the options)
         let questionPart = '';
         let optionsPart = '';
@@ -340,9 +361,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Format the question part
         const formattedQuestion = `<div class="question-text">${questionPart}</div>`;
         
-        // Format options - replace each option with styled version
-        const formattedOptions = optionsPart.replace(/([A-Z]\))\s+([^\n]+)(?:\n|$)/g, 
-            '<div class="multiple-choice-option"><span class="option-letter">$1</span> $2</div>');
+        // Format options with correct answer highlight
+        const formattedOptions = optionsPart.replace(/([A-Z])\)\s+([^\n]+)(?:\n|$)/g, (match, p1, p2) => {
+            const isCorrect = correctLetter && p1.toUpperCase() === correctLetter.toUpperCase();
+            return `<div class="multiple-choice-option${isCorrect ? ' correct-option' : ''}"><span class="option-letter">${p1})</span> ${p2}${isCorrect ? '<span class="correct-label">✓</span>' : ''}</div>`;
+        });
         
         return formattedQuestion + '<div class="multiple-choice-options">' + formattedOptions + '</div>';
     }
@@ -372,7 +395,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function startReplay() {
         if (isReplaying) return;
         
-        isReplaying = true;
+        enableManagedTimeouts(); // Activate managed timeouts
+        isPaused = false;
+        pauseResumeBtn.disabled = false;
+        pauseResumeBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
         startReplayBtn.disabled = true;
         stopReplayBtn.disabled = false;
         loadConversationBtn.disabled = true;
@@ -397,10 +423,15 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTurnInfo();
         
         // Begin the replay sequence
+        isReplaying = true;
         replaySequence();
     }
     
     function stopReplay() {
+        disableManagedTimeouts(); // Restore originals and clear
+        isPaused = false;
+        pauseResumeBtn.disabled = true;
+        pauseResumeBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
         isReplaying = false;
         startReplayBtn.disabled = false;
         stopReplayBtn.disabled = true;
@@ -1212,9 +1243,95 @@ document.addEventListener('DOMContentLoaded', () => {
                 stopReplayBtn.disabled = true;
                 loadConversationBtn.disabled = false;
                 floatingStopBtn.classList.remove('visible'); // Hide floating stop button
+                disableManagedTimeouts();
+                isPaused = false;
+                pauseResumeBtn.disabled = true;
+                pauseResumeBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
             }, 2000 / replaySpeed);
             
             replayTimeouts.push(timeoutId);
         }
     }
+
+    // ----------------------
+    // Managed timeout helpers
+    // ----------------------
+    function managedSetTimeout(callback, delay, ...args) {
+        if (isPaused) {
+            // Store for later execution when resumed
+            const obj = { callback, args, remaining: delay, id: Symbol('pausedTimeout') };
+            pausedTimeouts.push(obj);
+            return obj.id; // Return dummy id so clearTimeout still works
+        }
+        const start = Date.now();
+        const wrappedCb = () => {
+            timeoutRegistry.delete(id);
+            callback(...args);
+        };
+        const id = originalSetTimeout(wrappedCb, delay);
+        timeoutRegistry.set(id, { callback, args, delay, start, id });
+        return id;
+    }
+
+    function managedClearTimeout(id) {
+        if (timeoutRegistry.has(id)) {
+            originalClearTimeout(id);
+            timeoutRegistry.delete(id);
+            return;
+        }
+        // Check paused list
+        const idx = pausedTimeouts.findIndex(t => t.id === id);
+        if (idx !== -1) {
+            pausedTimeouts.splice(idx, 1);
+            return;
+        }
+        // Fallback to original
+        originalClearTimeout(id);
+    }
+
+    function enableManagedTimeouts() {
+        window.setTimeout = managedSetTimeout;
+        window.clearTimeout = managedClearTimeout;
+    }
+
+    function disableManagedTimeouts() {
+        window.setTimeout = originalSetTimeout;
+        window.clearTimeout = originalClearTimeout;
+        timeoutRegistry.clear();
+        pausedTimeouts = [];
+    }
+
+    function pauseReplay() {
+        if (!isReplaying || isPaused) return;
+        isPaused = true;
+        // Move all active timeouts to paused list with remaining time calculation
+        timeoutRegistry.forEach((data, id) => {
+            const elapsed = Date.now() - data.start;
+            const remaining = Math.max(0, data.delay - elapsed);
+            originalClearTimeout(id);
+            timeoutRegistry.delete(id);
+            pausedTimeouts.push({ ...data, remaining, id: Symbol('pausedTimeout') });
+        });
+        pauseResumeBtn.innerHTML = '<i class="fas fa-play"></i> Resume';
+    }
+
+    function resumeReplay() {
+        if (!isPaused) return;
+        isPaused = false;
+        pausedTimeouts.forEach(data => {
+            const id = originalSetTimeout(() => {
+                managedClearTimeout(id);
+                data.callback(...(data.args || []));
+            }, data.remaining);
+            // Track the newly scheduled timeout
+            timeoutRegistry.set(id, { ...data, id, start: Date.now(), delay: data.remaining });
+            replayTimeouts.push(id);
+        });
+        pausedTimeouts = [];
+        pauseResumeBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+    }
+
+    // ----------------------
+    // End managed timeout helpers
+    // ----------------------
 }); 
