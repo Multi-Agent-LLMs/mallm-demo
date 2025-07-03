@@ -12,7 +12,7 @@
         body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;background:#fff;color:#000;line-height:1.4;padding:1rem .8rem;}
 
         /* ----------  GRID LAYOUT  ---------- */
-        .container{--gap:.8rem;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto;gap:var(--gap);max-width:66rem;margin:0 auto;}
+        .container{--gap:.8rem;display:grid;grid-template-columns:1fr 14rem;grid-template-rows:auto auto;gap:var(--gap);max-width:66rem;margin:0 auto;}
 
         /* ----------  UTILITY  ---------- */
         .panel{background:#fafafa;border:2px dashed var(--accent,#ccc);border-radius:.8rem;padding:1rem;box-shadow:0 3px 9px rgba(0,0,0,.05);}        
@@ -22,7 +22,7 @@
         .main-framework{--accent:#4CAF50;}
         .framework-title{text-align:center;font-size:2.1rem;margin-bottom:.2rem;}
         .framework-subtitle{text-align:center;font-size:.95rem;color:#000;margin-bottom:.8rem;}
-        .components-grid{display:grid;grid-template-columns:1fr 1fr 0.8fr;grid-template-rows:auto auto;gap:var(--gap);}        
+        .components-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14.5rem,1fr));gap:var(--gap);}        
         .component-section{position:relative;padding:.75rem .65rem .9rem;border:2px dashed var(--accentSection,#3498db);border-radius:.6rem;background:#ffffffee;display:flex;flex-direction:column;justify-content:space-between;}
         .component-title{text-align:center;font-size:1.1rem;margin-bottom:.2rem;}
         .component-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.55rem;}
@@ -30,11 +30,10 @@
         .component-item{background:#fff;border-radius:.9rem;font-size:.88rem;padding:.3rem .75rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}        
         .component-divider{border:0;border-top:1px solid #bbb;margin:.7rem 0;} /* retained for possible reuse */
         /* colour accents */
-        .persona-generator{--accentSection:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);grid-column:1/3;grid-row:1;} 
-        .discussion-paradigm{--accentSection:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);grid-column:1;grid-row:2;} 
+        .persona-generator{--accentSection:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);} 
+        .discussion-paradigm{--accentSection:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);} 
         .response-generator{--accentSection:#9C27B0;background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);} 
-        .decision-protocol{--accentSection:#2196F3;background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);grid-column:2;grid-row:2;} 
-        .evaluation-pipeline{--accentSection:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);grid-column:3;grid-row:1/3;} 
+        .decision-protocol{--accentSection:#2196F3;background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);} 
 
         /* ----------  BACKENDS  ---------- */
         .inference-backends{--accent:#2196F3;position:relative;}
@@ -49,7 +48,17 @@
         .backend-item{background:#fff;border-radius:.85rem;font-size:.82rem;padding:.28rem .72rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}
         .model-logo{height:1.2rem;vertical-align:middle;margin-right:0.3rem;}
 
-
+        /* ----------  EVALUATION PANEL  ---------- */
+        .evaluation-panel{--accent:#FF9800;grid-column:2/3;grid-row:1/3;overflow-y:auto;}
+        .evaluation-title{text-align:center;font-size:1.25rem;margin-bottom:.2rem;}
+        .evaluation-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.8rem;}
+        .evaluation-methods{display:flex;flex-direction:column;gap:.55rem;}
+        .eval-method{padding:.75rem;border:2px dashed var(--accent);border-radius:.6rem;text-align:center;background:#ffffffee;}
+        .human-eval{background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}        
+        .automated-eval{background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);}        
+        .performance-eval{background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);}        
+        .eval-title{font-weight:600;margin-bottom:.18rem;font-size:.9rem;}
+        .eval-icon{display:block;font-size:1.15rem;margin-bottom:.22rem;}
 
         /* ----------  ARROWS  ---------- */
         .arrow{position:absolute;font-size:1.6rem;color:#9aa3a6;}
@@ -57,7 +66,8 @@
 
         /* ----------  RESPONSIVE  ---------- */
         @media(max-width:768px){
-            .container{grid-template-columns:1fr;grid-template-rows:auto auto;}
+            .container{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+            .evaluation-panel{grid-column:1/2;grid-row:auto;max-height:20rem;}
             .arrow-right{display:none;} /* hide arrow when stacked */
         }
 
@@ -65,17 +75,10 @@
         .wide-card{grid-column:span 2;flex-direction:row;gap:.9rem;}
         .wide-card .sub-card{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
         .vertical-divider{width:1px;background:#bbb;}
-        
-        /* evaluation methods layout */
-        .evaluation-methods{display:flex;flex-direction:column;gap:.3rem;}
-        .eval-method{text-align:center;}
-        .eval-content{text-align:center;}
-        .eval-title{font-weight:600;margin-bottom:.1rem;font-size:.85rem;}
-        .eval-description{font-size:.75rem;color:#000;line-height:1.2;}
     </style>
 </head>
 <body>
-    <div class="container" style="width: 1150px;">
+    <div class="container" style="width: 1087px;">
         <!-- Main Framework -->
         <section class="main-framework panel">
             <h1 class="framework-title">MALLM Framework</h1>
@@ -127,32 +130,6 @@
                         <span class="component-item">Judge</span>
                     </div>
                 </div>
-
-                <!-- Evaluation Pipeline -->
-                <div class="component-section evaluation-pipeline">
-                    <h3 class="component-title">Multi‑Agent Evaluation</h3>
-                    <p class="component-subtitle">Comprehensive assessment of collaborative performance</p>
-                    <div class="evaluation-methods">
-                        <div class="eval-method framework-eval">
-                            <div class="eval-content">
-                                <span class="eval-title">📊 Framework Features</span>
-                                <p class="eval-description">Extendable metrics, auto-generated charts and error analysis</p>
-                            </div>
-                        </div>
-                        <div class="eval-method answer-eval">
-                            <div class="eval-content">
-                                <span class="eval-title">✓ Answer Evaluation</span>
-                                <p class="eval-description">Multiple-choice and text matching</p>
-                            </div>
-                        </div>
-                        <div class="eval-method metrics-eval">
-                            <div class="eval-content">
-                                <span class="eval-title">📝 Text Metrics</span>
-                                <p class="eval-description">Standard NLP similarity measurements</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <!-- Inference Backends -->
@@ -178,7 +155,16 @@
                 </div>
             </div>
         </aside>
-
+        <!-- Evaluation Panel -->
+        <aside class="evaluation-panel panel">
+            <h3 class="evaluation-title">MALLM </br> Evaluation</h3>
+            <p class="evaluation-subtitle">Comprehensive assessment of collaborative performance</p>
+            <div class="evaluation-methods">
+                <div class="eval-method human-eval"><span class="eval-icon">📊</span><span class="eval-title">Framework Features</span><p>Extendable metrics, auto-generated charts and error analysis</p></div>
+                <div class="eval-method automated-eval"><span class="eval-icon">✓</span><span class="eval-title">Answer Evaluation</span><p>Multiple-choice and text matching</p></div>
+                <div class="eval-method performance-eval"><span class="eval-icon">📝</span><span class="eval-title">Text Metrics</span><p>Standard NLP similarity measurements</p></div>
+            </div>
+        </aside>
     </div>
 </body>
 </html>
