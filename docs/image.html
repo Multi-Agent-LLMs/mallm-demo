@@ -7,58 +7,58 @@
     <!-- Compact, visually‑refined version – optimised for landscape‑style placement in an A4 paper -->
     <style>
         /* ----------  GLOBALS & TYPOGRAPHY  ---------- */
-        :root{font-size:17.5px;} /* ≈ 12  pt */
+        :root{font-size:14px;} /* ≈ 10  pt */
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-        body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;background:#fff;color:#000;line-height:1.4;padding:1rem .8rem;}
+        body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;background:#fff;color:#000;line-height:1.2;padding:.5rem .4rem;}
 
         /* ----------  GRID LAYOUT  ---------- */
-        .container{--gap:.8rem;display:grid;grid-template-columns:1fr 14rem;grid-template-rows:auto auto;gap:var(--gap);max-width:66rem;margin:0 auto;}
+        .container{--gap:.4rem;display:grid;grid-template-columns:1fr 11rem;grid-template-rows:auto auto;gap:var(--gap);max-width:55rem;margin:0 auto;}
 
         /* ----------  UTILITY  ---------- */
-        .panel{background:#fafafa;border:2px dashed var(--accent,#ccc);border-radius:.8rem;padding:1rem;box-shadow:0 3px 9px rgba(0,0,0,.05);}        
+        .panel{background:#fafafa;border:2px dashed var(--accent,#ccc);border-radius:.4rem;padding:.5rem;box-shadow:0 2px 6px rgba(0,0,0,.05);}        
         h1,h2,h3,h4{font-weight:700;}
 
         /* ----------  MAIN FRAMEWORK  ---------- */
         .main-framework{--accent:#4CAF50;}
-        .framework-title{text-align:center;font-size:2.1rem;margin-bottom:.2rem;}
-        .framework-subtitle{text-align:center;font-size:.95rem;color:#000;margin-bottom:.8rem;}
-        .components-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14.5rem,1fr));gap:var(--gap);}        
-        .component-section{position:relative;padding:.75rem .65rem .9rem;border:2px dashed var(--accentSection,#3498db);border-radius:.6rem;background:#ffffffee;display:flex;flex-direction:column;justify-content:space-between;}
-        .component-title{text-align:center;font-size:1.1rem;margin-bottom:.2rem;}
-        .component-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.55rem;}
-        .component-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;}
-        .component-item{background:#fff;border-radius:.9rem;font-size:.88rem;padding:.3rem .75rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}        
+        .framework-title{text-align:center;font-size:1.8rem;margin-bottom:.1rem;}
+        .framework-subtitle{text-align:center;font-size:.9rem;color:#000;margin-bottom:.4rem;}
+        .components-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:var(--gap);}        
+        .component-section{position:relative;padding:.5rem .4rem .6rem;border:2px dashed var(--accentSection,#3498db);border-radius:.4rem;background:#ffffffee;display:flex;flex-direction:column;justify-content:space-between;}
+        .component-title{text-align:center;font-size:1rem;margin-bottom:.1rem;}
+        .component-subtitle{text-align:center;font-size:.8rem;color:#000;margin-bottom:.3rem;}
+        .component-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem;}
+        .component-item{background:#fff;border-radius:.6rem;font-size:.8rem;padding:.2rem .5rem;box-shadow:0 1px 3px rgba(0,0,0,.05);}        
         .component-divider{border:0;border-top:1px solid #bbb;margin:.7rem 0;} /* retained for possible reuse */
         /* colour accents */
-        .persona-generator{--accentSection:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);} 
-        .discussion-paradigm{--accentSection:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);} 
+        .persona-generator{--accentSection:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);grid-column:1/3;grid-row:1;} 
+        .discussion-paradigm{--accentSection:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);grid-column:1;grid-row:2;} 
         .response-generator{--accentSection:#9C27B0;background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);} 
-        .decision-protocol{--accentSection:#2196F3;background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);} 
+        .decision-protocol{--accentSection:#2196F3;background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);grid-column:2;grid-row:2;} 
 
         /* ----------  BACKENDS  ---------- */
         .inference-backends{--accent:#2196F3;position:relative;}
-        .backends-title{text-align:center;font-size:1.35rem;margin-bottom:.2rem;}
-        .backends-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.8rem;}
-        .backends-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:var(--gap);}        
-        .backend-section{padding:.75rem .65rem .9rem;border:2px dashed var(--accentSub,#3498db);border-radius:.6rem;background:#ffffffee;}
+        .backends-title{text-align:center;font-size:1.25rem;margin-bottom:.1rem;}
+        .backends-subtitle{text-align:center;font-size:.8rem;color:#000;margin-bottom:.4rem;}
+        .backends-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:var(--gap);}        
+        .backend-section{padding:.5rem .4rem .6rem;border:2px dashed var(--accentSub,#3498db);border-radius:.4rem;background:#ffffffee;}
         .open-source{--accentSub:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);}        
         .proprietary{--accentSub:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}        
-        .backend-title{text-align:center;font-size:1.02rem;margin-bottom:.4rem;}
-        .backend-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;}
-        .backend-item{background:#fff;border-radius:.85rem;font-size:.82rem;padding:.28rem .72rem;box-shadow:0 1px 4px rgba(0,0,0,.07);}
-        .model-logo{height:1.2rem;vertical-align:middle;margin-right:0.3rem;}
+        .backend-title{text-align:center;font-size:.9rem;margin-bottom:.2rem;}
+        .backend-items{display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem;}
+        .backend-item{background:#fff;border-radius:.6rem;font-size:.8rem;padding:.2rem .5rem;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+        .model-logo{height:1rem;vertical-align:middle;margin-right:0.2rem;}
 
         /* ----------  EVALUATION PANEL  ---------- */
-        .evaluation-panel{--accent:#FF9800;grid-column:2/3;grid-row:1/3;overflow-y:auto;}
-        .evaluation-title{text-align:center;font-size:1.25rem;margin-bottom:.2rem;}
-        .evaluation-subtitle{text-align:center;font-size:.82rem;color:#000;margin-bottom:.8rem;}
-        .evaluation-methods{display:flex;flex-direction:column;gap:.55rem;}
-        .eval-method{padding:.75rem;border:2px dashed var(--accent);border-radius:.6rem;text-align:center;background:#ffffffee;}
+        .evaluation-panel{--accent:#FF9800;grid-column:2/3;grid-row:1/3;overflow-y:auto;display:flex;flex-direction:column;}
+        .evaluation-title{text-align:center;font-size:1.1rem;margin-bottom:.1rem;}
+        .evaluation-subtitle{text-align:center;font-size:.8rem;color:#000;margin-bottom:.4rem;}
+        .evaluation-methods{display:flex;flex-direction:column;justify-content:space-evenly;flex-grow:1;}
+        .eval-method{padding:.4rem;border:2px dashed var(--accent);border-radius:.4rem;text-align:center;background:#ffffffee;}
         .human-eval{background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}        
         .automated-eval{background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);}        
         .performance-eval{background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);}        
-        .eval-title{font-weight:600;margin-bottom:.18rem;font-size:.9rem;}
-        .eval-icon{display:block;font-size:1.15rem;margin-bottom:.22rem;}
+        .eval-title{font-weight:600;margin-bottom:.1rem;font-size:.85rem;}
+        .eval-icon{display:block;font-size:1rem;margin-bottom:.1rem;}
 
         /* ----------  ARROWS  ---------- */
         .arrow{position:absolute;font-size:1.6rem;color:#9aa3a6;}
@@ -67,18 +67,18 @@
         /* ----------  RESPONSIVE  ---------- */
         @media(max-width:768px){
             .container{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
-            .evaluation-panel{grid-column:1/2;grid-row:auto;max-height:20rem;}
+            .evaluation-panel{grid-column:1/2;grid-row:auto;max-height:15rem;}
             .arrow-right{display:none;} /* hide arrow when stacked */
         }
 
         /* wide dual card layout */
-        .wide-card{grid-column:span 2;flex-direction:row;gap:.9rem;}
+        .wide-card{grid-column:span 2;flex-direction:row;gap:.5rem;}
         .wide-card .sub-card{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
         .vertical-divider{width:1px;background:#bbb;}
     </style>
 </head>
 <body>
-    <div class="container" style="width: 1087px;">
+    <div class="container" style="width: 900px;">
         <!-- Main Framework -->
         <section class="main-framework panel">
             <h1 class="framework-title">MALLM Framework</h1>
@@ -159,11 +159,11 @@
         <aside class="evaluation-panel panel">
             <h3 class="evaluation-title">MALLM </br> Evaluation</h3>
             <p class="evaluation-subtitle">Comprehensive assessment of collaborative performance</p>
-            <div class="evaluation-methods">
-                <div class="eval-method human-eval"><span class="eval-icon">📊</span><span class="eval-title">Framework Features</span><p>Extendable metrics, auto-generated charts and error analysis</p></div>
-                <div class="eval-method automated-eval"><span class="eval-icon">✓</span><span class="eval-title">Answer Evaluation</span><p>Multiple-choice and text matching</p></div>
-                <div class="eval-method performance-eval"><span class="eval-icon">📝</span><span class="eval-title">Text Metrics</span><p>Standard NLP similarity measurements</p></div>
-            </div>
+                         <div class="evaluation-methods">
+                 <div class="eval-method human-eval"><span class="eval-icon">📊</span><span class="eval-title">Framework Features</span><p style="font-size:.7rem;margin:0;line-height:1.1;">Extendable metrics, auto-generated charts and error analysis</p></div>
+                 <div class="eval-method automated-eval"><span class="eval-icon">✓</span><span class="eval-title">Answer Evaluation</span><p style="font-size:.7rem;margin:0;line-height:1.1;">Multiple-choice and text matching</p></div>
+                 <div class="eval-method performance-eval"><span class="eval-icon">📝</span><span class="eval-title">Text Metrics</span><p style="font-size:.7rem;margin:0;line-height:1.1;">Standard NLP similarity measurements</p></div>
+             </div>
         </aside>
     </div>
 </body>
