@@ -5,7 +5,8 @@
 <title>MAD Workflow</title>
 <style>
   :root{
-    font-size:14px;
+    /* increase base font size for overall larger typography */
+    font-size:16px;
   }
   *{
     box-sizing:border-box;
@@ -24,9 +25,10 @@
     max-width:900px;
     margin:0 auto;
     display:grid;
-    grid-template-columns:1fr 1.8rem 1fr 1.8rem 1fr 1.8rem 1fr;
+    /* reduce arrow column width and overall horizontal gap to reclaim space for text */
+    grid-template-columns:1fr 1.5rem 1fr 1.5rem 1fr 1.5rem 1fr;
     grid-auto-rows:auto;
-    gap:.6rem;
+    gap:.4rem;
     position:relative;
   }
   .workflow-step{
@@ -41,16 +43,29 @@
     text-align:center;
     min-height:8rem;
   }
-  .step-icon{font-size:1.6rem;margin-bottom:.2rem;}
-  .step-title{font-weight:700;margin-bottom:.2rem;font-size:1rem;}
-  .step-description{font-size:.75rem;line-height:1.2;color:#333;}
+  .step-icon{
+    /* slightly enlarge icons for better readability */
+    font-size:1.7rem;
+    margin-bottom:.25rem;
+  }
+  .step-title{
+    font-weight:700;
+    margin-bottom:.25rem;
+    font-size:1rem;
+  }
+  .step-description{
+    font-size:.8rem;
+    line-height:1.25;
+    color:#333;
+  }
   /* arrow cell */
   .workflow-arrow{
     display:flex;
     align-items:center;
     justify-content:center;
     color:#9aa3a6;
-    font-size:1.5rem;
+    /* enlarge the arrow slightly to match bigger text */
+    font-size:1.6rem;
     user-select:none;
   }
   /* optional component spanning columns 3-5 */
@@ -59,40 +74,42 @@
     background:#ffffffee;
     border:2px dashed #9aa3a6;
     border-radius:.5rem;
-    padding:.8rem .7rem;
+    /* increase padding to complement larger font sizes */
+    padding:1rem .8rem;
     display:flex;
     flex-direction:column;
     justify-content:center;
     gap:.4rem;
     position:relative;
-    /* extra top margin so the upward arrow has breathing room */
-    margin-top:1.2rem;
+    /* add extra top margin so there is space for the connecting arrow */
+    margin-top:1.6rem;
   }
   /* upward arrow from optional back to Create Batch Config */
   .optional-component::before{
     content:'\2191';
     position:absolute;
-    top:-2.1rem;
+    /* position the arrow halfway between the Create Config box and the optional card */
+    top:-2.3rem;
     left:25%;
-    transform:translateX(-100%);
+    transform:translateX(-50%);
     color:#9aa3a6;
-    font-size:1.5rem;
+    font-size:1.7rem;
   }
   .optional-title{
     font-weight:700;
-    font-size:.9rem;
-    margin-bottom:.3rem;
+    font-size:.95rem;
+    margin-bottom:.35rem;
     text-align:center;
   }
   .optional-item{
-    font-size:.75rem;
-    line-height:1.3;
+    font-size:.8rem;
+    line-height:1.4;
     display:flex;
     align-items:flex-start;
     gap:.4rem;
   }
   .optional-item span.icon{
-    font-size:1rem;
+    font-size:1.1rem;
     line-height:1;
     margin-top:.1rem;
     color:#4CAF50;
@@ -146,7 +163,7 @@
   <div class="workflow-step evaluate" style="grid-column:7">
     <div class="step-icon">📊</div>
     <div class="step-title">Evaluate</div>
-    <div class="step-description">Feed debate logs into the evaluation pipeline to compute text overlap metrics, BERTScore and accuracy. Automatically generated charts aid visualization.</div>
+    <div class="step-description">Feed debate logs into the evaluation pipeline to compute text overlap metrics, BERTScore, and accuracy. Automatically generated charts aid visualization.</div>
   </div>
   <!-- Optional component spanning steps 2 and 3 -->
   <div class="optional-component" style="grid-row:2">
