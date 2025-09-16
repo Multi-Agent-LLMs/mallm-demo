@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MAD Workflow</title>
+<style>
+  :root{
+    font-size:14px;
+  }
+  *{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+  body{
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    background:#fff;
+    color:#000;
+    line-height:1.3;
+    padding:.5rem;
+  }
+  /* grid container with arrow columns */
+  .workflow-container{
+    max-width:900px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1.8rem 1fr 1.8rem 1fr 1.8rem 1fr;
+    grid-auto-rows:auto;
+    gap:.6rem;
+    position:relative;
+  }
+  .workflow-step{
+    background:#ffffffee;
+    border:2px dashed var(--accent-color);
+    border-radius:.5rem;
+    padding:.7rem .6rem .8rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    text-align:center;
+    min-height:8rem;
+  }
+  .step-icon{font-size:1.6rem;margin-bottom:.2rem;}
+  .step-title{font-weight:700;margin-bottom:.2rem;font-size:1rem;}
+  .step-description{font-size:.75rem;line-height:1.2;color:#333;}
+  /* arrow cell */
+  .workflow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#9aa3a6;
+    font-size:1.5rem;
+    user-select:none;
+  }
+  /* optional component spanning columns 3-5 */
+  .optional-component{
+    grid-column:3 / span 3;
+    background:#ffffffee;
+    border:2px dashed #9aa3a6;
+    border-radius:.5rem;
+    padding:.8rem .7rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:.4rem;
+    position:relative;
+    /* extra top margin so the upward arrow has breathing room */
+    margin-top:1.2rem;
+  }
+  /* upward arrow from optional back to Create Batch Config */
+  .optional-component::before{
+    content:'\2191';
+    position:absolute;
+    top:-2.1rem;
+    left:25%;
+    transform:translateX(-100%);
+    color:#9aa3a6;
+    font-size:1.5rem;
+  }
+  .optional-title{
+    font-weight:700;
+    font-size:.9rem;
+    margin-bottom:.3rem;
+    text-align:center;
+  }
+  .optional-item{
+    font-size:.75rem;
+    line-height:1.3;
+    display:flex;
+    align-items:flex-start;
+    gap:.4rem;
+  }
+  .optional-item span.icon{
+    font-size:1rem;
+    line-height:1;
+    margin-top:.1rem;
+    color:#4CAF50;
+  }
+  /* accent colors */
+  .load{--accent-color:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);}
+  .config{--accent-color:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}
+  .run{--accent-color:#9C27B0;background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);}
+  .evaluate{--accent-color:#2196F3;background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);}
+  /* responsive layout */
+  @media(max-width:768px){
+    .workflow-container{
+      grid-template-columns:1fr;
+      gap:.8rem;
+    }
+    .workflow-arrow{display:none;}
+    .optional-component{
+      grid-column:1;
+      margin-top:0;
+    }
+    .optional-component::before{
+      left:50%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="workflow-container">
+  <!-- Step 1 -->
+  <div class="workflow-step load" style="grid-column:1">
+    <div class="step-icon">🗂️</div>
+    <div class="step-title">Load Dataset</div>
+    <div class="step-description">Use one of the 22 predefined datasets or any other text‑based Huggingface dataset for problem solving.</div>
+  </div>
+  <div class="workflow-arrow" style="grid-column:2">→</div>
+  <!-- Step 2 -->
+  <div class="workflow-step config" style="grid-column:3">
+    <div class="step-icon">📋</div>
+    <div class="step-title">Create Batch Config</div>
+    <div class="step-description">Prepare a config that specifies all non‑default parameters for the debate, such as input file, endpoint URL, number of agents and number of runs.</div>
+  </div>
+  <div class="workflow-arrow" style="grid-column:4">→</div>
+  <!-- Step 3 -->
+  <div class="workflow-step run" style="grid-column:5">
+    <div class="step-icon">🗣️</div>
+    <div class="step-title">Run Debates</div>
+    <div class="step-description">Execute all configurations from your batch. Extensive logs of every debate are stored in a directory for later analysis.</div>
+  </div>
+  <div class="workflow-arrow" style="grid-column:6">→</div>
+  <!-- Step 4 -->
+  <div class="workflow-step evaluate" style="grid-column:7">
+    <div class="step-icon">📊</div>
+    <div class="step-title">Evaluate</div>
+    <div class="step-description">Feed debate logs into the evaluation pipeline to compute text overlap metrics, BERTScore and accuracy. Automatically generated charts aid visualization.</div>
+  </div>
+  <!-- Optional component spanning steps 2 and 3 -->
+  <div class="optional-component" style="grid-row:2">
+    <div class="optional-title">Optional: Custom Component</div>
+    <div class="optional-item"><span class="icon">⚙️</span><span>Choose a core class to extend (PersonaGenerator, ResponseGenerator, DiscussionParadigm or DecisionProtocol).</span></div>
+    <div class="optional-item"><span class="icon">🔄</span><span>Pick a variant with similar features (e.g., <em>ReasoningResponseGenerator</em>) as a starting point.</span></div>
+    <div class="optional-item"><span class="icon">🛠️</span><span>Implement your own logic tailored to your specific experiment.</span></div>
+  </div>
+</div>
+</body>
+</html>
