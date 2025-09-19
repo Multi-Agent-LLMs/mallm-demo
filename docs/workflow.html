@@ -1,138 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MAD Workflow</title>
+<title>MAD Workflow – Updated</title>
 <style>
-  :root{
-    /* increase base font size for overall larger typography */
-    font-size:16px;
-  }
-  *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-  }
+  :root{ font-size:16px; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
   body{
     font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
-    background:#fff;
-    color:#000;
-    line-height:1.3;
-    padding:.5rem;
+    background:#fff; color:#000; line-height:1.3; padding:.5rem;
   }
-  /* grid container with arrow columns */
   .workflow-container{
-    max-width:900px;
-    margin:0 auto;
-    display:grid;
-    /* reduce arrow column width and overall horizontal gap to reclaim space for text */
+    max-width:900px; margin:0 auto; display:grid;
     grid-template-columns:1fr 1.5rem 1fr 1.5rem 1fr 1.5rem 1fr;
-    grid-auto-rows:auto;
-    gap:.4rem;
-    position:relative;
+    grid-auto-rows:auto; gap:.4rem; position:relative;
   }
   .workflow-step{
-    background:#ffffffee;
-    border:2px dashed var(--accent-color);
-    border-radius:.5rem;
-    padding:.7rem .6rem .8rem;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-between;
-    text-align:center;
-    min-height:8rem;
+    background:#ffffffee; border:2px dashed var(--accent-color);
+    border-radius:.5rem; padding:.7rem .6rem .8rem;
+    display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+    text-align:center; min-height:8rem;
   }
-  .step-icon{
-    /* slightly enlarge icons for better readability */
-    font-size:1.7rem;
-    margin-bottom:.25rem;
-  }
-  .step-title{
-    font-weight:700;
-    margin-bottom:.25rem;
-    font-size:1rem;
-  }
-  .step-description{
-    font-size:.8rem;
-    line-height:1.25;
-    color:#333;
-  }
-  /* arrow cell */
+  .step-icon{ font-size:1.7rem; margin-bottom:.25rem; }
+  .step-title{ font-weight:700; margin-bottom:.25rem; font-size:1rem; }
+  .step-description{ font-size:.8rem; line-height:1.25; color:#333; }
   .workflow-arrow{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#9aa3a6;
-    /* enlarge the arrow slightly to match bigger text */
-    font-size:1.6rem;
-    user-select:none;
+    display:flex; align-items:center; justify-content:center;
+    color:#9aa3a6; font-size:1.6rem; user-select:none;
   }
-  /* optional component spanning columns 3-5 */
-  .optional-component{
-    grid-column:3 / span 3;
-    background:#ffffffee;
-    border:2px dashed #9aa3a6;
-    border-radius:.5rem;
-    /* increase padding to complement larger font sizes */
-    padding:1rem .8rem;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:.4rem;
-    position:relative;
-    /* add extra top margin so there is space for the connecting arrow */
-    margin-top:1.6rem;
+  .optional-section{
+    background:#ffffffee; border:2px dashed #9aa3a6; border-radius:.5rem;
+    padding:.8rem .6rem; margin-top:.6rem; display:flex; flex-direction:column; gap:.4rem; width:100%;
   }
-  /* upward arrow from optional back to Create Batch Config */
-  .optional-component::before{
-    content:'\2191';
-    position:absolute;
-    /* position the arrow halfway between the Create Config box and the optional card */
-    top:-2.3rem;
-    left:25%;
-    transform:translateX(-50%);
-    color:#9aa3a6;
-    font-size:1.7rem;
-  }
-  .optional-title{
-    font-weight:700;
-    font-size:.95rem;
-    margin-bottom:.35rem;
-    text-align:center;
-  }
-  .optional-item{
-    font-size:.8rem;
-    line-height:1.4;
-    display:flex;
-    align-items:flex-start;
-    gap:.4rem;
-  }
-  .optional-item span.icon{
-    font-size:1.1rem;
-    line-height:1;
-    margin-top:.1rem;
-    color:#4CAF50;
-  }
-  /* accent colors */
+  .optional-title{ font-weight:700; font-size:.95rem; margin-bottom:.35rem; text-align:center; }
+  .optional-item{ font-size:.8rem; line-height:1.4; display:flex; align-items:flex-start; gap:.4rem; }
+  .optional-item span.icon{ font-size:1.1rem; line-height:1; margin-top:.1rem; color:#4CAF50; }
   .load{--accent-color:#4CAF50;background:linear-gradient(135deg,#e7f8e7 0%,#d4edd4 100%);}
   .config{--accent-color:#FF9800;background:linear-gradient(135deg,#fff4dc 0%,#ffe3ae 100%);}
   .run{--accent-color:#9C27B0;background:linear-gradient(135deg,#f5eafa 0%,#dabceb 100%);}
   .evaluate{--accent-color:#2196F3;background:linear-gradient(135deg,#e9f3ff 0%,#bad9ff 100%);}
-  /* responsive layout */
   @media(max-width:768px){
-    .workflow-container{
-      grid-template-columns:1fr;
-      gap:.8rem;
-    }
+    .workflow-container{ grid-template-columns:1fr; gap:.8rem; }
     .workflow-arrow{display:none;}
-    .optional-component{
-      grid-column:1;
-      margin-top:0;
-    }
-    .optional-component::before{
-      left:50%;
-    }
   }
 </style>
 </head>
@@ -142,35 +52,46 @@
   <div class="workflow-step load" style="grid-column:1">
     <div class="step-icon">🗂️</div>
     <div class="step-title">Load Dataset</div>
-    <div class="step-description">Use one of the 22 predefined datasets or any other text‑based Huggingface dataset for problem solving.</div>
+    <div class="step-description">
+      Use one of the 22 predefined datasets or any text-based Huggingface dataset. 
+    </div>
+    <div class="optional-item"><span>Datasets are saved as a unified format JSON.</span></div>
+    <div class="optional-item"><span>Example datasets: WinoGrande, MMLU-Pro, ETHICS, IFEval, GSM8K, ...</span></div>
   </div>
   <div class="workflow-arrow" style="grid-column:2">→</div>
-  <!-- Step 2 -->
+
+  <!-- Step 2 (unchanged, with optional section) -->
   <div class="workflow-step config" style="grid-column:3">
     <div class="step-icon">📋</div>
     <div class="step-title">Create Batch Config</div>
-    <div class="step-description">Prepare a config that specifies all non‑default parameters for the debate, such as input file, endpoint URL, number of agents and number of runs.</div>
+    <div class="step-description">Prepare a config that specifies all parameters for the debate, such as input files or number of agents.</div>
+    <div class="optional-section">
+      <div class="optional-item"><span><b>Optional: Custom Component</b></span></div>
+      <div class="optional-item"><span>Extend classes or implement your own.</span></div>
+    </div>
   </div>
   <div class="workflow-arrow" style="grid-column:4">→</div>
+
   <!-- Step 3 -->
   <div class="workflow-step run" style="grid-column:5">
     <div class="step-icon">🗣️</div>
     <div class="step-title">Run Debates</div>
-    <div class="step-description">Execute all configurations from your batch. Extensive logs of every debate are stored in a directory for later analysis.</div>
+    <div class="step-description">
+      Execute all configurations from the batch.</div>
+    <div class="optional-item"><span>Use open or proprietary LLMs via any OpenAI-compatible endpoint.</span></div>
+    <div class="optional-item"><span>Extensive per-turn logs are stored for later analysis.</span></div>
   </div>
   <div class="workflow-arrow" style="grid-column:6">→</div>
+
   <!-- Step 4 -->
   <div class="workflow-step evaluate" style="grid-column:7">
     <div class="step-icon">📊</div>
     <div class="step-title">Evaluate</div>
-    <div class="step-description">Feed debate logs into the evaluation pipeline to compute text overlap metrics, BERTScore, and accuracy. Automatically generated charts aid visualization.</div>
-  </div>
-  <!-- Optional component spanning steps 2 and 3 -->
-  <div class="optional-component" style="grid-row:2">
-    <div class="optional-title">Optional: Custom Component</div>
-    <div class="optional-item"><span class="icon">⚙️</span><span>Choose a core class to extend (PersonaGenerator, ResponseGenerator, DiscussionParadigm or DecisionProtocol).</span></div>
-    <div class="optional-item"><span class="icon">🔄</span><span>Pick a variant with similar features (e.g., <em>ReasoningResponseGenerator</em>) as a starting point.</span></div>
-    <div class="optional-item"><span class="icon">🛠️</span><span>Implement your own logic tailored to your specific experiment.</span></div>
+    <div class="step-description">
+      Feed debate logs into the pipeline for final results.
+    </div>
+    <div class="optional-item"><span>Repeat runs to quantify statistical dispersion with standard deviations.</span></div>
+    <div class="optional-item"><span>Automatically visualize performance, decision convergence, time, and more.</span></div>
   </div>
 </div>
 </body>
