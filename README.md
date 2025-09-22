@@ -1,6 +1,8 @@
 # MALLM Demo
 This web application provides an interactive visualization of multi-agent collaborative reasoning discussions. It allows you to explore how different AI personas work together to answer questions, showing the step-by-step process and voting results for each turn.
 
+Read the paper [here](https://arxiv.org/abs/2509.11656).
+
 ## Features
 
 - View the discussion step-by-step through multiple turns
