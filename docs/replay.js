@@ -173,6 +173,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize the application
     function init() {
+        // If opened directly from the filesystem (file://), browser blocks fetch() for local files.
+        // Show a friendly message with instructions to start a local server (works offline, no internet needed).
+        if (window.location.protocol === 'file:') {
+            const msg = document.createElement('div');
+            msg.className = 'file-protocol-warning';
+            msg.innerHTML = `
+                <div class="message warning-message">
+                    <div class="message-header">
+                        <span class="message-persona"><span class="vote-badge">Local File Mode</span></span>
+                    </div>
+                    <div class="message-content">
+                        <p><strong>Cannot load JSON over file://</strong> due to browser security (CORS). Please run a local server from the <code>docs</code> folder. No internet is required.</p>
+                        <p><strong>Windows PowerShell:</strong></p>
+                        <pre><code>cd "${decodeURIComponent(window.location.pathname).replace(/\\/g, '/').replace(/\/[^/]*$/, '')}"
+python -m http.server 8000</code></pre>
+                        <p>Then open <code>http://localhost:8000/</code> in your browser.</p>
+                    </div>
+                </div>`;
+            const container = document.querySelector('.conversation-panel .panel-content') || document.body;
+            container.appendChild(msg);
+            hideLoadingIndicator();
+            return; // Stop further initialization under file://
+        }
         // Construct the initial conversation file based on default selections
         updateConversationFile();
         // Load the initial conversation
@@ -262,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup conversation after data is loaded
     function setupConversation() {
         // Reset the agent personas and color mapping
-        maxTurns = discussionData.turns;
+        maxTurns = (discussionData.turns?.length ?? 7);
         agentPersonas = discussionData.personas.map(p => p.persona);
         
         // Store the discussion paradigm if available
@@ -1096,7 +1119,17 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("displayVotingInChat called", currentTurn, discussionData.votesEachTurn);
         if (!isReplaying) return; // Check if still replaying
         
-        const voteData = discussionData.votesEachTurn[currentTurn];
+        // votesEachTurn can be missing, an object keyed by turn number, or an array (0- or 1-based)
+        let voteData = undefined;
+        const vet = discussionData && discussionData.votesEachTurn;
+        if (vet) {
+            if (Array.isArray(vet)) {
+                // Try 1-based first, then 0-based
+                voteData = vet[currentTurn] || vet[currentTurn - 1];
+            } else if (typeof vet === 'object') {
+                voteData = vet[currentTurn] || vet[String(currentTurn)] || vet[currentTurn - 1] || vet[String(currentTurn - 1)];
+            }
+        }
         console.log("voteData", voteData);
         if (voteData) {
             // Create voting message element
@@ -1104,7 +1137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             voteEl.className = 'message voting-message';
             
             // Format voting process string with highlighted agent names
-            let formattedVotingProcess = voteData.voting_process_string;
+            let formattedVotingProcess = voteData.voting_process_string || '';
             
             // Use a simpler, more direct approach for replacing agent names
             Object.keys(agentColorMap).forEach(persona => {
@@ -1126,15 +1159,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="message-content voting-content">
                     <div class="vote-process-details">
                         <div class="vote-details">
-                            <div><i class="fas fa-info-circle"></i> Type: <strong>${voteData.type}</strong></div>
-                            <div><i class="fas fa-list-ul"></i> Answers: <strong>${voteData.answers.join(', ')}</strong></div>
+                            <div><i class="fas fa-info-circle"></i> Type: <strong>${voteData.type || 'N/A'}</strong></div>
+                            <div><i class="fas fa-list-ul"></i> Answers: <strong>${Array.isArray(voteData.answers) ? voteData.answers.join(', ') : 'N/A'}</strong></div>
                             <div class="voting-process">
                                 <small>${formattedVotingProcess.replace(/\n/g, '<br>')}</small>
                             </div>
                         </div>
                         <div class="vote-result">
-                            <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations.anonymous.final_answer}</strong></div>
-                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${voteData.alterations.anonymous.agreed ? 'Yes' : 'No'}</span></div>
+                            <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations?.anonymous?.final_answer ?? '—'}</strong></div>
+                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${voteData.alterations?.anonymous?.agreed ? 'Yes' : 'No'}</span></div>
                         </div>
                     </div>
                 </div>

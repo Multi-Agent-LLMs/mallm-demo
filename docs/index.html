@@ -5,13 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MALLM - Multi-Agent LLM Framework</title>
     <link rel="stylesheet" href="replay-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <!-- Removed external Google Fonts and Font Awesome for offline support -->
+    <!-- Local favicon paths (relative) for offline usage -->
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <!-- Offline fallback styles: system fonts and minimal icon substitutes -->
+    <style>
+        /* System font stack fallback */
+        body, button, input, select, textarea {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+        }
+        /* Minimal Font Awesome fallbacks using emoji/text via ::before */
+        .fa, .fas, .fab { font-style: normal; }
+        .fa::before, .fas::before, .fab::before { display: inline-block; margin-right: 6px; }
+        /* Common icons used in the UI */
+        .fa-github::before { content: "🐙"; }
+        .fa-play::before { content: "▶"; }
+        .fa-stop::before { content: "■"; }
+        .fa-pause::before { content: "❚❚"; }
+        .fa-tachometer-alt::before { content: "⏱"; }
+        .fa-question-circle::before { content: "?"; }
+        .fa-tasks::before { content: "✓"; }
+        .fa-brain::before { content: "🧠"; }
+        .fa-database::before { content: "🗄"; }
+        .fa-cogs::before { content: "⚙"; }
+        .fa-user-friends::before { content: "👥"; }
+        .fa-comments::before { content: "💬"; }
+        .fa-vote-yea::before { content: "🗳"; }
+        .fa-file-alt::before { content: "📄"; }
+        .fa-sync-alt::before { content: "⟳"; }
+        .fa-info-circle::before { content: "i"; }
+        .fa-check-circle::before { content: "✓"; }
+        .fa-times::before { content: "×"; }
+        .fa-circle-xmark::before { content: "✕"; }
+        .fa-hashtag::before { content: "#"; }
+        .fa-lightbulb::before { content: "💡"; }
+        .fa-random::before { content: "⇄"; }
+        .fa-check::before { content: "✓"; }
+        .fa-award::before { content: "🏆"; }
+        .fa-clipboard-list::before { content: "📋"; }
+        .fa-hand-paper::before { content: "✋"; }
+        .fa-redo::before { content: "↻"; }
+    </style>
 </head>
 <body>
     <div class="app-container">
