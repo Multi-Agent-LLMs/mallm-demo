@@ -114,6 +114,10 @@
                                     <option value="simple_voting">Simple Voting</option>
                                     <option value="approval_voting">Approval Voting</option>
                                 </select>
+                                <div id="voting-disclaimer" class="voting-disclaimer" style="display: none;">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Voting starts after turn 3 onwards.</span>
+                                </div>
                             </div>
                         </div>
                         
@@ -221,6 +225,22 @@
                 </div>
                 <div class="modal-footer">
                     <button id="close-help" class="btn"><i class="fas fa-times"></i> Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONSENSUS POPUP MODAL -->
+        <div id="consensus-popup-modal" class="modal">
+            <div class="modal-content consensus-modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-handshake"></i> Consensus Reached!</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Agreement reached. You may continue the debate or choose another setup using the panel on the left.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="continue-debate" class="btn primary"><i class="fas fa-play"></i> Continue Debate</button>
+                    <button id="change-setup" class="btn"><i class="fas fa-cog"></i> Change Setup</button>
                 </div>
             </div>
         </div>

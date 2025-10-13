@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const personaGeneratorSelect = document.getElementById('persona-generator');
     const discussionParadigmSelect = document.getElementById('discussion-paradigm');
     const decisionProtocolSelect = document.getElementById('decision-protocol');
+    const votingDisclaimer = document.getElementById('voting-disclaimer');
     const loadConversationBtn = document.getElementById('load-conversation');
     const currentConfigFileSpan = document.getElementById('current-config-file');
     const loadingIndicator = document.getElementById('loading-indicator');
@@ -27,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const helpModal = document.getElementById('help-modal');
     const closeHelpBtn = document.getElementById('close-help');
     const pauseResumeBtn = document.getElementById('pause-resume-replay');
+    // CONSENSUS POPUP ELEMENTS
+    const consensusPopupModal = document.getElementById('consensus-popup-modal');
+    const continueDebateBtn = document.getElementById('continue-debate');
+    const changeSetupBtn = document.getElementById('change-setup');
 
     // Create floating stop button for mobile
     const floatingStopBtn = document.createElement('button');
@@ -155,6 +160,16 @@ document.addEventListener('DOMContentLoaded', () => {
     discussionParadigmSelect.addEventListener('change', updateConversationFile);
     decisionProtocolSelect.addEventListener('change', updateConversationFile);
     
+    // Add event listener for decision protocol to show/hide voting disclaimer
+    decisionProtocolSelect.addEventListener('change', () => {
+        const selectedProtocol = decisionProtocolSelect.value;
+        if (selectedProtocol === 'simple_voting' || selectedProtocol === 'approval_voting') {
+            votingDisclaimer.style.display = 'block';
+        } else {
+            votingDisclaimer.style.display = 'none';
+        }
+    });
+    
     // Add event listener for window resize to handle scrolling
     window.addEventListener('resize', () => {
         if (isReplaying) {
@@ -169,6 +184,25 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             pauseReplay();
         }
+    });
+
+    // Consensus popup event listeners
+    continueDebateBtn.addEventListener('click', () => {
+        closeConsensusPopup();
+        // Resume replay and continue with the stored continuation
+        resumeReplay();
+        // Execute the continuation after a brief delay to ensure replay is resumed
+        setTimeout(() => {
+            if (window.consensusContinuation) {
+                window.consensusContinuation();
+                window.consensusContinuation = null; // Clean up
+            }
+        }, 100);
+    });
+
+    changeSetupBtn.addEventListener('click', () => {
+        closeConsensusPopup();
+        stopReplay();
     });
 
     // Initialize the application
@@ -198,6 +232,13 @@ python -m http.server 8000</code></pre>
         }
         // Construct the initial conversation file based on default selections
         updateConversationFile();
+        
+        // Check initial decision protocol selection for disclaimer
+        const initialProtocol = decisionProtocolSelect.value;
+        if (initialProtocol === 'simple_voting' || initialProtocol === 'approval_voting') {
+            votingDisclaimer.style.display = 'block';
+        }
+        
         // Load the initial conversation
         fetchDiscussionData()
             .then(data => {
@@ -265,6 +306,9 @@ python -m http.server 8000</code></pre>
         // Reset state
         currentTurn = 1;
         resetUI();
+        
+        // Clean up consensus continuation
+        window.consensusContinuation = null;
         
         // Fetch and load the new conversation
         fetchDiscussionData()
@@ -467,6 +511,9 @@ python -m http.server 8000</code></pre>
         replayTimeouts.forEach(timeout => clearTimeout(timeout));
         replayTimeouts = [];
         
+        // Clean up consensus continuation
+        window.consensusContinuation = null;
+        
         // Stop all animations by removing any in-progress animations
         const animatingElements = document.querySelectorAll('[style*="animation"], [style*="transition"]');
         animatingElements.forEach(el => {
@@ -582,6 +629,14 @@ python -m http.server 8000</code></pre>
     
     function closeModal() {
         replayCompleteModal.style.display = 'none';
+    }
+    
+    function showConsensusPopup() {
+        consensusPopupModal.style.display = 'flex';
+    }
+    
+    function closeConsensusPopup() {
+        consensusPopupModal.style.display = 'none';
     }
     
     function showLoadingIndicator() {
@@ -1116,7 +1171,6 @@ python -m http.server 8000</code></pre>
 
     // 2. Show voting results in the chat window
     function displayVotingInChat() {
-        console.log("displayVotingInChat called", currentTurn, discussionData.votesEachTurn);
         if (!isReplaying) return; // Check if still replaying
         
         // votesEachTurn can be missing, an object keyed by turn number, or an array (0- or 1-based)
@@ -1130,7 +1184,6 @@ python -m http.server 8000</code></pre>
                 voteData = vet[currentTurn] || vet[String(currentTurn)] || vet[currentTurn - 1] || vet[String(currentTurn - 1)];
             }
         }
-        console.log("voteData", voteData);
         if (voteData) {
             // Create voting message element
             const voteEl = document.createElement('div');
@@ -1167,7 +1220,19 @@ python -m http.server 8000</code></pre>
                         </div>
                         <div class="vote-result">
                             <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations?.anonymous?.final_answer ?? '—'}</strong></div>
-                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${voteData.alterations?.anonymous?.agreed ? 'Yes' : 'No'}</span></div>
+                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${(() => {
+                                // Use the same consensus detection logic as above
+                                if (voteData.type === 'approval_voting') {
+                                    const answers = voteData.answers || [];
+                                    if (answers.length > 0) {
+                                        const firstAnswer = answers[0];
+                                        return answers.every(answer => answer === firstAnswer) ? 'Yes' : 'No';
+                                    }
+                                    return 'No';
+                                } else {
+                                    return voteData.alterations?.anonymous?.agreed ? 'Yes' : 'No';
+                                }
+                            })()}</span></div>
                         </div>
                     </div>
                 </div>
@@ -1191,6 +1256,31 @@ python -m http.server 8000</code></pre>
                 voteResultEl.style.transition = 'opacity 1s ease';
                 scrollChatToBottom(); // Scroll after making details visible
                 
+            // Check for consensus and show popup if reached
+            let hasConsensus = false;
+            
+            // For approval voting, check if all participants have the same final answer
+            if (voteData.type === 'approval_voting') {
+                const answers = voteData.answers || [];
+                if (answers.length > 0) {
+                    // Check if all answers are the same
+                    const firstAnswer = answers[0];
+                    hasConsensus = answers.every(answer => answer === firstAnswer);
+                }
+            } else {
+                // For other voting types, use the agreed field
+                hasConsensus = voteData.alterations?.anonymous?.agreed === true;
+            }
+            
+            if (hasConsensus) {
+                // Show consensus popup and pause replay
+                showConsensusPopup();
+                pauseReplay();
+                // Store the continuation function for later use
+                window.consensusContinuation = () => {
+                    proceedToNextTurnOrFinish();
+                };
+            } else {
                 // After voting display, move to next turn or finish
                 const nextTurnDelay = 3000 / replaySpeed;
                 const timeoutId = setTimeout(() => {
@@ -1198,6 +1288,7 @@ python -m http.server 8000</code></pre>
                     proceedToNextTurnOrFinish();
                 }, nextTurnDelay);
                 replayTimeouts.push(timeoutId);
+            }
             }, 2000 / replaySpeed);
         } else {
             // No voting data, move to next turn

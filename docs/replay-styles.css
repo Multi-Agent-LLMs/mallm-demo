@@ -2108,4 +2108,132 @@ main {
     color: var(--success-color);
     font-weight: 700;
     margin-left: 6px;
+}
+
+/* Consensus Popup Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--panel-color);
+    margin: 15% auto;
+    padding: 0;
+    border-radius: var(--border-radius-lg);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.consensus-modal {
+    max-width: 450px;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--success-color), #66bb6a);
+    color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    text-align: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.modal-header i {
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: var(--spacing-lg);
+    text-align: center;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.modal-footer {
+    padding: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.modal-footer .btn {
+    flex: 1;
+    max-width: 150px;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 576px) {
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+        max-width: none;
+    }
+}
+
+/* Voting Disclaimer Styles */
+.voting-disclaimer {
+    margin-top: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: rgba(255, 152, 0, 0.1);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    color: var(--secondary-dark);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    animation: fadeIn 0.3s ease-in;
+}
+
+.voting-disclaimer i {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 } 
