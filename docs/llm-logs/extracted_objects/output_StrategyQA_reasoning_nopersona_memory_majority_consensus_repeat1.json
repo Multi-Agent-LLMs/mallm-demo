@@ -1,9 +1,6 @@
 {
-  "dataset": "exp1/strategyqa.json",
   "exampleId": "0b537372-6c76-47a8-916a-ad98efd236e4",
-  "datasetId": null,
   "instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
-  "coordinatorId": "555ad60b-d1aa-4579-9fdd-efa8971773be",
   "personas": [
     {
       "agentId": "73b6dca4-e56f-48f8-be6d-ee76a8bd2195",
@@ -29,24 +26,9 @@
   "input": [
     "Did Tony Bennett have more children than he had wives?\n\nA) Yes\nB) No"
   ],
-  "context": null,
-  "finalAnswer": "B) No",
-  "votesEachTurn": {},
-  "challengedAnswers": {
-    "answer": "B) No",
-    "additional_information": null,
-    "wrong_answer": null,
-    "irrelevant_answer": null,
-    "challenged_answers": null,
-    "challenged_answers_history": null,
-    "challenged_answers_wrong": null,
-    "challenged_answers_irrelevant": null,
-    "challenged_answers_additional_information": null
-  },
   "references": [
     "A) Yes"
   ],
-  "metadata": null,
   "decisionSuccess": false,
   "agreements": [
     {
@@ -90,11 +72,8 @@
       "additional_args": {
         "task_instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
         "input_str": "Did Tony Bennett have more children than he had wives?\n\nA) Yes\nB) No",
-        "current_draft": null,
         "persona": "Participant 1",
-        "persona_description": "A participant of the discussion.",
-        "agent_memory": null,
-        "feedback_sentences": null
+        "persona_description": "A participant of the discussion."
       }
     },
     {
@@ -120,8 +99,7 @@
             "role": "user",
             "content": "Participant 1: To answer this question, we need to know the number of wives Tony Bennett had and the number of children he had. Let's start by gathering this information. Tony Bennett was married three times. Now, we need to find out how many children he had. If we can determine the number of his children, we can compare it to the number of his wives and proceed from there."
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -152,8 +130,7 @@
             "role": "user",
             "content": "Participant 2: I think Participant 1 has started off in the right direction by identifying the number of Tony Bennett's wives. Now, we need to focus on finding out how many children he had. Participant 1, can you find out the number of children Tony Bennett had? [DISAGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -189,8 +166,7 @@
             "role": "user",
             "content": "Participant 3: I think Participant 1 and 2 have correctly identified the need to know the number of Tony Bennett's children to proceed. However, Participant 2's disagreement seems unnecessary as Participant 1 was on the right track. To move forward, let's find out how many children Tony Bennett had. According to my knowledge, Tony Bennett had four children. [DISAGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -231,8 +207,7 @@
             "role": "user",
             "content": "Participant 1: I agree with Participant 3 that we now have the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3's contribution was helpful in moving the discussion forward. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -278,8 +253,7 @@
             "role": "user",
             "content": "Participant 2: I agree with Participant 1 that we now have the necessary information. Participant 3's contribution was indeed helpful in providing the number of children Tony Bennett had, which is 4. Since we know he had 3 wives, we can now compare these numbers. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -330,8 +304,7 @@
             "role": "user",
             "content": "Participant 3: As Participant 3, I think we have enough information to proceed with a final answer. Participant 1 and 2 have acknowledged that Tony Bennett had 3 wives and 4 children. Since 4 (children) is more than 3 (wives), we can make a comparison. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -387,8 +360,7 @@
             "role": "user",
             "content": "Participant 1: Participant 3 has correctly summarized that we have enough information: Tony Bennett had 3 wives and 4 children. Since we have this information, we can proceed to compare these numbers. I think Participant 3 is right that we can now make a comparison, so [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -449,8 +421,7 @@
             "role": "user",
             "content": "Participant 2: I think Participants 1 and 3 have provided the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3 correctly pointed out that 4 is more than 3, which allows us to make a comparison. Since we have all the required information, [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -516,8 +487,7 @@
             "role": "user",
             "content": "Participant 3: I agree with Participants 1 and 2 that we have the necessary information: Tony Bennett had 3 wives and 4 children. Since 4 is indeed more than 3, I think we can proceed with a final answer. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -588,8 +558,7 @@
             "role": "user",
             "content": "Participant 1: I think we have enough information: Tony Bennett had 3 wives and 4 children. Participants 2 and 3 have confirmed this. Since 4 is more than 3, [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -665,8 +634,7 @@
             "role": "user",
             "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we have enough information to proceed. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -747,8 +715,7 @@
             "role": "user",
             "content": "Participant 3: Participants 1 and 2 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -834,8 +801,7 @@
             "role": "user",
             "content": "Participant 1: Participants 2 and 3 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -926,8 +892,7 @@
             "role": "user",
             "content": "Participant 2: Participants 1 and 3 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -1023,8 +988,7 @@
             "role": "user",
             "content": "Participant 3: Participants 1 and 2 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we can proceed with a final answer. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -1125,8 +1089,7 @@
             "role": "user",
             "content": "Participant 1: I agree with Participant 3 that we have enough information: Tony Bennett had 3 wives and 4 children, and 4 is indeed more than 3. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -1232,8 +1195,7 @@
             "role": "user",
             "content": "Participant 2: I agree with Participants 1 and 3 that we have enough information: Tony Bennett had 3 wives and 4 children. Since Participant 3 correctly pointed out that 4 is more than 3, I think we can proceed. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -1344,8 +1306,7 @@
             "role": "user",
             "content": "Participant 3: I agree with Participants 1 and 2 that we have established Tony Bennett had 3 wives and 4 children. Since we all confirm 4 is more than 3, [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -1461,8 +1422,7 @@
             "role": "user",
             "content": "Participant 1: Participant 3 has correctly pointed out that Tony Bennett had 3 wives and 4 children, and that 4 is more than 3. I think this information is sufficient to proceed. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     },
     {
@@ -1583,8 +1543,7 @@
             "role": "user",
             "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since they both confirm 4 is more than 3, I think we have enough information. [AGREE]"
           }
-        ],
-        "feedback_sentences": null
+        ]
       }
     }
   ],
@@ -1603,11 +1562,8 @@
         "additional_args": {
           "task_instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
           "input_str": "Did Tony Bennett have more children than he had wives?\n\nA) Yes\nB) No",
-          "current_draft": null,
           "persona": "Participant 1",
-          "persona_description": "A participant of the discussion.",
-          "agent_memory": null,
-          "feedback_sentences": null
+          "persona_description": "A participant of the discussion."
         }
       },
       {
@@ -1633,8 +1589,7 @@
               "role": "user",
               "content": "Participant 1: To answer this question, we need to know the number of wives Tony Bennett had and the number of children he had. Let's start by gathering this information. Tony Bennett was married three times. Now, we need to find out how many children he had. If we can determine the number of his children, we can compare it to the number of his wives and proceed from there."
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -1665,8 +1620,7 @@
               "role": "user",
               "content": "Participant 2: I think Participant 1 has started off in the right direction by identifying the number of Tony Bennett's wives. Now, we need to focus on finding out how many children he had. Participant 1, can you find out the number of children Tony Bennett had? [DISAGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -1702,8 +1656,7 @@
               "role": "user",
               "content": "Participant 3: I think Participant 1 and 2 have correctly identified the need to know the number of Tony Bennett's children to proceed. However, Participant 2's disagreement seems unnecessary as Participant 1 was on the right track. To move forward, let's find out how many children Tony Bennett had. According to my knowledge, Tony Bennett had four children. [DISAGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -1744,8 +1697,7 @@
               "role": "user",
               "content": "Participant 1: I agree with Participant 3 that we now have the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3's contribution was helpful in moving the discussion forward. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -1791,8 +1743,7 @@
               "role": "user",
               "content": "Participant 2: I agree with Participant 1 that we now have the necessary information. Participant 3's contribution was indeed helpful in providing the number of children Tony Bennett had, which is 4. Since we know he had 3 wives, we can now compare these numbers. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -1843,8 +1794,7 @@
               "role": "user",
               "content": "Participant 3: As Participant 3, I think we have enough information to proceed with a final answer. Participant 1 and 2 have acknowledged that Tony Bennett had 3 wives and 4 children. Since 4 (children) is more than 3 (wives), we can make a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -1900,8 +1850,7 @@
               "role": "user",
               "content": "Participant 1: Participant 3 has correctly summarized that we have enough information: Tony Bennett had 3 wives and 4 children. Since we have this information, we can proceed to compare these numbers. I think Participant 3 is right that we can now make a comparison, so [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -1962,8 +1911,7 @@
               "role": "user",
               "content": "Participant 2: I think Participants 1 and 3 have provided the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3 correctly pointed out that 4 is more than 3, which allows us to make a comparison. Since we have all the required information, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2029,8 +1977,7 @@
               "role": "user",
               "content": "Participant 3: I agree with Participants 1 and 2 that we have the necessary information: Tony Bennett had 3 wives and 4 children. Since 4 is indeed more than 3, I think we can proceed with a final answer. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2101,8 +2048,7 @@
               "role": "user",
               "content": "Participant 1: I think we have enough information: Tony Bennett had 3 wives and 4 children. Participants 2 and 3 have confirmed this. Since 4 is more than 3, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2178,8 +2124,7 @@
               "role": "user",
               "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we have enough information to proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2260,8 +2205,7 @@
               "role": "user",
               "content": "Participant 3: Participants 1 and 2 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2347,8 +2291,7 @@
               "role": "user",
               "content": "Participant 1: Participants 2 and 3 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2439,8 +2382,7 @@
               "role": "user",
               "content": "Participant 2: Participants 1 and 3 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2536,8 +2478,7 @@
               "role": "user",
               "content": "Participant 3: Participants 1 and 2 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we can proceed with a final answer. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2638,8 +2579,7 @@
               "role": "user",
               "content": "Participant 1: I agree with Participant 3 that we have enough information: Tony Bennett had 3 wives and 4 children, and 4 is indeed more than 3. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2745,8 +2685,7 @@
               "role": "user",
               "content": "Participant 2: I agree with Participants 1 and 3 that we have enough information: Tony Bennett had 3 wives and 4 children. Since Participant 3 correctly pointed out that 4 is more than 3, I think we can proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2857,8 +2796,7 @@
               "role": "user",
               "content": "Participant 3: I agree with Participants 1 and 2 that we have established Tony Bennett had 3 wives and 4 children. Since we all confirm 4 is more than 3, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -2974,8 +2912,7 @@
               "role": "user",
               "content": "Participant 1: Participant 3 has correctly pointed out that Tony Bennett had 3 wives and 4 children, and that 4 is more than 3. I think this information is sufficient to proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3096,8 +3033,7 @@
               "role": "user",
               "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since they both confirm 4 is more than 3, I think we have enough information. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       }
     ],
@@ -3115,11 +3051,8 @@
         "additional_args": {
           "task_instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
           "input_str": "Did Tony Bennett have more children than he had wives?\n\nA) Yes\nB) No",
-          "current_draft": null,
           "persona": "Participant 1",
-          "persona_description": "A participant of the discussion.",
-          "agent_memory": null,
-          "feedback_sentences": null
+          "persona_description": "A participant of the discussion."
         }
       },
       {
@@ -3145,8 +3078,7 @@
               "role": "user",
               "content": "Participant 1: To answer this question, we need to know the number of wives Tony Bennett had and the number of children he had. Let's start by gathering this information. Tony Bennett was married three times. Now, we need to find out how many children he had. If we can determine the number of his children, we can compare it to the number of his wives and proceed from there."
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3177,8 +3109,7 @@
               "role": "user",
               "content": "Participant 2: I think Participant 1 has started off in the right direction by identifying the number of Tony Bennett's wives. Now, we need to focus on finding out how many children he had. Participant 1, can you find out the number of children Tony Bennett had? [DISAGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3214,8 +3145,7 @@
               "role": "user",
               "content": "Participant 3: I think Participant 1 and 2 have correctly identified the need to know the number of Tony Bennett's children to proceed. However, Participant 2's disagreement seems unnecessary as Participant 1 was on the right track. To move forward, let's find out how many children Tony Bennett had. According to my knowledge, Tony Bennett had four children. [DISAGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3256,8 +3186,7 @@
               "role": "user",
               "content": "Participant 1: I agree with Participant 3 that we now have the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3's contribution was helpful in moving the discussion forward. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3303,8 +3232,7 @@
               "role": "user",
               "content": "Participant 2: I agree with Participant 1 that we now have the necessary information. Participant 3's contribution was indeed helpful in providing the number of children Tony Bennett had, which is 4. Since we know he had 3 wives, we can now compare these numbers. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3355,8 +3283,7 @@
               "role": "user",
               "content": "Participant 3: As Participant 3, I think we have enough information to proceed with a final answer. Participant 1 and 2 have acknowledged that Tony Bennett had 3 wives and 4 children. Since 4 (children) is more than 3 (wives), we can make a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3412,8 +3339,7 @@
               "role": "user",
               "content": "Participant 1: Participant 3 has correctly summarized that we have enough information: Tony Bennett had 3 wives and 4 children. Since we have this information, we can proceed to compare these numbers. I think Participant 3 is right that we can now make a comparison, so [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3474,8 +3400,7 @@
               "role": "user",
               "content": "Participant 2: I think Participants 1 and 3 have provided the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3 correctly pointed out that 4 is more than 3, which allows us to make a comparison. Since we have all the required information, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3541,8 +3466,7 @@
               "role": "user",
               "content": "Participant 3: I agree with Participants 1 and 2 that we have the necessary information: Tony Bennett had 3 wives and 4 children. Since 4 is indeed more than 3, I think we can proceed with a final answer. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3613,8 +3537,7 @@
               "role": "user",
               "content": "Participant 1: I think we have enough information: Tony Bennett had 3 wives and 4 children. Participants 2 and 3 have confirmed this. Since 4 is more than 3, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3690,8 +3613,7 @@
               "role": "user",
               "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we have enough information to proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3772,8 +3694,7 @@
               "role": "user",
               "content": "Participant 3: Participants 1 and 2 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3859,8 +3780,7 @@
               "role": "user",
               "content": "Participant 1: Participants 2 and 3 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -3951,8 +3871,7 @@
               "role": "user",
               "content": "Participant 2: Participants 1 and 3 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4048,8 +3967,7 @@
               "role": "user",
               "content": "Participant 3: Participants 1 and 2 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we can proceed with a final answer. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4150,8 +4068,7 @@
               "role": "user",
               "content": "Participant 1: I agree with Participant 3 that we have enough information: Tony Bennett had 3 wives and 4 children, and 4 is indeed more than 3. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4257,8 +4174,7 @@
               "role": "user",
               "content": "Participant 2: I agree with Participants 1 and 3 that we have enough information: Tony Bennett had 3 wives and 4 children. Since Participant 3 correctly pointed out that 4 is more than 3, I think we can proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4369,8 +4285,7 @@
               "role": "user",
               "content": "Participant 3: I agree with Participants 1 and 2 that we have established Tony Bennett had 3 wives and 4 children. Since we all confirm 4 is more than 3, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4486,8 +4401,7 @@
               "role": "user",
               "content": "Participant 1: Participant 3 has correctly pointed out that Tony Bennett had 3 wives and 4 children, and that 4 is more than 3. I think this information is sufficient to proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4608,8 +4522,7 @@
               "role": "user",
               "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since they both confirm 4 is more than 3, I think we have enough information. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       }
     ],
@@ -4627,11 +4540,8 @@
         "additional_args": {
           "task_instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
           "input_str": "Did Tony Bennett have more children than he had wives?\n\nA) Yes\nB) No",
-          "current_draft": null,
           "persona": "Participant 1",
-          "persona_description": "A participant of the discussion.",
-          "agent_memory": null,
-          "feedback_sentences": null
+          "persona_description": "A participant of the discussion."
         }
       },
       {
@@ -4657,8 +4567,7 @@
               "role": "user",
               "content": "Participant 1: To answer this question, we need to know the number of wives Tony Bennett had and the number of children he had. Let's start by gathering this information. Tony Bennett was married three times. Now, we need to find out how many children he had. If we can determine the number of his children, we can compare it to the number of his wives and proceed from there."
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4689,8 +4598,7 @@
               "role": "user",
               "content": "Participant 2: I think Participant 1 has started off in the right direction by identifying the number of Tony Bennett's wives. Now, we need to focus on finding out how many children he had. Participant 1, can you find out the number of children Tony Bennett had? [DISAGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4726,8 +4634,7 @@
               "role": "user",
               "content": "Participant 3: I think Participant 1 and 2 have correctly identified the need to know the number of Tony Bennett's children to proceed. However, Participant 2's disagreement seems unnecessary as Participant 1 was on the right track. To move forward, let's find out how many children Tony Bennett had. According to my knowledge, Tony Bennett had four children. [DISAGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4768,8 +4675,7 @@
               "role": "user",
               "content": "Participant 1: I agree with Participant 3 that we now have the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3's contribution was helpful in moving the discussion forward. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4815,8 +4721,7 @@
               "role": "user",
               "content": "Participant 2: I agree with Participant 1 that we now have the necessary information. Participant 3's contribution was indeed helpful in providing the number of children Tony Bennett had, which is 4. Since we know he had 3 wives, we can now compare these numbers. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4867,8 +4772,7 @@
               "role": "user",
               "content": "Participant 3: As Participant 3, I think we have enough information to proceed with a final answer. Participant 1 and 2 have acknowledged that Tony Bennett had 3 wives and 4 children. Since 4 (children) is more than 3 (wives), we can make a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4924,8 +4828,7 @@
               "role": "user",
               "content": "Participant 1: Participant 3 has correctly summarized that we have enough information: Tony Bennett had 3 wives and 4 children. Since we have this information, we can proceed to compare these numbers. I think Participant 3 is right that we can now make a comparison, so [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -4986,8 +4889,7 @@
               "role": "user",
               "content": "Participant 2: I think Participants 1 and 3 have provided the necessary information: Tony Bennett had 3 wives and 4 children. Participant 3 correctly pointed out that 4 is more than 3, which allows us to make a comparison. Since we have all the required information, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5053,8 +4955,7 @@
               "role": "user",
               "content": "Participant 3: I agree with Participants 1 and 2 that we have the necessary information: Tony Bennett had 3 wives and 4 children. Since 4 is indeed more than 3, I think we can proceed with a final answer. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5125,8 +5026,7 @@
               "role": "user",
               "content": "Participant 1: I think we have enough information: Tony Bennett had 3 wives and 4 children. Participants 2 and 3 have confirmed this. Since 4 is more than 3, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5202,8 +5102,7 @@
               "role": "user",
               "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we have enough information to proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5284,8 +5183,7 @@
               "role": "user",
               "content": "Participant 3: Participants 1 and 2 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5371,8 +5269,7 @@
               "role": "user",
               "content": "Participant 1: Participants 2 and 3 have confirmed that Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5463,8 +5360,7 @@
               "role": "user",
               "content": "Participant 2: Participants 1 and 3 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since we all agree on the numbers, I think we can proceed with a comparison. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5560,8 +5456,7 @@
               "role": "user",
               "content": "Participant 3: Participants 1 and 2 have confirmed the numbers: Tony Bennett had 3 wives and 4 children. Since 4 is more than 3, I think we can proceed with a final answer. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5662,8 +5557,7 @@
               "role": "user",
               "content": "Participant 1: I agree with Participant 3 that we have enough information: Tony Bennett had 3 wives and 4 children, and 4 is indeed more than 3. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5769,8 +5663,7 @@
               "role": "user",
               "content": "Participant 2: I agree with Participants 1 and 3 that we have enough information: Tony Bennett had 3 wives and 4 children. Since Participant 3 correctly pointed out that 4 is more than 3, I think we can proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5881,8 +5774,7 @@
               "role": "user",
               "content": "Participant 3: I agree with Participants 1 and 2 that we have established Tony Bennett had 3 wives and 4 children. Since we all confirm 4 is more than 3, [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -5998,8 +5890,7 @@
               "role": "user",
               "content": "Participant 1: Participant 3 has correctly pointed out that Tony Bennett had 3 wives and 4 children, and that 4 is more than 3. I think this information is sufficient to proceed. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       },
       {
@@ -6120,12 +6011,9 @@
               "role": "user",
               "content": "Participant 2: Participant 1 and 3 have established that Tony Bennett had 3 wives and 4 children. Since they both confirm 4 is more than 3, I think we have enough information. [AGREE]"
             }
-          ],
-          "feedback_sentences": null
+          ]
         }
       }
     ]
-  ],
-  "judgements": null,
-  "judged_solutions": null
+  ]
 }
