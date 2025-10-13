@@ -2236,4 +2236,34 @@ main {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Consensus Explanation Styles */
+.consensus-explanation {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.explanation-text {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+    color: var(--text-color);
+}
+
+.explanation-text i {
+    color: var(--success-color);
+    font-size: 0.9rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.explanation-text strong {
+    color: var(--success-color);
+    font-weight: 600;
 } 

@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pauseResumeBtn = document.getElementById('pause-resume-replay');
     // CONSENSUS POPUP ELEMENTS
     const consensusPopupModal = document.getElementById('consensus-popup-modal');
+    const consensusExplanation = document.getElementById('consensus-explanation');
     const continueDebateBtn = document.getElementById('continue-debate');
     const changeSetupBtn = document.getElementById('change-setup');
 
@@ -692,7 +693,27 @@ python -m http.server 8000</code></pre>
     }
     
     function showConsensusPopup() {
+        // Generate explanation based on the decision protocol
+        const explanation = generateConsensusExplanation();
+        consensusExplanation.innerHTML = explanation;
         consensusPopupModal.style.display = 'flex';
+    }
+    
+    function generateConsensusExplanation() {
+        const decisionProtocol = decisionProtocolSelect.value;
+        
+        switch (decisionProtocol) {
+            case 'majority_consensus':
+                return '<div class="explanation-text"><i class="fas fa-info-circle"></i> <strong>Majority Consensus:</strong> At least 2 out of 3 agents have reached the same conclusion, meeting the majority threshold.</div>';
+            case 'unanimity_consensus':
+                return '<div class="explanation-text"><i class="fas fa-info-circle"></i> <strong>Unanimity Consensus:</strong> All 3 agents have reached the same conclusion, achieving complete agreement.</div>';
+            case 'simple_voting':
+                return '<div class="explanation-text"><i class="fas fa-info-circle"></i> <strong>Simple Voting:</strong> The agents have reached consensus through the voting process after turn 3.</div>';
+            case 'approval_voting':
+                return '<div class="explanation-text"><i class="fas fa-info-circle"></i> <strong>Approval Voting:</strong> All agents have approved the same answer, indicating unanimous agreement.</div>';
+            default:
+                return '<div class="explanation-text"><i class="fas fa-info-circle"></i> <strong>Consensus:</strong> The agents have reached agreement through the selected decision protocol.</div>';
+        }
     }
     
     function closeConsensusPopup() {
