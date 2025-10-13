@@ -4,18 +4,24 @@ from pathlib import Path
 
 
 def meets_criteria(sample: dict) -> bool:
-    if "votesEachTurn" in sample:
-        longer_debate_until_agreement = sample["votesEachTurn"]["1"]["agreed"] is False # not agreement in first turn (voting)
+    if "3" in sample["votesEachTurn"]:
+        longer_debate_until_agreement = sample["votesEachTurn"]["3"]["agreed"] is False # not agreement in first turn (voting)
     else:
         longer_debate_until_agreement = not (sample["globalMemory"][1]["agreement"] and sample["globalMemory"][2]["agreement"]) # not agreement in first turn (consensus)
 
-    return longer_debate_until_agreement
+    offensive = "suicide" in sample["input"][0]
+    if offensive:
+        print("Sample is offensive: " + sample["input"][0])
+    if not longer_debate_until_agreement:
+        print("Sample does not have a longer debate until agreement: " + sample["input"][0])
+
+    return longer_debate_until_agreement and not offensive
 
 
 def main() -> None:
     # Resolve repo root from this file's location
     repo_root = Path(__file__).resolve().parent.parent
-    dataset_dir = repo_root / "dataset"
+    dataset_dir = repo_root / "exp1/out"
     output_dir = repo_root / "docs" / "llm-logs" / "extracted_objects"
 
     output_dir.mkdir(parents=True, exist_ok=True)

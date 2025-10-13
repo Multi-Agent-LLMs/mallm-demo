@@ -7,3 +7,4 @@ rename.bash
 dataset/*
 dataset_small/*
 dataset_small_eval/*
+exp1/out/*

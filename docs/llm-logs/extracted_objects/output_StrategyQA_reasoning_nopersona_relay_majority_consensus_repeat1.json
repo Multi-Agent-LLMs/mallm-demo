@@ -1,6 +1,9 @@
 {
+  "dataset": "exp1/strategyqa.json",
   "exampleId": "315efbea-0964-41c5-a5a3-4a36820cbd94",
+  "datasetId": null,
   "instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
+  "coordinatorId": "377d1a8f-67c8-4eb2-9ff1-5e718e76705b",
   "personas": [
     {
       "agentId": "abe57846-d64c-48d3-961e-0813adac58a4",
@@ -26,9 +29,24 @@
   "input": [
     "Do the James Bond and Doctor Who series have a similarity in format?\n\nA) Yes\nB) No"
   ],
+  "context": null,
+  "finalAnswer": "A) Yes",
+  "votesEachTurn": {},
+  "challengedAnswers": {
+    "answer": "A) Yes",
+    "additional_information": null,
+    "wrong_answer": null,
+    "irrelevant_answer": null,
+    "challenged_answers": null,
+    "challenged_answers_history": null,
+    "challenged_answers_wrong": null,
+    "challenged_answers_irrelevant": null,
+    "challenged_answers_additional_information": null
+  },
   "references": [
     "A) Yes"
   ],
+  "metadata": null,
   "decisionSuccess": false,
   "agreements": [
     {
@@ -72,8 +90,11 @@
       "additional_args": {
         "task_instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
         "input_str": "Do the James Bond and Doctor Who series have a similarity in format?\n\nA) Yes\nB) No",
+        "current_draft": null,
         "persona": "Participant 1",
-        "persona_description": "A participant of the discussion."
+        "persona_description": "A participant of the discussion.",
+        "agent_memory": null,
+        "feedback_sentences": null
       }
     },
     {
@@ -99,7 +120,8 @@
             "role": "user",
             "content": "Participant 1: To approach this question, let's break down the key elements of both series. James Bond is a series of spy films based on the fictional character created by novelist Ian Fleming. It's known for its action, espionage, and the recurring character of James Bond.\n\nDoctor Who, on the other hand, is a science fiction series produced by the BBC, following the adventures of a time-traveling alien known as \"the Doctor\" and their human companions.\n\nOne potential similarity could be the concept of a recurring main character (James Bond and the Doctor) who faces different challenges and villains in each installment. However, the genres and settings are quite different.\n\nWhat are your thoughts on how these elements compare between the two series?"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -125,7 +147,8 @@
             "role": "user",
             "content": "Participant 2: I agree with Participant 1 that the recurring main character concept is a potential similarity between the two series. However, I think we should also consider the fact that both series have a long history of replacing the main actor, with James Bond being portrayed by multiple actors and the Doctor regenerating into new incarnations. This aspect of renewal and continuity could be a significant similarity in format. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -156,7 +179,8 @@
             "role": "user",
             "content": "Participant 3: I think Participant 2 raises a valid point about the replacement of the main actor in both series. Participant 1's initial observation about the recurring main character concept is also relevant. However, I'd like to see more discussion on how these similarities impact the overall format of the series. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -192,7 +216,8 @@
             "role": "user",
             "content": "Participant 1: I think Participant 3's point about the replacement of the main actor is crucial. In both series, the main characters (James Bond and the Doctor) have been played by different actors over the years, which allows for a fresh take on the role while maintaining the core concept. This flexibility in casting contributes to the longevity of both series. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -228,7 +253,8 @@
             "role": "user",
             "content": "Participant 2: I think Participant 1's initial breakdown of the series and the point about the recurring main character are important. Additionally, the aspect of replacing the main actor, as mentioned, is crucial. However, I must correct Participant 1's statement - since I'm Participant 2, there is no Participant 3. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -269,7 +295,8 @@
             "role": "user",
             "content": "Participant 3: Participant 2 correctly pointed out the error in referencing a non-existent Participant 3, which was actually me. To correct this, I will refer to myself as the current speaker. Considering the recurring main character concept and the replacement of the main actor in both series, I think we have a good foundation for discussion. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -315,7 +342,8 @@
             "role": "user",
             "content": "Participant 1: You've correctly pointed out the error in referencing. I should have directly addressed you instead of mentioning a non-existent participant. The key points so far are the recurring main character concept and the replacement of the main actor in both series. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -361,7 +389,8 @@
             "role": "user",
             "content": "Participant 2: You've acknowledged the error and we've established two key similarities: the recurring main character concept and the replacement of the main actor. I think we have a good foundation to build on. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -412,7 +441,8 @@
             "role": "user",
             "content": "Participant 3: Participant 2 has correctly summarized our discussion. I agree with Participant 2 that we have established key similarities between the James Bond and Doctor Who series. However, I think we should further explore how these similarities impact the format of the series. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -468,7 +498,8 @@
             "role": "user",
             "content": "Participant 1: I think we've established that both series have a recurring main character and allow for the replacement of the main actor, which contributes to their longevity. You've pointed out that we should explore how these similarities impact the format. I agree that's the next step. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -524,7 +555,8 @@
             "role": "user",
             "content": "Participant 2: You've correctly summarized our discussion. The key points are the recurring main character and the replacement of the main actor. I think we've covered the main similarities, and now it's time to determine if these similarities are enough to conclude that the formats are similar. [DISAGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -585,7 +617,8 @@
             "role": "user",
             "content": "Participant 3: I think Participant 2 has accurately captured the essence of our discussion. The recurring main character and replacement of the main actor are significant similarities. Given these points, I believe we have sufficient information to make a conclusion. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -651,7 +684,8 @@
             "role": "user",
             "content": "Participant 1: Considering the points raised, I think Participant 3 is correct that we have sufficient information. The recurring main character and the ability to replace the main actor are significant similarities between the James Bond and Doctor Who series. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -717,7 +751,8 @@
             "role": "user",
             "content": "Participant 2: I must correct you again, there is no Participant 3 in this discussion. You should be referring to me, Participant 2. Considering the points raised, I think we have sufficient information to conclude that there are similarities in format. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -788,7 +823,8 @@
             "role": "user",
             "content": "Participant 3: I should refer to the other participant as Participant 2 and to myself as the current speaker. Participant 2 has pointed out key similarities between the James Bond and Doctor Who series, including the recurring main character concept and the replacement of the main actor. Considering these points, I think we have a basis for comparison. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -864,7 +900,8 @@
             "role": "user",
             "content": "Participant 1: Participant 2 has highlighted the recurring main character concept and the replacement of the main actor as key similarities between the James Bond and Doctor Who series. I agree that these points provide a basis for comparison. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -940,7 +977,8 @@
             "role": "user",
             "content": "Participant 2: You've correctly referred to me as Participant 2 and acknowledged the key similarities between the James Bond and Doctor Who series. I think we've covered the main points, and it's time to conclude. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -1021,7 +1059,8 @@
             "role": "user",
             "content": "Participant 3: Participant 2 has correctly identified the key similarities between the James Bond and Doctor Who series, including the recurring main character concept and the replacement of the main actor. I agree that these points are sufficient to conclude that there are similarities in format. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -1107,7 +1146,8 @@
             "role": "user",
             "content": "Participant 1: Participant 2 has correctly identified key similarities, including the recurring main character concept and the replacement of the main actor. I think this is sufficient to conclude that there are similarities in format. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     },
     {
@@ -1193,7 +1233,8 @@
             "role": "user",
             "content": "Participant 2: You've correctly referred to me as Participant 2 and acknowledged the key similarities. I think we've covered the main points, and it's time to conclude. [AGREE]"
           }
-        ]
+        ],
+        "feedback_sentences": null
       }
     }
   ],
@@ -1212,8 +1253,11 @@
         "additional_args": {
           "task_instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
           "input_str": "Do the James Bond and Doctor Who series have a similarity in format?\n\nA) Yes\nB) No",
+          "current_draft": null,
           "persona": "Participant 1",
-          "persona_description": "A participant of the discussion."
+          "persona_description": "A participant of the discussion.",
+          "agent_memory": null,
+          "feedback_sentences": null
         }
       },
       {
@@ -1239,7 +1283,8 @@
               "role": "user",
               "content": "Participant 2: I agree with Participant 1 that the recurring main character concept is a potential similarity between the two series. However, I think we should also consider the fact that both series have a long history of replacing the main actor, with James Bond being portrayed by multiple actors and the Doctor regenerating into new incarnations. This aspect of renewal and continuity could be a significant similarity in format. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1270,7 +1315,8 @@
               "role": "user",
               "content": "Participant 3: I think Participant 2 raises a valid point about the replacement of the main actor in both series. Participant 1's initial observation about the recurring main character concept is also relevant. However, I'd like to see more discussion on how these similarities impact the overall format of the series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1306,7 +1352,8 @@
               "role": "user",
               "content": "Participant 2: I think Participant 1's initial breakdown of the series and the point about the recurring main character are important. Additionally, the aspect of replacing the main actor, as mentioned, is crucial. However, I must correct Participant 1's statement - since I'm Participant 2, there is no Participant 3. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1347,7 +1394,8 @@
               "role": "user",
               "content": "Participant 3: Participant 2 correctly pointed out the error in referencing a non-existent Participant 3, which was actually me. To correct this, I will refer to myself as the current speaker. Considering the recurring main character concept and the replacement of the main actor in both series, I think we have a good foundation for discussion. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1393,7 +1441,8 @@
               "role": "user",
               "content": "Participant 2: You've acknowledged the error and we've established two key similarities: the recurring main character concept and the replacement of the main actor. I think we have a good foundation to build on. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1444,7 +1493,8 @@
               "role": "user",
               "content": "Participant 3: Participant 2 has correctly summarized our discussion. I agree with Participant 2 that we have established key similarities between the James Bond and Doctor Who series. However, I think we should further explore how these similarities impact the format of the series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1500,7 +1550,8 @@
               "role": "user",
               "content": "Participant 2: You've correctly summarized our discussion. The key points are the recurring main character and the replacement of the main actor. I think we've covered the main similarities, and now it's time to determine if these similarities are enough to conclude that the formats are similar. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1561,7 +1612,8 @@
               "role": "user",
               "content": "Participant 3: I think Participant 2 has accurately captured the essence of our discussion. The recurring main character and replacement of the main actor are significant similarities. Given these points, I believe we have sufficient information to make a conclusion. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1627,7 +1679,8 @@
               "role": "user",
               "content": "Participant 2: I must correct you again, there is no Participant 3 in this discussion. You should be referring to me, Participant 2. Considering the points raised, I think we have sufficient information to conclude that there are similarities in format. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1698,7 +1751,8 @@
               "role": "user",
               "content": "Participant 3: I should refer to the other participant as Participant 2 and to myself as the current speaker. Participant 2 has pointed out key similarities between the James Bond and Doctor Who series, including the recurring main character concept and the replacement of the main actor. Considering these points, I think we have a basis for comparison. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1774,7 +1828,8 @@
               "role": "user",
               "content": "Participant 2: You've correctly referred to me as Participant 2 and acknowledged the key similarities between the James Bond and Doctor Who series. I think we've covered the main points, and it's time to conclude. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1855,7 +1910,8 @@
               "role": "user",
               "content": "Participant 3: Participant 2 has correctly identified the key similarities between the James Bond and Doctor Who series, including the recurring main character concept and the replacement of the main actor. I agree that these points are sufficient to conclude that there are similarities in format. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -1941,7 +1997,8 @@
               "role": "user",
               "content": "Participant 2: You've correctly referred to me as Participant 2 and acknowledged the key similarities. I think we've covered the main points, and it's time to conclude. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       }
     ],
@@ -1959,8 +2016,11 @@
         "additional_args": {
           "task_instruction": "Answer the following question with A) Yes or B) No. Include the letter corresponding to your answer in the solution.",
           "input_str": "Do the James Bond and Doctor Who series have a similarity in format?\n\nA) Yes\nB) No",
+          "current_draft": null,
           "persona": "Participant 1",
-          "persona_description": "A participant of the discussion."
+          "persona_description": "A participant of the discussion.",
+          "agent_memory": null,
+          "feedback_sentences": null
         }
       },
       {
@@ -1986,7 +2046,8 @@
               "role": "user",
               "content": "Participant 1: To approach this question, let's break down the key elements of both series. James Bond is a series of spy films based on the fictional character created by novelist Ian Fleming. It's known for its action, espionage, and the recurring character of James Bond.\n\nDoctor Who, on the other hand, is a science fiction series produced by the BBC, following the adventures of a time-traveling alien known as \"the Doctor\" and their human companions.\n\nOne potential similarity could be the concept of a recurring main character (James Bond and the Doctor) who faces different challenges and villains in each installment. However, the genres and settings are quite different.\n\nWhat are your thoughts on how these elements compare between the two series?"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2017,7 +2078,8 @@
               "role": "user",
               "content": "Participant 3: I think Participant 2 raises a valid point about the replacement of the main actor in both series. Participant 1's initial observation about the recurring main character concept is also relevant. However, I'd like to see more discussion on how these similarities impact the overall format of the series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2053,7 +2115,8 @@
               "role": "user",
               "content": "Participant 1: I think Participant 3's point about the replacement of the main actor is crucial. In both series, the main characters (James Bond and the Doctor) have been played by different actors over the years, which allows for a fresh take on the role while maintaining the core concept. This flexibility in casting contributes to the longevity of both series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2094,7 +2157,8 @@
               "role": "user",
               "content": "Participant 3: Participant 2 correctly pointed out the error in referencing a non-existent Participant 3, which was actually me. To correct this, I will refer to myself as the current speaker. Considering the recurring main character concept and the replacement of the main actor in both series, I think we have a good foundation for discussion. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2140,7 +2204,8 @@
               "role": "user",
               "content": "Participant 1: You've correctly pointed out the error in referencing. I should have directly addressed you instead of mentioning a non-existent participant. The key points so far are the recurring main character concept and the replacement of the main actor in both series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2191,7 +2256,8 @@
               "role": "user",
               "content": "Participant 3: Participant 2 has correctly summarized our discussion. I agree with Participant 2 that we have established key similarities between the James Bond and Doctor Who series. However, I think we should further explore how these similarities impact the format of the series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2247,7 +2313,8 @@
               "role": "user",
               "content": "Participant 1: I think we've established that both series have a recurring main character and allow for the replacement of the main actor, which contributes to their longevity. You've pointed out that we should explore how these similarities impact the format. I agree that's the next step. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2308,7 +2375,8 @@
               "role": "user",
               "content": "Participant 3: I think Participant 2 has accurately captured the essence of our discussion. The recurring main character and replacement of the main actor are significant similarities. Given these points, I believe we have sufficient information to make a conclusion. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2374,7 +2442,8 @@
               "role": "user",
               "content": "Participant 1: Considering the points raised, I think Participant 3 is correct that we have sufficient information. The recurring main character and the ability to replace the main actor are significant similarities between the James Bond and Doctor Who series. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2445,7 +2514,8 @@
               "role": "user",
               "content": "Participant 3: I should refer to the other participant as Participant 2 and to myself as the current speaker. Participant 2 has pointed out key similarities between the James Bond and Doctor Who series, including the recurring main character concept and the replacement of the main actor. Considering these points, I think we have a basis for comparison. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2521,7 +2591,8 @@
               "role": "user",
               "content": "Participant 1: Participant 2 has highlighted the recurring main character concept and the replacement of the main actor as key similarities between the James Bond and Doctor Who series. I agree that these points provide a basis for comparison. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2602,7 +2673,8 @@
               "role": "user",
               "content": "Participant 3: Participant 2 has correctly identified the key similarities between the James Bond and Doctor Who series, including the recurring main character concept and the replacement of the main actor. I agree that these points are sufficient to conclude that there are similarities in format. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2688,7 +2760,8 @@
               "role": "user",
               "content": "Participant 1: Participant 2 has correctly identified key similarities, including the recurring main character concept and the replacement of the main actor. I think this is sufficient to conclude that there are similarities in format. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       }
     ],
@@ -2716,7 +2789,8 @@
               "role": "user",
               "content": "Participant 1: To approach this question, let's break down the key elements of both series. James Bond is a series of spy films based on the fictional character created by novelist Ian Fleming. It's known for its action, espionage, and the recurring character of James Bond.\n\nDoctor Who, on the other hand, is a science fiction series produced by the BBC, following the adventures of a time-traveling alien known as \"the Doctor\" and their human companions.\n\nOne potential similarity could be the concept of a recurring main character (James Bond and the Doctor) who faces different challenges and villains in each installment. However, the genres and settings are quite different.\n\nWhat are your thoughts on how these elements compare between the two series?"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2742,7 +2816,8 @@
               "role": "user",
               "content": "Participant 2: I agree with Participant 1 that the recurring main character concept is a potential similarity between the two series. However, I think we should also consider the fact that both series have a long history of replacing the main actor, with James Bond being portrayed by multiple actors and the Doctor regenerating into new incarnations. This aspect of renewal and continuity could be a significant similarity in format. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2778,7 +2853,8 @@
               "role": "user",
               "content": "Participant 1: I think Participant 3's point about the replacement of the main actor is crucial. In both series, the main characters (James Bond and the Doctor) have been played by different actors over the years, which allows for a fresh take on the role while maintaining the core concept. This flexibility in casting contributes to the longevity of both series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2814,7 +2890,8 @@
               "role": "user",
               "content": "Participant 2: I think Participant 1's initial breakdown of the series and the point about the recurring main character are important. Additionally, the aspect of replacing the main actor, as mentioned, is crucial. However, I must correct Participant 1's statement - since I'm Participant 2, there is no Participant 3. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2860,7 +2937,8 @@
               "role": "user",
               "content": "Participant 1: You've correctly pointed out the error in referencing. I should have directly addressed you instead of mentioning a non-existent participant. The key points so far are the recurring main character concept and the replacement of the main actor in both series. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2906,7 +2984,8 @@
               "role": "user",
               "content": "Participant 2: You've acknowledged the error and we've established two key similarities: the recurring main character concept and the replacement of the main actor. I think we have a good foundation to build on. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -2962,7 +3041,8 @@
               "role": "user",
               "content": "Participant 1: I think we've established that both series have a recurring main character and allow for the replacement of the main actor, which contributes to their longevity. You've pointed out that we should explore how these similarities impact the format. I agree that's the next step. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -3018,7 +3098,8 @@
               "role": "user",
               "content": "Participant 2: You've correctly summarized our discussion. The key points are the recurring main character and the replacement of the main actor. I think we've covered the main similarities, and now it's time to determine if these similarities are enough to conclude that the formats are similar. [DISAGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -3084,7 +3165,8 @@
               "role": "user",
               "content": "Participant 1: Considering the points raised, I think Participant 3 is correct that we have sufficient information. The recurring main character and the ability to replace the main actor are significant similarities between the James Bond and Doctor Who series. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -3150,7 +3232,8 @@
               "role": "user",
               "content": "Participant 2: I must correct you again, there is no Participant 3 in this discussion. You should be referring to me, Participant 2. Considering the points raised, I think we have sufficient information to conclude that there are similarities in format. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -3226,7 +3309,8 @@
               "role": "user",
               "content": "Participant 1: Participant 2 has highlighted the recurring main character concept and the replacement of the main actor as key similarities between the James Bond and Doctor Who series. I agree that these points provide a basis for comparison. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -3302,7 +3386,8 @@
               "role": "user",
               "content": "Participant 2: You've correctly referred to me as Participant 2 and acknowledged the key similarities between the James Bond and Doctor Who series. I think we've covered the main points, and it's time to conclude. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -3388,7 +3473,8 @@
               "role": "user",
               "content": "Participant 1: Participant 2 has correctly identified key similarities, including the recurring main character concept and the replacement of the main actor. I think this is sufficient to conclude that there are similarities in format. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       },
       {
@@ -3474,9 +3560,12 @@
               "role": "user",
               "content": "Participant 2: You've correctly referred to me as Participant 2 and acknowledged the key similarities. I think we've covered the main points, and it's time to conclude. [AGREE]"
             }
-          ]
+          ],
+          "feedback_sentences": null
         }
       }
     ]
-  ]
+  ],
+  "judgements": null,
+  "judged_solutions": null
 }
