@@ -621,6 +621,38 @@ python -m http.server 8000</code></pre>
     function escapeRegExp(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
+    
+    // Function to check for consensus based on agreement field in messages
+    function checkAgreementConsensus() {
+        if (!discussionData || !discussionData.globalMemory) {
+            return false;
+        }
+        
+        // Get messages for the current turn
+        const turnMessages = discussionData.globalMemory.filter(msg => msg.turn === currentTurn);
+        
+        if (turnMessages.length === 0) {
+            return false;
+        }
+        
+        // Count agreements in this turn
+        const agreementCount = turnMessages.filter(msg => msg.agreement === true).length;
+        const totalAgents = discussionData.personas ? discussionData.personas.length : 3;
+        
+        // Get decision protocol from the UI select element
+        const decisionProtocol = decisionProtocolSelect.value;
+        
+        switch (decisionProtocol) {
+            case 'majority_consensus':
+                // Majority consensus: 2+ agreements (assuming 3 agents)
+                return agreementCount >= 2;
+            case 'unanimity_consensus':
+                // Unanimity consensus: all agents agree
+                return agreementCount >= totalAgents;
+            default:
+                return false;
+        }
+    }
 
     function showCompletionModal() {
         modalFinalAnswer.textContent = discussionData.finalAnswer;
@@ -1123,9 +1155,26 @@ python -m http.server 8000</code></pre>
                         }
                     });
                 } else {
-                    // All messages displayed, show voting after a delay
+                    // All messages displayed, check for consensus first, then show voting
                     const timeoutId = setTimeout(() => {
                         if (!isReplaying) return; // Additional check
+                        
+                        // Check for consensus in majority/unanimity protocols
+                        const decisionProtocol = decisionProtocolSelect.value;
+                        if (decisionProtocol === 'majority_consensus' || decisionProtocol === 'unanimity_consensus') {
+                            const hasConsensus = checkAgreementConsensus();
+                            if (hasConsensus) {
+                                // Show consensus popup and pause replay
+                                showConsensusPopup();
+                                pauseReplay();
+                                // Store the continuation function for later use
+                                window.consensusContinuation = () => {
+                                    proceedToNextTurnOrFinish();
+                                };
+                                return; // Exit early since we have consensus
+                            }
+                        }
+                        
                         // Display voting in conversation window instead of side panel
                         displayVotingInChat();
                     }, 1000 / replaySpeed);
