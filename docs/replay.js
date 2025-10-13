@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let originalClearTimeout = window.clearTimeout;
     let timeoutRegistry = new Map(); // Active timeouts
     let pausedTimeouts = []; // Timeouts captured during a pause
+    let configChanged = false; // Track if configuration has been changed but not loaded
 
     // Available SVG icons from the images folder
     const availableIcons = [
@@ -233,6 +234,9 @@ python -m http.server 8000</code></pre>
         // Construct the initial conversation file based on default selections
         updateConversationFile();
         
+        // Reset config changed flag after initial setup
+        configChanged = false;
+        
         // Check initial decision protocol selection for disclaimer
         const initialProtocol = decisionProtocolSelect.value;
         if (initialProtocol === 'simple_voting' || initialProtocol === 'approval_voting') {
@@ -263,7 +267,14 @@ python -m http.server 8000</code></pre>
         
         // Construct filename based on component selections
         // Format: output_{responseGen}_{personaGen}_{paradigm}_{protocol}_repeat1.json
-        currentConversationFile = `output_StrategyQA_${responseGen}_${personaGen}_${paradigm}_${protocol}_repeat1.json`;
+        const newConversationFile = `output_StrategyQA_${responseGen}_${personaGen}_${paradigm}_${protocol}_repeat1.json`;
+        
+        // Check if configuration has changed
+        if (newConversationFile !== currentConversationFile) {
+            configChanged = true;
+        }
+        
+        currentConversationFile = newConversationFile;
         
         // Update the display
         currentConfigFileSpan.textContent = currentConversationFile;
@@ -296,7 +307,7 @@ python -m http.server 8000</code></pre>
     }
 
     // Load a new conversation
-    function loadNewConversation() {
+    function loadNewConversation(shouldStartReplay = false) {
         // Show loading indicator
         showLoadingIndicator();
         
@@ -316,8 +327,18 @@ python -m http.server 8000</code></pre>
                 discussionData = data;
                 setupConversation();
                 hideLoadingIndicator();
-                // Show play overlay after loading new conversation
-                showDiscussionPlayOverlay();
+                // Reset config changed flag since we've loaded the new configuration
+                configChanged = false;
+                
+                if (shouldStartReplay) {
+                    // Start replay after loading new configuration
+                    setTimeout(() => {
+                        startReplay();
+                    }, 100);
+                } else {
+                    // Show play overlay after loading new conversation
+                    showDiscussionPlayOverlay();
+                }
             })
             .catch(error => {
                 console.error('Error loading discussion data:', error);
@@ -461,6 +482,13 @@ python -m http.server 8000</code></pre>
 
     function startReplay() {
         if (isReplaying) return;
+        
+        // If configuration has been changed, load it first
+        if (configChanged) {
+            console.log('Configuration changed, loading new configuration before starting replay...');
+            loadNewConversation(true); // Pass true to start replay after loading
+            return; // loadNewConversation will handle the rest
+        }
         
         enableManagedTimeouts(); // Activate managed timeouts
         isPaused = false;
