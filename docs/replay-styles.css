@@ -74,15 +74,16 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     padding: var(--spacing-md);
-    height: 100vh;
-    overflow: hidden;
+    height: 100vh; /* Lock the page to the viewport height */
+    overflow: hidden; /* Prevent page-level scrolling; inner containers handle overflow */
+    min-height: 0;
     background-image: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
 }
 
 .app-container {
     max-width: 1600px;
     margin: 0 auto;
-    height: calc(100vh - 2 * var(--spacing-md));
+    height: calc(100vh - 2 * var(--spacing-md)); /* Fits exactly, accounting for body padding */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -453,7 +454,8 @@ main {
     grid-template-columns: 400px 1fr;
     grid-gap: var(--spacing-lg);
     flex: 1;
-    height: calc(100% - 80px);
+    /* Use flexbox to occupy remaining space under the header */
+    min-height: 0; /* allow the grid to shrink when necessary */
 }
 
 .question-panel, .conversation-panel {
@@ -571,6 +573,17 @@ main {
     background-color: rgba(255, 152, 0, 0.03);
     border-radius: var(--border-radius-sm);
     line-height: 1.6;
+}
+
+/* Correct answer styling */
+.correct-answer {
+    background-color: rgba(76, 175, 80, 0.05);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--success-color);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-color);
 }
 
 .personas-container {
@@ -2018,4 +2031,81 @@ main {
     .discussion-play-button i {
         font-size: 24px;
     }
+}
+
+/* Help modal tweaks */
+#help-modal .modal-content {
+    max-width: 600px;
+}
+
+.help-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.help-body h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: var(--spacing-md) 0 var(--spacing-xs);
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.help-body h4 i {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+.help-body ul {
+    list-style: none;
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding-left: 0;
+}
+
+.help-body ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.5;
+}
+
+.help-body ul li::before {
+    content: "\f058"; /* check-circle */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.help-body p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Highlight for 144 setup count */
+.setup-count {
+    background-color: var(--secondary-color);
+    color: var(--text-on-secondary);
+    padding: 2px 8px;
+    border-radius: var(--border-radius-sm);
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Highlight correct option */
+.correct-option {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left-color: var(--success-color);
+}
+
+.correct-label {
+    color: var(--success-color);
+    font-weight: 700;
+    margin-left: 6px;
 } 

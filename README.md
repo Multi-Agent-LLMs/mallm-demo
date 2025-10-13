@@ -1,6 +1,7 @@
-# LLM Agent Discussion Visualization
-
+# MALLM Demo
 This web application provides an interactive visualization of multi-agent collaborative reasoning discussions. It allows you to explore how different AI personas work together to answer questions, showing the step-by-step process and voting results for each turn.
+
+Read the paper [here](https://arxiv.org/abs/2509.11656).
 
 ## Features
 
@@ -37,3 +38,17 @@ To visualize a different discussion:
 - Built with pure HTML, CSS, and JavaScript (no dependencies)
 - Responsive design works on desktop and mobile devices
 - Color-coded agent messages for easier tracking
+
+## Citation
+
+```
+@misc{becker2025mallmmultiagentlargelanguage,
+      title={MALLM: Multi-Agent Large Language Models Framework}, 
+      author={Jonas Becker and Lars Benedikt Kaesberg and Niklas Bauer and Jan Philip Wahle and Terry Ruas and Bela Gipp},
+      year={2025},
+      eprint={2509.11656},
+      archivePrefix={arXiv},
+      primaryClass={cs.MA},
+      url={https://arxiv.org/abs/2509.11656}, 
+}
+```
