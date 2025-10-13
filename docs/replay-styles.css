@@ -2266,4 +2266,15 @@ main {
 .explanation-text strong {
     color: var(--success-color);
     font-weight: 600;
+}
+
+/* Voting result styling */
+.agreed {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.disagreed {
+    color: var(--error-color);
+    font-weight: 600;
 } 

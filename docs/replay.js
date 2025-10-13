@@ -1318,17 +1318,23 @@ python -m http.server 8000</code></pre>
                         </div>
                         <div class="vote-result">
                             <div><span class="vote-result-label"><i class="fas fa-check"></i> Final Answer:</span> <strong>${voteData.alterations?.anonymous?.final_answer ?? '—'}</strong></div>
-                            <div><span class="vote-result-label"><i class="fas fa-handshake"></i> Consensus:</span> <span class="agreed">${(() => {
-                                // Use the same consensus detection logic as above
+                            <div><span class="vote-result-label">${(() => {
+                                // Determine consensus status and return appropriate icon and text
+                                let hasConsensus = false;
                                 if (voteData.type === 'approval_voting') {
                                     const answers = voteData.answers || [];
                                     if (answers.length > 0) {
                                         const firstAnswer = answers[0];
-                                        return answers.every(answer => answer === firstAnswer) ? 'Yes' : 'No';
+                                        hasConsensus = answers.every(answer => answer === firstAnswer);
                                     }
-                                    return 'No';
                                 } else {
-                                    return voteData.alterations?.anonymous?.agreed ? 'Yes' : 'No';
+                                    hasConsensus = voteData.alterations?.anonymous?.agreed === true;
+                                }
+                                
+                                if (hasConsensus) {
+                                    return '<i class="fas fa-handshake"></i> Agreement:</span> <span class="agreed">Yes';
+                                } else {
+                                    return '<i class="fas fa-times-circle"></i> Agreement:</span> <span class="disagreed">No';
                                 }
                             })()}</span></div>
                         </div>
